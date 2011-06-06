@@ -1,0 +1,241 @@
+import base64
+import cgi
+import Cookie
+import email.utils
+import hashlib
+import hmac
+import logging
+import os.path
+import time
+import urllib
+import simplejson as json
+
+from google.appengine.api import users 
+from google.appengine.ext import webapp
+from google.appengine.ext.webapp import template
+
+from gaesessions import get_current_session
+
+from models.ca_models import CAFacebookUser
+from models.ca_models import CANativeUser
+from models.ca_models import CAUser
+
+FACEBOOK_APP_ID = "176955699024734"
+FACEBOOK_APP_SECRET = "b7d8f9f20519d0d54a2bc96569f6c15f"
+
+"""
+Handler que se encarga de redirigir a la pagina correspondiente
+segun la opcion escogida por el usuario para autenticarse
+"""
+class LoginHandler(webapp.RequestHandler):
+    def post(self):
+        session = get_current_session()
+        
+        if session.is_active():
+            session.terminate()
+                
+        accept = self.request.get('accept')
+        google = self.request.get('google')
+        facebook = self.request.get('facebook')
+        
+        """
+        Login con autenticacion nativa
+        """
+        if accept:
+            logging.debug('Login with native credentials')
+            
+            email = self.request.get('email')
+            password = self.request.get('password')
+            
+            logging.debug(email + ' ' + password)
+    
+            if email and password:
+                logging.debug('Checking credentials')
+                
+                user = CANativeUser.all().filter("email =", email).fetch(1)
+    
+                if user:
+                    if user[0].password == password:
+                        logging.debug('Username and password correct. Login in')
+                        
+                        ca_user = CAUser(native_user=user[0], type=2)
+                        session['me'] = ca_user
+                        
+                        template_values = {
+                            'user': ca_user
+                        }
+                        
+                        print(template_values)
+                        path = os.path.join(os.path.dirname(__file__), 'home.html')
+                        self.response.out.write(template.render(path, template_values))
+                    else:
+                        logging.debug('Incorrect password')
+                        
+                        template_values = {
+                            'error': 'Clave incorrecta. Intente de nuevo'
+                        }
+    
+                        path = os.path.join(os.path.dirname(__file__), 'index.html')
+                        self.response.out.write(template.render(path, template_values))
+                else:
+                    logging.debug('Incorrect username')
+                    
+                    template_values = {
+                        'error': 'Usuario incorrecto. Intente de nuevo'
+                    }
+    
+                    path = os.path.join(os.path.dirname(__file__), 'index.html')
+                    self.response.out.write(template.render(path, template_values))
+            else:
+                logging.debug('Username o password missing')
+                    
+                template_values = {
+                    'error': 'Usuario o clave faltantes. Intente de nuevo'
+                }
+    
+                path = os.path.join(os.path.dirname(__file__), 'index.html')
+                self.response.out.write(template.render(path, template_values))
+        else:
+            """
+            Login con autenticacion de google o facebook
+            """
+            if google:
+                logging.debug('GOOGLE')
+                logging.debug('Login with Google')
+                self.redirect(users.create_login_url('/auth/google'))
+            else:
+                logging.debug('FACEBOOK')
+                logging.debug('Login with Facebook')
+                self.redirect("/auth/facebook")
+
+"""
+Handler que se encarga de hacer el login en google y redirigir a la
+pagina con el permiso e informacion del usuario logueado
+"""
+class GoogleLoginHandler(webapp.RequestHandler):
+    def get(self):
+        session = get_current_session()
+        user = users.get_current_user()
+        
+        ca_user = CAUser(google_user=user, type=0)
+        session['me'] = ca_user
+        
+        template_values = {
+            'user': ca_user
+        }
+                
+        path = os.path.join(os.path.dirname(__file__), 'home.html')
+        self.response.out.write(template.render(path, template_values))
+
+"""
+Handler que se encarga de hacer el login en facebook y redirigir a la
+pagina con el permiso e informacion del usuario logueado
+"""
+class FacebookLoginHandler(webapp.RequestHandler):
+    def get(self):
+        verification_code = self.request.get("code")
+        args = dict(client_id=FACEBOOK_APP_ID,
+                    redirect_uri=self.request.path_url)
+        
+        if verification_code:
+            args["client_secret"] = FACEBOOK_APP_SECRET
+            args["code"] = self.request.get("code")
+            response = cgi.parse_qs(urllib.urlopen("https://graph.facebook.com/oauth/access_token?" +
+                                                   urllib.urlencode(args)).read())
+            access_token = response["access_token"][-1]
+
+            # Download the user profile and cache a local instance of the
+            # basic profile info
+            profile = json.load(urllib.urlopen("https://graph.facebook.com/me?" + urllib.urlencode(dict(access_token=access_token))))
+
+            user = CAFacebookUser(key_name=str(profile["id"]),
+                                  id=str(profile["id"]),
+                                  name=profile["name"],
+                                  access_token=access_token)
+            #username=profile["username"]
+            
+            user.put()
+            
+            session = get_current_session()
+            ca_user = CAUser(facebook_user=user, type=1)
+            session['me'] = ca_user
+            
+            template_values = {
+                'user': ca_user
+            }
+        
+            set_cookie(self.response, "fb_user",
+                       str(profile["id"]),
+                       expires=time.time() + 30 * 86400)
+            
+            path = os.path.join(os.path.dirname(__file__), 'home.html')
+            self.response.out.write(template.render(path, template_values))
+        else:
+            self.redirect("https://graph.facebook.com/oauth/authorize?" +
+                          urllib.urlencode(args))
+
+class LogoutHandler(webapp.RequestHandler):
+    def get(self):
+        session = get_current_session()
+        
+        if session.is_active():
+            session.terminate()
+        
+        set_cookie(self.response, "fb_user", "", expires=time.time() - 86400)
+        self.redirect(users.create_logout_url("/"))
+
+def set_cookie(response, name, value, domain=None, path="/", expires=None):
+    """Generates and signs a cookie for the give name/value"""
+    timestamp = str(int(time.time()))
+    value = base64.b64encode(value)
+    signature = cookie_signature(value, timestamp)
+    cookie = Cookie.BaseCookie()
+    cookie[name] = "|".join([value, timestamp, signature])
+    cookie[name]["path"] = path
+    
+    if domain:
+        cookie[name]["domain"] = domain
+        
+    if expires:
+        cookie[name]["expires"] = email.utils.formatdate(expires,
+                                                         localtime=False,
+                                                         usegmt=True)
+        
+    response.headers._headers.append(("Set-Cookie", cookie.output()[12:]))
+
+def parse_cookie(value):
+    """Parses and verifies a cookie value from set_cookie"""
+    if not value:
+        return None
+    
+    parts = value.split("|")
+    
+    if len(parts) != 3:
+        return None
+    
+    if cookie_signature(parts[0], parts[1]) != parts[2]:
+        logging.warning("Invalid cookie signature %r", value)
+        return None
+    
+    timestamp = int(parts[1])
+    
+    if timestamp < time.time() - 30 * 86400:
+        logging.warning("Expired cookie %r", value)
+        return None
+    
+    try:
+        return base64.b64decode(parts[0]).strip()
+    except:
+        return None
+
+def cookie_signature(*parts):
+    """Generates a cookie signature.
+    We use the Facebook app secret since it is different for every app (so
+    people using this example don't accidentally all use the same secret).
+    """
+    hash = hmac.new(FACEBOOK_APP_SECRET, digestmod=hashlib.sha1)
+    
+    for part in parts:
+        hash.update(part)
+        
+    return hash.hexdigest()

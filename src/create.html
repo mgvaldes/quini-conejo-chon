@@ -1,0 +1,22 @@
+<html>
+  <body>
+    
+    Rellena los partidos de clasificacion
+    
+    <form action="/create/step2" method="post">
+	    <ul>
+		  	{% if teams %}
+		  		{{ teams|length }}
+		  		{% for team in teams %}
+		  			{{ team['team1'] }} {{ team['team2'] }}
+		  		{% endfor %}
+		  	{% else %}
+		  		No hay partidos
+		  	{% endif %}
+	  	</ul>
+	  	
+	  	<input type="submit" name="step2" value="Siguiente">
+  	</form>
+
+  </body>
+</html>
