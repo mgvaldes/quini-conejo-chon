@@ -12,5 +12,16 @@ indexes:
 
 - kind: CAMatch
   properties:
+  - name: footbal_pool
+  - name: teams
+  - name: date
+
+- kind: CAMatch
+  properties:
   - name: football_pool
+  - name: date
+
+- kind: CAMatch
+  properties:
+  - name: teams
   - name: date

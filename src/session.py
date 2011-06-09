@@ -9,6 +9,7 @@ import os.path
 import time
 import urllib
 import simplejson as json
+import datetime
 
 from google.appengine.api import users 
 from google.appengine.ext import webapp
@@ -33,10 +34,9 @@ class LoginHandler(webapp.RequestHandler):
         
         if session.is_active():
             session.terminate()
-                
+            
         accept = self.request.get('accept')
         google = self.request.get('google')
-        facebook = self.request.get('facebook')
         
         """
         Login con autenticacion nativa
@@ -47,8 +47,6 @@ class LoginHandler(webapp.RequestHandler):
             email = self.request.get('email')
             password = self.request.get('password')
             
-            logging.debug(email + ' ' + password)
-    
             if email and password:
                 logging.debug('Checking credentials')
                 
@@ -56,20 +54,28 @@ class LoginHandler(webapp.RequestHandler):
     
                 if user:
                     if user[0].password == password:
-                        logging.debug('Username and password correct. Login in')
+                        logging.debug('Username and password correct. Login successfull')
                         
-                        ca_user = CAUser(native_user=user[0], type=2)
-                        session['me'] = ca_user
+                        ca_user = CAUser.all().filter("native_user", user[0]).fetch(1)
+                        
+                        if ca_user:
+                            logging.debug('User registered with Native account. Login successfull')
+                            ca_user = ca_user[0] 
+                        else:
+                            ca_user = CAUser(google_user=user[0], type=0)
+                            ca_user.put()
+                        
+                        session['active_user'] = ca_user
+                        session['session_timestamp'] = datetime.datetime.today()
                         
                         template_values = {
-                            'user': ca_user
+                            'user': session['active_user'],
                         }
                         
-                        print(template_values)
                         path = os.path.join(os.path.dirname(__file__), 'home.html')
                         self.response.out.write(template.render(path, template_values))
                     else:
-                        logging.debug('Incorrect password')
+                        logging.debug('Incorrect password. . Login failed')
                         
                         template_values = {
                             'error': 'Clave incorrecta. Intente de nuevo'
@@ -78,7 +84,7 @@ class LoginHandler(webapp.RequestHandler):
                         path = os.path.join(os.path.dirname(__file__), 'index.html')
                         self.response.out.write(template.render(path, template_values))
                 else:
-                    logging.debug('Incorrect username')
+                    logging.debug('Incorrect username. Login failed')
                     
                     template_values = {
                         'error': 'Usuario incorrecto. Intente de nuevo'
@@ -87,7 +93,7 @@ class LoginHandler(webapp.RequestHandler):
                     path = os.path.join(os.path.dirname(__file__), 'index.html')
                     self.response.out.write(template.render(path, template_values))
             else:
-                logging.debug('Username o password missing')
+                logging.debug('Username o password missing. Login failed')
                     
                 template_values = {
                     'error': 'Usuario o clave faltantes. Intente de nuevo'
@@ -115,13 +121,25 @@ pagina con el permiso e informacion del usuario logueado
 class GoogleLoginHandler(webapp.RequestHandler):
     def get(self):
         session = get_current_session()
-        user = users.get_current_user()
         
-        ca_user = CAUser(google_user=user, type=0)
-        session['me'] = ca_user
+        if session.is_active():
+            session.terminate()
+        
+        user = users.get_current_user()
+        ca_user = CAUser.all().filter("google_user", user).fetch(1)
+        
+        if ca_user:
+            logging.debug('User registered with Google account. Login successfull')
+            ca_user = ca_user[0]
+        else:
+            ca_user = CAUser(google_user=user, type=0)
+            ca_user.put()
+            
+        session['active_user'] = ca_user
+        session['session_timestamp'] = datetime.datetime.today()
         
         template_values = {
-            'user': ca_user
+            'user': session['active_user']
         }
                 
         path = os.path.join(os.path.dirname(__file__), 'home.html')
@@ -133,6 +151,11 @@ pagina con el permiso e informacion del usuario logueado
 """
 class FacebookLoginHandler(webapp.RequestHandler):
     def get(self):
+        session = get_current_session()
+        
+        if session.is_active():
+            session.terminate()
+        
         verification_code = self.request.get("code")
         args = dict(client_id=FACEBOOK_APP_ID,
                     redirect_uri=self.request.path_url)
@@ -152,16 +175,22 @@ class FacebookLoginHandler(webapp.RequestHandler):
                                   id=str(profile["id"]),
                                   name=profile["name"],
                                   access_token=access_token)
-            #username=profile["username"]
+
+            ca_user = CAUser.all().filter("facebook_user", user).fetch(1)
             
-            user.put()
-            
-            session = get_current_session()
-            ca_user = CAUser(facebook_user=user, type=1)
-            session['me'] = ca_user
+            if ca_user:
+                logging.debug('User registered with Facebook account. Login successfull')
+                ca_user = ca_user[0]
+            else:
+                user.put()
+                ca_user = CAUser(facebook_user=user, type=1)
+                ca_user.put()
+                
+            session['active_user'] = ca_user
+            session['session_timestamp'] = datetime.datetime.today()
             
             template_values = {
-                'user': ca_user
+                'user': session.get('active_user')
             }
         
             set_cookie(self.response, "fb_user",

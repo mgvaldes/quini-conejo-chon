@@ -7,7 +7,7 @@ from google.appengine.ext.webapp.util import run_wsgi_app
 
 from gaesessions import get_current_session
 
-from create_football_pool import CreateFootballPoll
+from create_football_pool import CreateFootballPoolStepOne, CreateFootballPoolStepTwo
 
 from session import LoginHandler, LogoutHandler, FacebookLoginHandler, GoogleLoginHandler
 
@@ -38,9 +38,9 @@ application = webapp.WSGIApplication([('/', MainHandler),
                                       ('/auth/facebook', FacebookLoginHandler),
                                       ('/auth/google', GoogleLoginHandler),
                                       ('/logout', LogoutHandler),
-                                      ('/create', CreateFootballPoll)],
+                                      ('/create/step1', CreateFootballPoolStepOne),
+                                      ('/create/step2', CreateFootballPoolStepTwo)],
                                      debug=True)
-
 
 def main():
     sys.path.append(os.path.join(os.path.dirname(__file__), "models"))

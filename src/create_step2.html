@@ -1,0 +1,57 @@
+<html>
+  <body>
+    
+  	<form action="/save" method="post">
+		<ul class="group-matches">
+		    {% for teams in quarter_finals_teams %}
+				<li class="group-match">
+					<label class="e1" for="{{ teams.0|slice:":3" }}-{{ teams.1|slice:":3" }}-g1">{{ teams.0 }}</label> 
+					<input id="{{ teams.0|slice:":3" }}-{{ teams.1|slice:":3" }}-g1" name="{{ teams.0|slice:":3" }}-{{ teams.1|slice:":3" }}-g1" class="goals-field" type="text" value="" /> 
+					<input id="{{ teams.0|slice:":3" }}-{{ teams.1|slice:":3" }}-g2" name="{{ teams.0|slice:":3" }}-{{ teams.1|slice:":3" }}-g2" class="goals-field" type="text" value="" /> 
+					<label class="e2" for="{{ teams.0|slice:":3" }}-{{ teams.1|slice:":3" }}-g2">{{ teams.1 }}</label>
+				</li>
+		    {% endfor %}
+		</ul>
+		
+		<ul class="group-matches">
+			<li class="group-match">
+				<label class="e1" for="sf1-g1">?</label> 
+				<input name="sf1-g1" class="goals-field" type="text" value="" /> 
+				<input name="sf1-g2" class="goals-field" type="text" value="" /> 
+				<label class="e2" for="sf1-g2">?</label>
+			</li>
+			<li class="group-match">
+				<label class="e1" for="sf2-g1">?</label> 
+				<input name="sf2-g1" class="goals-field" type="text" value="" /> 
+				<input name="sf2-g2" class="goals-field" type="text" value="" /> 
+				<label class="e2" for="sf2-g2">?</label>
+			</li>
+		</ul>
+		
+		<ul class="group-matches">
+			<li class="group-match">
+				<label class="e1" for="tf1-g1">?</label> 
+				<input name="tf1-g1" class="goals-field" type="text" value="" /> 
+				<input name="tf1-g2" class="goals-field" type="text" value="" /> 
+				<label class="e2" for="tf-g2">?</label>
+			</li>
+		</ul>
+		
+		<ul class="group-matches">
+			<li class="group-match">
+				<label class="e1" for="f-g1">?</label> 
+				<input name="f-g1" class="goals-field" type="text" value="" /> 
+				<input name="f-g2" class="goals-field" type="text" value="" /> 
+				<label class="e2" for="f-g2">?</label>
+			</li>
+		</ul>
+			  	
+	  	<input type="submit" name="step2" value="Guardar">
+	  	
+	  	<input name="football-pool-name" type="hidden" value="{{ football_pool_name }}" />
+	  	<input name="first-round-matches" type="hidden" value="{{ first_round_matches }}" />
+	  	<input name="second-round-matches" type="hidden" value="{{ test }}" />
+  	</form>
+
+  </body>
+</html>
