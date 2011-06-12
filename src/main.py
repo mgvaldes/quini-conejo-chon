@@ -2,14 +2,16 @@ import os.path
 import sys
 
 from google.appengine.ext import webapp
-from google.appengine.ext.webapp import template
 from google.appengine.ext.webapp.util import run_wsgi_app
 
-from gaesessions import get_current_session
-
-from create_football_pool import CreateFootballPoolStepOne, CreateFootballPoolStepTwo
+from create_football_pool import CreateFootballPoolStepOne, CreateFootballPoolStepTwo, SaveFootbalPool
+from view_football_pools import ListFootballPools, ViewFootballPool
+from pay_football_pool import PayFootballPool
+from register import LoadRegistryForm, RegisterCANativeUser
+from view_competition_groups import ListCompetitionGroups, ViewCompetitionGroup, CreateCompetitionGroup
 
 from session import LoginHandler, LogoutHandler, FacebookLoginHandler, GoogleLoginHandler
+from ca_utils import render_template
 
 """
 Handler inicial que maneja el metodo de autenticacion del usuario.
@@ -18,28 +20,28 @@ de Facebook.
 """
 class MainHandler(webapp.RequestHandler):
     def get(self):
-        session = get_current_session()
-        
         template_values = {
             'error': ''   
         }
-        
-        """
-        Manejo de sesion
-        """
-        if session.has_key('msg'):
-            del session['msg'] # only show the message once
 
-        path = os.path.join(os.path.dirname(__file__), 'index.html')
-        self.response.out.write(template.render(path, template_values))
+        render_template(self, 'index.html', template_values)
             
 application = webapp.WSGIApplication([('/', MainHandler),
+                                      ('/register', LoadRegistryForm),
+                                      ('/register/save', RegisterCANativeUser),
                                       ('/home', LoginHandler),
                                       ('/auth/facebook', FacebookLoginHandler),
                                       ('/auth/google', GoogleLoginHandler),
                                       ('/logout', LogoutHandler),
                                       ('/create/step1', CreateFootballPoolStepOne),
-                                      ('/create/step2', CreateFootballPoolStepTwo)],
+                                      ('/create/step2', CreateFootballPoolStepTwo),
+                                      ('/save', SaveFootbalPool),
+                                      ('/list', ListFootballPools),
+                                      ('/view', ViewFootballPool),
+                                      ('/pay', PayFootballPool),
+                                      ('/list/groups', ListCompetitionGroups),
+                                      ('/view/group', ViewCompetitionGroup),
+                                      ('/create/group', CreateCompetitionGroup)],
                                      debug=True)
 
 def main():

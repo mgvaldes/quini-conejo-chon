@@ -10,18 +10,12 @@ indexes:
 # automatically uploaded to the admin console when you next deploy
 # your application using appcfg.py.
 
-- kind: CAMatch
+- kind: CAGroupRanking
   properties:
-  - name: footbal_pool
-  - name: teams
-  - name: date
+  - name: group
+  - name: rank
 
 - kind: CAMatch
   properties:
   - name: football_pool
-  - name: date
-
-- kind: CAMatch
-  properties:
-  - name: teams
   - name: date

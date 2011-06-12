@@ -1,6 +1,7 @@
 <html>
   <body>
-    <a href='/logout'>Logout</a><br>
+    <a href='/logout'>Logout</a>
+    <br>
 	
 	{% ifequal user.type 0 %}
 		{% if user.google_user %}
@@ -19,8 +20,21 @@
 			Hola {{ user.native_user.name }}
 		{% endif %}	
 	{% endifequal %}
+	<br>
 	
-	<a href='/create/step1'>Crear quiniela</a><br>
+	<ul>
+		<li>
+			<a href='/create/step1'>Crear quiniela</a>
+		</li>
+		
+		<li>
+			<a href='/list'>Ver quinielas</a>
+		</li>
+		
+		<li>
+			<a href='/list/groups'>Ver grupos</a>
+		</li>
+	</ul>
 	    	
   </body>
 </html>

@@ -5,21 +5,17 @@ import email.utils
 import hashlib
 import hmac
 import logging
-import os.path
 import time
 import urllib
 import simplejson as json
-import datetime
 
-from google.appengine.api import users 
+from google.appengine.api import users
 from google.appengine.ext import webapp
-from google.appengine.ext.webapp import template
 
 from gaesessions import get_current_session
 
-from models.ca_models import CAFacebookUser
-from models.ca_models import CANativeUser
-from models.ca_models import CAUser
+from models.ca_models import CAFacebookUser, CANativeUser, CAUser
+from ca_utils import render_template, save_session_info
 
 FACEBOOK_APP_ID = "176955699024734"
 FACEBOOK_APP_SECRET = "b7d8f9f20519d0d54a2bc96569f6c15f"
@@ -64,16 +60,14 @@ class LoginHandler(webapp.RequestHandler):
                         else:
                             ca_user = CAUser(google_user=user[0], type=0)
                             ca_user.put()
-                        
-                        session['active_user'] = ca_user
-                        session['session_timestamp'] = datetime.datetime.today()
+
+                        save_session_info(ca_user)
                         
                         template_values = {
                             'user': session['active_user'],
                         }
                         
-                        path = os.path.join(os.path.dirname(__file__), 'home.html')
-                        self.response.out.write(template.render(path, template_values))
+                        render_template(self, 'home.html', template_values)
                     else:
                         logging.debug('Incorrect password. . Login failed')
                         
@@ -81,8 +75,7 @@ class LoginHandler(webapp.RequestHandler):
                             'error': 'Clave incorrecta. Intente de nuevo'
                         }
     
-                        path = os.path.join(os.path.dirname(__file__), 'index.html')
-                        self.response.out.write(template.render(path, template_values))
+                        render_template(self, 'index.html', template_values)
                 else:
                     logging.debug('Incorrect username. Login failed')
                     
@@ -90,17 +83,15 @@ class LoginHandler(webapp.RequestHandler):
                         'error': 'Usuario incorrecto. Intente de nuevo'
                     }
     
-                    path = os.path.join(os.path.dirname(__file__), 'index.html')
-                    self.response.out.write(template.render(path, template_values))
+                    render_template(self, 'index.html', template_values)
             else:
                 logging.debug('Username o password missing. Login failed')
                     
                 template_values = {
                     'error': 'Usuario o clave faltantes. Intente de nuevo'
                 }
-    
-                path = os.path.join(os.path.dirname(__file__), 'index.html')
-                self.response.out.write(template.render(path, template_values))
+                
+                render_template(self, 'index.html', template_values)
         else:
             """
             Login con autenticacion de google o facebook
@@ -135,15 +126,13 @@ class GoogleLoginHandler(webapp.RequestHandler):
             ca_user = CAUser(google_user=user, type=0)
             ca_user.put()
             
-        session['active_user'] = ca_user
-        session['session_timestamp'] = datetime.datetime.today()
+        save_session_info(ca_user)
         
         template_values = {
             'user': session['active_user']
         }
                 
-        path = os.path.join(os.path.dirname(__file__), 'home.html')
-        self.response.out.write(template.render(path, template_values))
+        render_template(self, 'home.html', template_values)
 
 """
 Handler que se encarga de hacer el login en facebook y redirigir a la
@@ -186,8 +175,7 @@ class FacebookLoginHandler(webapp.RequestHandler):
                 ca_user = CAUser(facebook_user=user, type=1)
                 ca_user.put()
                 
-            session['active_user'] = ca_user
-            session['session_timestamp'] = datetime.datetime.today()
+            save_session_info(ca_user)
             
             template_values = {
                 'user': session.get('active_user')
@@ -197,8 +185,7 @@ class FacebookLoginHandler(webapp.RequestHandler):
                        str(profile["id"]),
                        expires=time.time() + 30 * 86400)
             
-            path = os.path.join(os.path.dirname(__file__), 'home.html')
-            self.response.out.write(template.render(path, template_values))
+            render_template(self, 'home.html', template_values)
         else:
             self.redirect("https://graph.facebook.com/oauth/authorize?" +
                           urllib.urlencode(args))

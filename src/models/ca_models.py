@@ -15,13 +15,15 @@ class CAUser(db.Model):
     google_user = db.UserProperty()
     facebook_user = db.ReferenceProperty(CAFacebookUser)
     native_user = db.ReferenceProperty(CANativeUser)
-    type = db.IntegerProperty()
+    type = db.IntegerProperty() #Google: type = 0, Facebook: type = 1, Native: type = 2
     groups = db.ListProperty(db.Key)
 
 class CAPayment(db.Model):
-    bank = db.IntegerProperty()
-    date = db.DateTimeProperty()
-    status = db.IntegerProperty()
+    bank = db.StringProperty()
+    type = db.BooleanProperty() #Transferencia = True, Deposito = False
+    date = db.DateTimeProperty() 
+    status = db.BooleanProperty() #Confirmada = True, Pendiente = False
+    payment_number = db.StringProperty()
 
 class CAFootballPool(db.Model):
     user = db.ReferenceProperty(CAUser, collection_name='football_pools')
@@ -35,7 +37,7 @@ class CAFootballPool(db.Model):
     
     @property
     def second_round_matches(self):
-        return CAMatch.gql("WHERE football_pool = :1 AND date > :2 ORDER BY date", self.key(), datetime.datetime(2011, 7, 12, 20, 45, 0))
+        return CAMatch.gql("WHERE football_pool = :1 AND date > :2 ORDER BY date", self.key(), datetime.datetime(2011, 7, 13, 17, 45, 0))
 
 class CAMatch(db.Model):
     date = db.DateTimeProperty()
@@ -86,22 +88,20 @@ class CATeam(db.Model):
     info = db.LinkProperty()
     classification_info = db.ReferenceProperty(CAClassificationInfo)
     group = db.ReferenceProperty(CAGroup, collection_name='teams')
-
-    @property
-    def first_round_matches(self):
-        original_pool = CAFootballPool.all().filter("privacy =", True).fetch(1)[0]
-
-        return original_pool.matches        
-        #return CAMatch.gql('WHERE teams = :1  AND date < :2 AND footbal_pool = :3', self.key(), datetime.datetime(2011, 7, 16, 14, 30, 0), original_pool)
     
 class CACompetitonGroup(db.Model):
     name = db.StringProperty()
+    privacy = db.BooleanProperty()
     
     @property
     def members(self):
         return CAUser.gql("WHERE groups = :1", self.key())
     
 class CAGroupRanking(db.Model):
-    user = db.ReferenceProperty(CAUser)
+    football_pool = db.ReferenceProperty(CAFootballPool)
     group = db.ReferenceProperty(CACompetitonGroup)
     rank = db.IntegerProperty()
+    
+class CARequestGroupMembership(db.Model):
+    users = db.ListProperty(db.Key)
+    status = db.BooleanProperty()

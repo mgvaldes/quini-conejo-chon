@@ -1,0 +1,20 @@
+<html>
+	<body>
+	
+		<a href='/create/group'>Crear grupo</a>
+		<br>
+	
+		<form action="/view/group" method="post">
+		
+			<select name="selected_competition_group">
+				{% for group in groups %}
+					<option value="{{ group.key }}">{{ group.name }}</option>
+				{% endfor %}
+			</select>
+			
+			<input type="submit" name="edit" value="Editar">
+			<input type="submit" name="ranking" value="Ver ranking global">
+		</form>
+	
+	</body>
+</html>

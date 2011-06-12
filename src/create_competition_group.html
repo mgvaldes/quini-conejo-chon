@@ -1,0 +1,35 @@
+<html>
+	<body>
+	
+		<form action="/create/group" method="post">
+			<input name="search" type="text" id="search" value="" />
+			<input type="submit" name="search_user" value="Buscar">
+			<br>
+			
+			<ul>
+		    	{% for user in searched_users %}
+		    		<li>
+		    			<label>{{ user.0 }}</label> 
+		    			<a href="/delete/{{ user.1 }}">Eliminar</a>
+		    		</li>
+		    	{% endfor %}
+		    </ul>
+			
+			<label for="name">Nombre: </label>
+		    <input name="name" type="text" id="name" value="{{ name }}" />
+		    <br>
+		    
+		    <ul>
+		    	{% for member in members %}
+		    		<li>
+		    			<label name="">{{ member.0 }}</label> 
+		    			<a href="/delete/{{ member.1 }}">Eliminar</a>
+		    		</li>
+		    	{% endfor %}
+		    </ul>
+		    
+		    <input type="submit" name="save" value="Guardar">
+		</form>
+	
+	</body>
+</html>

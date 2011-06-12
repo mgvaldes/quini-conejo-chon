@@ -1,0 +1,60 @@
+<html>
+	<body>
+		
+		<h3>Información de pago<h3>
+		
+		<table id="table-payment-info">
+		  	<tr>
+		  		<th>Banco</th>
+		  		<th>Cuenta</th>
+		  		<th>Tipo</th>
+		  	</tr>
+		  		
+			<tr>
+				<td>Banco Mercantil</td>
+			  	<td>00000000000000000000</td>
+			  	<td>Ahorros</td>
+			</tr>
+			
+			<tr>
+				<td>Banco Provincial</td>
+			  	<td>00000000000000000000</td>
+			  	<td>Corriente</td>
+			</tr>
+			
+			<tr>
+				<td>Banesco</td>
+			  	<td>00000000000000000000</td>
+			  	<td>Ahorros</td>
+			</tr>
+		</table>
+		
+		<p>
+			Todas las cuentas están a nombre de <label class="payment_info">María Gabriela Valdés</label>, cédula: <label class="payment_info">V-18.358.292<label> y correo electrónico: <label class="payment_info">mgvaldesgraterol@gmail.com<label>
+		</p>
+		
+		<form action="/pay" method="post">
+			<label>Tipo: </label>
+			
+			<input type="radio" name="payment_type" value="deposit" /> Deposito No. 
+			<input type="radio" name="payment_type" value="transfer" checked="checked" /> Transferencia No.
+			<br> 
+			
+		    <input name="payment_number" type="text" id="payment_number" value="" />
+		    <br>
+		
+		    <label for="bank">Banco: </label>
+		    <select name="bank">
+				<option value="mercantil">Banco Mercantil</option>
+				<option value="provincial">Banco Provincial</option>
+				<option value="banesco">Banesco</option>
+			</select>
+		    <br>
+		
+		    <input type="submit" name="register_payment" value="Registrar">
+		
+			<input name="selected_football_pool_key" type="hidden" value="{{ selected_football_pool_key }}" />
+		</form>
+		
+	</body>
+</html>
