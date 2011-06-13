@@ -17,6 +17,18 @@ class CAUser(db.Model):
     native_user = db.ReferenceProperty(CANativeUser)
     type = db.IntegerProperty() #Google: type = 0, Facebook: type = 1, Native: type = 2
     groups = db.ListProperty(db.Key)
+    
+    @property
+    def pending_membership_requests(self):
+        membership_requests = CARequestGroupMembership.gql('WHERE users = :1 AND status = :2', self.key(), False).fetch(10000)
+        
+        pending_membership_requests = []
+        
+        for membership_request in membership_requests:
+            if membership_request.users[1] == self.key():
+                pending_membership_requests.append(membership_request)
+                
+        return pending_membership_requests
 
 class CAPayment(db.Model):
     bank = db.StringProperty()
@@ -105,3 +117,4 @@ class CAGroupRanking(db.Model):
 class CARequestGroupMembership(db.Model):
     users = db.ListProperty(db.Key)
     status = db.BooleanProperty()
+    group = db.ReferenceProperty(CACompetitonGroup)

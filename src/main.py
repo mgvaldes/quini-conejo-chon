@@ -8,7 +8,8 @@ from create_football_pool import CreateFootballPoolStepOne, CreateFootballPoolSt
 from view_football_pools import ListFootballPools, ViewFootballPool
 from pay_football_pool import PayFootballPool
 from register import LoadRegistryForm, RegisterCANativeUser
-from view_competition_groups import ListCompetitionGroups, ViewCompetitionGroup, CreateCompetitionGroup
+from view_competition_groups import ListCompetitionGroups, ViewCompetitionGroup, CreateCompetitionGroup, AddMemberToCompetitionGroup, DeleteMemberFromCompetitionGroup
+from group_membership_request import AcceptGroupMembershipRequest, RejectGroupMembershipRequest
 
 from session import LoginHandler, LogoutHandler, FacebookLoginHandler, GoogleLoginHandler
 from ca_utils import render_template
@@ -41,7 +42,11 @@ application = webapp.WSGIApplication([('/', MainHandler),
                                       ('/pay', PayFootballPool),
                                       ('/list/groups', ListCompetitionGroups),
                                       ('/view/group', ViewCompetitionGroup),
-                                      ('/create/group', CreateCompetitionGroup)],
+                                      ('/create/group', CreateCompetitionGroup),
+                                      ('/add/group', AddMemberToCompetitionGroup),
+                                      ('/delete/group', DeleteMemberFromCompetitionGroup),
+                                      ('/accept/membership', AcceptGroupMembershipRequest),
+                                      ('/reject/membership', RejectGroupMembershipRequest)],
                                      debug=True)
 
 def main():

@@ -36,17 +36,30 @@ class PayFootballPool(webapp.RequestHandler):
             if session.has_key('active_user'):
                 active_user = session['active_user']
                 
+                active_user_football_pools = CAFootballPool.all().filter("user =", active_user).filter("privacy =", False).fetch(1000)
+                
+                for football_pool in active_user_football_pools:
+                    if football_pool.payment:
+                        groups = active_user.groups
+                        
+                        for group_key in groups:
+                            group = CACompetitonGroup.get(group_key)
+                            
+                            members = group.members.fetch(10000)
+                        
+                            group_ranking = CAGroupRanking(football_pool=football_pool, group=group, rank=len(members))
+                            group_ranking.put()
+                
                 global_competition_group = CACompetitonGroup.all().filter("privacy =", True).fetch(1)[0]
                 
-                active_user.groups.append(global_competition_group.key())
-                active_user.put()
+                if global_competition_group.key() not in active_user.groups: 
+                    active_user.groups.append(global_competition_group.key())
+                    active_user.put()
+                    
+                    members = global_competition_group.members.fetch(10000)
                 
-                members = global_competition_group.members.fetch(10000)
-            
-                group_ranking = CAGroupRanking(football_pool=selected_football_pool, group=global_competition_group, rank=len(members))
-                group_ranking.put()
-                
-                active_user_football_pools = CAFootballPool.all().filter("user =", active_user).filter("privacy =", False).fetch(1)
+                    group_ranking = CAGroupRanking(football_pool=selected_football_pool, group=global_competition_group, rank=len(members))
+                    group_ranking.put()
                 
                 template_values = {
                     'football_pools': active_user_football_pools,

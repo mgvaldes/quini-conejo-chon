@@ -19,7 +19,7 @@ class ListFootballPools(webapp.RequestHandler):
             if session.has_key('active_user'):
                 active_user = session['active_user']
                 
-                active_user_football_pools = CAFootballPool.all().filter("user =", active_user).filter("privacy =", False).fetch(1)
+                active_user_football_pools = CAFootballPool.all().filter("user =", active_user).filter("privacy =", False).fetch(1000)
                 
                 template_values = {
                     'football_pools': active_user_football_pools,
