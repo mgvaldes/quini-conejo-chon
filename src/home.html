@@ -2,7 +2,7 @@
   <body>
     <a href='/logout'>Logout</a>
     <br>
-	
+    
 	{% ifequal user.type 0 %}
 		{% if user.google_user %}
 			Hola {{ user.google_user.nickname }}
@@ -34,6 +34,17 @@
 		<li>
 			<a href='/list/groups'>Ver grupos</a>
 		</li>
+	</ul>
+	
+	<ul>
+		{% for membership_request in pending_membership_requests %}
+			<li>
+				<lable>{{ membership_request.0 }}</label> 
+				<lable>{{ membership_request.1 }}</label>
+				<a href="/accept/membership?request={{ membership_request.2 }}">Aceptar</a> 
+				<a href="/reject/membership?request={{ membership_request.2 }}">Rechazar</a>
+			</li>
+		{% endfor %}
 	</ul>
 	    	
   </body>

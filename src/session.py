@@ -15,7 +15,7 @@ from google.appengine.ext import webapp
 from gaesessions import get_current_session
 
 from models.ca_models import CAFacebookUser, CANativeUser, CAUser
-from ca_utils import render_template, save_session_info
+from ca_utils import render_template, save_session_info, get_pending_membership_requests
 
 FACEBOOK_APP_ID = "176955699024734"
 FACEBOOK_APP_SECRET = "b7d8f9f20519d0d54a2bc96569f6c15f"
@@ -65,6 +65,7 @@ class LoginHandler(webapp.RequestHandler):
                         
                         template_values = {
                             'user': session['active_user'],
+                            'pending_membership_requests': get_pending_membership_requests(ca_user)
                         }
                         
                         render_template(self, 'home.html', template_values)
@@ -129,7 +130,8 @@ class GoogleLoginHandler(webapp.RequestHandler):
         save_session_info(ca_user)
         
         template_values = {
-            'user': session['active_user']
+            'user': session['active_user'],
+            'pending_membership_requests': get_pending_membership_requests(ca_user)
         }
                 
         render_template(self, 'home.html', template_values)
@@ -178,7 +180,8 @@ class FacebookLoginHandler(webapp.RequestHandler):
             save_session_info(ca_user)
             
             template_values = {
-                'user': session.get('active_user')
+                'user': session.get('active_user'),
+                'pending_membership_requests': get_pending_membership_requests(ca_user)
             }
         
             set_cookie(self.response, "fb_user",

@@ -4,7 +4,7 @@ from google.appengine.ext.db import Key
 from gaesessions import get_current_session
 
 from ca_utils import check_session_status, render_template
-from models.ca_models import CACompetitonGroup, CAGroupRanking, CAUser
+from models.ca_models import CACompetitonGroup, CAGroupRanking, CAUser, CARequestGroupMembership, CAFootballPool
 
 class ListCompetitionGroups(webapp.RequestHandler):
     def get(self):
@@ -60,7 +60,7 @@ class ViewCompetitionGroup(webapp.RequestHandler):
                         selected = False
                     
                     if rank.football_pool.user.type == 0:
-                        name = rank.football_pool.user.google_user
+                        name = rank.football_pool.user.google_user.nickname()
                     elif rank.football_pool.user.type == 1:
                         name = rank.football_pool.user.facebook_user.name
                     else:
@@ -87,7 +87,9 @@ class CreateCompetitionGroup(webapp.RequestHandler):
             template_values = {
                 'searched_users': [],
                 'members': [],
-                'name': ''
+                'name': '',
+                'last_search': str([]),
+                'last_members': str([])
             }
             
             render_template(self, 'create_competition_group.html', template_values)
@@ -116,8 +118,8 @@ class CreateCompetitionGroup(webapp.RequestHandler):
                         username = []
                         
                         if user.type == 0:
-                            nickname = user.google_user
-                            email = user.google_user.email
+                            nickname = user.google_user.nickname()
+                            email = user.google_user.email()
                             
                             if (search_term.lower() in str(nickname).lower()) or (search_term.lower() in str(email).lower()):
                                 username = nickname
@@ -134,17 +136,126 @@ class CreateCompetitionGroup(webapp.RequestHandler):
                                 username = name
                     
                         if username:
-                            search_result.append((username, user.key()))
-                    
+                            search_result.append((str(username), str(user.key())))
+                            
                 template_values = {
                     'searched_users': search_result,
-                    'members': [],
-                    'name': self.request.get('name')
+                    'members': eval(self.request.get('last-members')),
+                    'name': self.request.get('name'),
+                    'last_search': str(search_result),
+                    'last_members': self.request.get('last-members')
                 }
                 
                 render_template(self, 'create_competition_group.html', template_values)
             elif save:
-               print ''
+                active_user = session['active_user']                
+                name = self.request.get('name')
+               
+                new_group = CACompetitonGroup(name=name, privacy=False)
+                new_group.put()
+                
+                active_user.groups.append(new_group.key())
+                active_user.put()
+                
+                active_user_football_pools = CAFootballPool.all().filter("user =", active_user).filter("privacy =", False).fetch(1000)
+                
+                for football_pool in active_user_football_pools:
+                    if football_pool.payment:
+                        members = new_group.members.fetch(10000)
+                        
+                        group_ranking = CAGroupRanking(football_pool=football_pool, group=new_group, rank=len(members))
+                        group_ranking.put()
+                
+                members = eval(self.request.get('last-members'))
+                
+                for member in members:
+                    member_key = Key(member[1])
+                    user = CAUser.get(member_key)
+                    
+                    users = []
+                    users.append(active_user.key())
+                    users.append(user.key())
+                    
+                    request_membership = CARequestGroupMembership(users=users, status=False, group=new_group)
+                    request_membership.put()
+                    
+                self.redirect('/list/groups')
         else:
             self.redirect('/')
             
+class AddMemberToCompetitionGroup(webapp.RequestHandler):
+    def get(self):
+        session = get_current_session()
+        
+        check_session_status()
+            
+        if session.is_active():
+            user_key = Key(self.request.get('user'))
+            
+            new_member = CAUser.get(user_key)
+            
+            username = []
+            
+            members = eval(self.request.get('last_members'))
+            searched_users = eval(self.request.get('last_search')) 
+                            
+            if new_member.type == 0:
+                username = new_member.google_user.nickname()
+            elif new_member.type == 1:
+                username = new_member.facebook_user.name
+            else:
+                username = new_member.native_user.name
+                        
+            if username:
+                searched_users.remove((str(username), str(new_member.key())))
+                members.append((str(username), str(new_member.key())))
+                
+            template_values = {
+                'searched_users': searched_users,
+                'members': members,
+                'name': self.request.get('name'),
+                'last_search': str(searched_users),
+                'last_members': str(members)
+            }
+                    
+            render_template(self, 'create_competition_group.html', template_values)
+        else:
+            self.redirect('/')
+            
+class DeleteMemberFromCompetitionGroup(webapp.RequestHandler):
+    def get(self):
+        session = get_current_session()
+        
+        check_session_status()
+            
+        if session.is_active():
+            user_key = Key(self.request.get('user'))
+            
+            new_member = CAUser.get(user_key)
+            
+            username = []
+            
+            members = eval(self.request.get('last_members'))
+            searched_users = eval(self.request.get('last_search')) 
+                            
+            if new_member.type == 0:
+                username = new_member.google_user.nickname()
+            elif new_member.type == 1:
+                username = new_member.facebook_user.name
+            else:
+                username = new_member.native_user.name
+                        
+            if username:
+                members.remove((str(username), str(new_member.key())))
+                
+            template_values = {
+                'searched_users': searched_users,
+                'members': members,
+                'name': self.request.get('name'),
+                'last_search': str(searched_users),
+                'last_members': str(members)
+            }
+                    
+            render_template(self, 'create_competition_group.html', template_values)
+        else:
+            self.redirect('/')

@@ -10,10 +10,12 @@
 		    	{% for user in searched_users %}
 		    		<li>
 		    			<label>{{ user.0 }}</label> 
-		    			<a href="/delete/{{ user.1 }}">Eliminar</a>
+		    			<a href="/add/group?user={{ user.1 }}&last_search={{ last_search }}&last_members={{ last_members }}&name={{ name }}">Agregar</a>
 		    		</li>
 		    	{% endfor %}
 		    </ul>
+		    
+		    <input name="last-search" type="hidden" value="{{ last_search }}">
 			
 			<label for="name">Nombre: </label>
 		    <input name="name" type="text" id="name" value="{{ name }}" />
@@ -23,10 +25,12 @@
 		    	{% for member in members %}
 		    		<li>
 		    			<label name="">{{ member.0 }}</label> 
-		    			<a href="/delete/{{ member.1 }}">Eliminar</a>
+		    			<a href="/delete/group?user={{ member.1 }}&last_search={{ last_search }}&last_members={{ last_members }}&name={{ name }}">Eliminar</a>
 		    		</li>
 		    	{% endfor %}
 		    </ul>
+		    
+		    <input name="last-members" type="hidden" value="{{ last_members }}">
 		    
 		    <input type="submit" name="save" value="Guardar">
 		</form>
