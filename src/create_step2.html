@@ -1,7 +1,7 @@
 <html>
   <body>
     
-  	<form action="/save" method="post">
+  	<form action="/save" method="post" id="create-step2">
 		<ul class="group-matches">
 		    {% for teams in quarter_finals_teams %}
 				<li class="group-match">
@@ -47,6 +47,9 @@
 		</ul>
 			  	
 	  	<input type="submit" name="step2" value="Guardar">
+	  	
+	  	<div id="submit-notice" class="notice">
+	  	</div>
 	  	
 	  	<input name="football-pool-name" type="hidden" value="{{ football_pool_name }}" />
 	  	<input name="first-round-matches" type="hidden" value="{{ first_round_matches }}" />

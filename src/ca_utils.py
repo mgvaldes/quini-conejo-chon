@@ -82,10 +82,12 @@ def get_total_points(football_pool):
     teams = []
     
     for x in range(0, 4):
-        original_match_team1 = CATeam.get(original_second_round_matches[x].teams[0])
-        original_match_team2 = CATeam.get(original_second_round_matches[x].teams[1])
+        original_teams.append(CATeam.get(original_second_round_matches[x].teams[0]).name)
+        original_teams.append(CATeam.get(original_second_round_matches[x].teams[1]).name)
         
-        match_team1 = CATeam.get(football_pool_second_round_matches[x].teams[0])
-        match_team2 = CATeam.get(football_pool_second_round_matches[x].teams[1])
+        teams.append(CATeam.get(football_pool_second_round_matches[x].teams[0]).name)
+        teams.append(CATeam.get(football_pool_second_round_matches[x].teams[1]).name)
         
-        
+    for team in teams:
+        if team in original_teams:
+            points += 3
