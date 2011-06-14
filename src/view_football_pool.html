@@ -41,7 +41,7 @@
 		
 		<ul class="group-matches">
 		    {% for teams in quarter_finals_matches %}
-				<li class="group-match">
+				<li class="group-match" id="qf{{ teams.4 }}">
 					<label class="e1" for="qf{{ teams.4 }}-{{ teams.0|slice:":3" }}-{{ teams.3|slice:":3" }}-g1">{{ teams.0 }}</label> 
 					<input id="qf{{ teams.4 }}-{{ teams.0|slice:":3" }}-{{ teams.3|slice:":3" }}-g1" name="qf{{ teams.4 }}-{{ teams.0|slice:":3" }}-{{ teams.3|slice:":3" }}-g1" class="goals-field" type="text" value="{{ teams.1 }}" readonly="readonly"/> 
 					<input id="qf{{ teams.4 }}-{{ teams.0|slice:":3" }}-{{ teams.3|slice:":3" }}-g2" name="qf{{ teams.4 }}-{{ teams.0|slice:":3" }}-{{ teams.3|slice:":3" }}-g2" class="goals-field" type="text" value="{{ teams.2 }}" readonly="readonly"/> 
@@ -52,7 +52,7 @@
 		
 		<ul class="group-matches">
 		    {% for teams in semi_final_matches %}
-				<li class="group-match">
+				<li class="group-match" id="sf{{ teams.4 }}">
 					<label class="e1" for="sf{{ teams.4 }}-{{ teams.0|slice:":3" }}-{{ teams.3|slice:":3" }}-g1">{{ teams.0 }}</label> 
 					<input id="sf{{ teams.4 }}-{{ teams.0|slice:":3" }}-{{ teams.3|slice:":3" }}-g1" name="sf{{ teams.4 }}-{{ teams.0|slice:":3" }}-{{ teams.3|slice:":3" }}-g1" class="goals-field" type="text" value="{{ teams.1 }}" readonly="readonly"/> 
 					<input id="sf{{ teams.4 }}-{{ teams.0|slice:":3" }}-{{ teams.3|slice:":3" }}-g2" name="sf{{ teams.4 }}-{{ teams.0|slice:":3" }}-{{ teams.3|slice:":3" }}-g2" class="goals-field" type="text" value="{{ teams.2 }}" readonly="readonly"/> 
@@ -62,7 +62,7 @@
 		</ul>
 		
 		<ul class="group-matches">
-			<li class="group-match">
+			<li class="group-match" id="tf">
 				<label class="e1" for="tf-{{ third_fourth_match.0|slice:":3" }}-{{ third_fourth_match.3|slice:":3" }}-g1">{{ third_fourth_match.0 }}</label> 
 				<input name="tf-{{ third_fourth_match.0|slice:":3" }}-{{ third_fourth_match.3|slice:":3" }}-g1" class="goals-field" type="text" value="{{ third_fourth_match.1 }}" readolny="readonly" /> 
 				<input name="tf1-{{ third_fourth_match.0|slice:":3" }}-{{ third_fourth_match.3|slice:":3" }}-g2" class="goals-field" type="text" value="{{ third_fourth_match.2 }}" readonly="readonly" /> 
@@ -71,7 +71,7 @@
 		</ul>
 		
 		<ul class="group-matches">
-			<li class="group-match">
+			<li class="group-match" id="f">
 				<label class="e1" for="f-{{ final_match.0|slice:":3" }}-{{ final_match.3|slice:":3" }}-g1">{{ final_match.0 }}</label> 
 				<input name="f-{{ final_match.0|slice:":3" }}-{{ final_match.3|slice:":3" }}-g1" class="goals-field" type="text" value="{{ final_match.1 }}" readolny="readonly" /> 
 				<input name="f-{{ final_match.0|slice:":3" }}-{{ final_match.3|slice:":3" }}-g2" class="goals-field" type="text" value="{{ final_match.2 }}" readonly="readonly" /> 

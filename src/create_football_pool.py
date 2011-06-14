@@ -102,12 +102,15 @@ class CreateFootballPoolStepTwo(webapp.RequestHandler):
             first_round_winners = eval(self.request.get('first-round-winners'))
             quarter_finals_teams = []
             
+            counter = 1
             for winners in first_round_winners:
                 initials = winners[1].partition('-')
                 team_names = []
                 team_names.append(get_team_whole_name(initials[0]))
                 team_names.append(get_team_whole_name(initials[2]))
+                team_names.append(counter)
                 quarter_finals_teams.append(team_names)
+                counter += 1
                 
             template_values = {
                 'football_pool_name': self.request.get('football-pool-name'),
