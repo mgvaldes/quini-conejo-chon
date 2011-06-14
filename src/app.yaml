@@ -1,15 +1,29 @@
 application: tuquinielaca
-version: 2-dev
+version: 2-1-dev
 runtime: python
 api_version: 1
 
 handlers:
-- url: /.*
-  script: main.py
-  
+
 - url: /remote_api  
   script: $PYTHON_LIB/google/appengine/ext/remote_api/handler.py  
   login: admin 
+  
+- url: /sitemedia/css
+  static_dir: media/css
+
+- url: /sitemedia/js
+  static_dir: media/js
+
+- url: /sitemedia/img
+  static_dir: media/img
+
+- url: /sitemedia/fonts
+  static_dir: media/fonts 
+  
+- url: /.*
+  script: main.py
+  
   
 builtins:
 - datastore_admin: on
