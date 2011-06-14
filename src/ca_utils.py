@@ -89,27 +89,28 @@ def get_total_points(football_pool):
     matches = []
     
     for x in range(0, 4):
-        original_team1 = CATeam.get(original_pool_second_round_matches[x].teams[0]).name
-        original_team2 = CATeam.get(original_pool_second_round_matches[x].teams[1]).name
-        
-        team1 = CATeam.get(football_pool_second_round_matches[x].teams[0]).name
-        team2 = CATeam.get(football_pool_second_round_matches[x].teams[1]).name
-        
-        #Puntos por pegar orden en cuartos de final
-        if (original_team1 == team1):
-            points += 3
-        
-        if (original_team2 == team2):
-            points += 3
-        
-        original_teams.append(original_team1)
-        original_teams.append(original_team2)
-        
-        teams.append(team1)
-        teams.append(team2)
-        
-        #Puntos por pegar partido completo
-        points += add_points_for_match(original_team1, original_pool_second_round_matches[x].goals_team1, original_team2, original_pool_second_round_matches[x].goals_team2, team1, football_pool_second_round_matches[x].goals_team1, team2, football_pool_second_round_matches[x].goals_team2)
+        if original_pool_second_round_matches[x].teams:
+            original_team1 = CATeam.get(original_pool_second_round_matches[x].teams[0]).name
+            original_team2 = CATeam.get(original_pool_second_round_matches[x].teams[1]).name
+            
+            team1 = CATeam.get(football_pool_second_round_matches[x].teams[0]).name
+            team2 = CATeam.get(football_pool_second_round_matches[x].teams[1]).name
+            
+            #Puntos por pegar orden en cuartos de final
+            if (original_team1 == team1):
+                points += 3
+            
+            if (original_team2 == team2):
+                points += 3
+            
+            original_teams.append(original_team1)
+            original_teams.append(original_team2)
+            
+            teams.append(team1)
+            teams.append(team2)
+            
+            #Puntos por pegar partido completo
+            points += add_points_for_match(original_team1, original_pool_second_round_matches[x].goals_team1, original_team2, original_pool_second_round_matches[x].goals_team2, team1, football_pool_second_round_matches[x].goals_team1, team2, football_pool_second_round_matches[x].goals_team2)
         
     #Puntos por adivinar equipo
     for team in teams:
@@ -121,20 +122,21 @@ def get_total_points(football_pool):
             
     #Semi final matches
     for x in range(4, 6):
-        original_team1 = CATeam.get(original_pool_second_round_matches[x].teams[0]).name
-        original_team2 = CATeam.get(original_pool_second_round_matches[x].teams[1]).name
-        
-        team1 = CATeam.get(football_pool_second_round_matches[x].teams[0]).name
-        team2 = CATeam.get(football_pool_second_round_matches[x].teams[1]).name
-        
-        #Puntos por pegar partido completo
-        points += add_points_for_match(original_team1, original_pool_second_round_matches[x].goals_team1, original_team2, original_pool_second_round_matches[x].goals_team2, team1, football_pool_second_round_matches[x].goals_team1, team2, football_pool_second_round_matches[x].goals_team2)
-        
-        original_teams.append(original_team1)
-        original_teams.append(original_team2)
-        
-        teams.append(team1)
-        teams.append(team2)
+        if original_pool_second_round_matches[x].teams:
+            original_team1 = CATeam.get(original_pool_second_round_matches[x].teams[0]).name
+            original_team2 = CATeam.get(original_pool_second_round_matches[x].teams[1]).name
+            
+            team1 = CATeam.get(football_pool_second_round_matches[x].teams[0]).name
+            team2 = CATeam.get(football_pool_second_round_matches[x].teams[1]).name
+            
+            #Puntos por pegar partido completo
+            points += add_points_for_match(original_team1, original_pool_second_round_matches[x].goals_team1, original_team2, original_pool_second_round_matches[x].goals_team2, team1, football_pool_second_round_matches[x].goals_team1, team2, football_pool_second_round_matches[x].goals_team2)
+            
+            original_teams.append(original_team1)
+            original_teams.append(original_team2)
+            
+            teams.append(team1)
+            teams.append(team2)
         
     #Puntos por adivinar equipo
     for team in teams:
@@ -145,49 +147,51 @@ def get_total_points(football_pool):
     teams = []
             
     #Third-fourth match
-    original_team1 = CATeam.get(original_pool_second_round_matches[6].teams[0]).name
-    original_team2 = CATeam.get(original_pool_second_round_matches[6].teams[1]).name
+    if original_pool_second_round_matches[6].teams:
+        original_team1 = CATeam.get(original_pool_second_round_matches[6].teams[0]).name
+        original_team2 = CATeam.get(original_pool_second_round_matches[6].teams[1]).name
+            
+        team1 = CATeam.get(football_pool_second_round_matches[6].teams[0]).name
+        team2 = CATeam.get(football_pool_second_round_matches[6].teams[1]).name
         
-    team1 = CATeam.get(football_pool_second_round_matches[6].teams[0]).name
-    team2 = CATeam.get(football_pool_second_round_matches[6].teams[1]).name
-    
-    original_teams.append(original_team1)
-    original_teams.append(original_team2)
+        original_teams.append(original_team1)
+        original_teams.append(original_team2)
+            
+        teams.append(team1)
+        teams.append(team2)
         
-    teams.append(team1)
-    teams.append(team2)
+        #Puntos por pegar partido completo
+        points += add_points_for_match(original_team1, original_pool_second_round_matches[6].goals_team1, original_team2, original_pool_second_round_matches[6].goals_team2, team1, football_pool_second_round_matches[6].goals_team1, team2, football_pool_second_round_matches[6].goals_team2)
     
     #Puntos por adivinar equipo
     for team in teams:
         if team in original_teams:
-            points += 3
-        
-    #Puntos por pegar partido completo
-    points += add_points_for_match(original_team1, original_pool_second_round_matches[6].goals_team1, original_team2, original_pool_second_round_matches[6].goals_team2, team1, football_pool_second_round_matches[6].goals_team1, team2, football_pool_second_round_matches[6].goals_team2)
+            points += 3    
     
     original_teams = []
     teams = []
     
     #Final
-    original_team1 = CATeam.get(original_pool_second_round_matches[7].teams[0]).name
-    original_team2 = CATeam.get(original_pool_second_round_matches[7].teams[1]).name
+    if original_pool_second_round_matches[7].teams:
+        original_team1 = CATeam.get(original_pool_second_round_matches[7].teams[0]).name
+        original_team2 = CATeam.get(original_pool_second_round_matches[7].teams[1]).name
+            
+        team1 = CATeam.get(football_pool_second_round_matches[7].teams[0]).name
+        team2 = CATeam.get(football_pool_second_round_matches[7].teams[1]).name
         
-    team1 = CATeam.get(football_pool_second_round_matches[7].teams[0]).name
-    team2 = CATeam.get(football_pool_second_round_matches[7].teams[1]).name
-    
-    original_teams.append(original_team1)
-    original_teams.append(original_team2)
+        original_teams.append(original_team1)
+        original_teams.append(original_team2)
+            
+        teams.append(team1)
+        teams.append(team2)
         
-    teams.append(team1)
-    teams.append(team2)
+        #Puntos por pegar partido completo
+        points += add_points_for_match(original_team1, original_pool_second_round_matches[7].goals_team1, original_team2, original_pool_second_round_matches[7].goals_team2, team1, football_pool_second_round_matches[7].goals_team1, team2, football_pool_second_round_matches[7].goals_team2)
     
     #Puntos por adivinar equipo
     for team in teams:
         if team in original_teams:
             points += 3
-        
-    #Puntos por pegar partido completo
-    points += add_points_for_match(original_team1, original_pool_second_round_matches[7].goals_team1, original_team2, original_pool_second_round_matches[7].goals_team2, team1, football_pool_second_round_matches[7].goals_team1, team2, football_pool_second_round_matches[7].goals_team2)
     
     return points
             
@@ -196,9 +200,6 @@ def add_points_for_match(original_team1, original_team1_goals, original_team2, o
     points = 0
         
     if (original_team1 == team1 and original_team2 == team2):
-        print original_team1 + " " + team1
-        print original_team2 + " " + team2
-        
         original_match_team1_goals = original_team1_goals
         original_match_team2_goals = original_team2_goals
         
@@ -210,9 +211,6 @@ def add_points_for_match(original_team1, original_team1_goals, original_team2, o
         elif ((original_match_team1_goals > original_match_team2_goals) and (match_team1_goals > match_team2_goals)) or ((original_match_team1_goals < original_match_team2_goals) and (match_team1_goals < match_team2_goals)):
             points += 3
     elif (original_team1 == team2 and original_team2 == team1):
-        print original_team1 + " " + team2
-        print original_team2 + " " + team1
-        
         original_match_team1_goals = original_team1_goals
         original_match_team2_goals = original_team2_goals
         
