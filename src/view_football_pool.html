@@ -1,4 +1,6 @@
-<html>
+{% extends 'base.html' %}
+
+{% block contents %}
 	<body>
     
 		{% for group in groups %}
@@ -80,4 +82,4 @@
 		</ul>
 		
 	</body>
-</html>
+{% endblock %}

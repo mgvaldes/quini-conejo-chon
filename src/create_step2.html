@@ -1,7 +1,9 @@
-<html>
-		<script type="text/javascript" src="/sitemedia/js/jquery-1.4.4.js"></script>
-		<script type="text/javascript" src="/sitemedia/js/quinHandler.js"></script>		
-	</head>
+{% block headers %}
+	<script type="text/javascript" src="/sitemedia/js/jquery-1.4.4.js"></script>
+	<script type="text/javascript" src="/sitemedia/js/quinHandler.js"></script>		
+{% endblock %}
+
+{% block contents %}
 <body onload="loadFinalRoundEvents();">
   	<form action="/save" method="post" id="create-step2">
 		<ul class="group-matches">
@@ -59,4 +61,4 @@
   	</form>
 	<div id="box"><div>
   </body>
-</html>
+{% endblock %}

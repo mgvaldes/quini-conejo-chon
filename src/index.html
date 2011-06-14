@@ -1,37 +1,33 @@
-<html>
-	<head>
-		<meta name="google-site-verification" content="702uUYwfHiF0NdlZ8ndl-ypFfG-orrTbp9zcL8GsFP4" />
-	</head>
+{% extends 'base.html' %}
 
-  <body>
-    
-    Inicio de sesion
-    <br>
-
-    <form action="/home" method="post">
-      <label for="email_id">Correo: </label>
-      <input name="email" type="text" id="email_id" value="" />
-      <br>
-
-      <label for="password_id">Clave: </label>
-      <input name="password" type="password" id="password_id" value="" />
-      <br>
-
-      <input type="submit" name="accept" value="Aceptar">
-      <br>
-
-      {{ error }}
-
-      <ul>
-        <li><input type="submit" name="google" value="Google"></li>
-        <li><input type="submit" name="facebook" value="Facebook"></li>
-      </ul>  
-    </form>
-
-	<ul>
-        <li><a href="/register">Registro</a></li>
-        <li><a href="/recover_password">Recuperar clave</a></li>
-    </ul>
-
-  </body>
-</html>
+{% block contents %}
+	<body>
+		Inicio de sesion
+	    <br>
+	
+	    <form action="/home" method="post">
+	      <label for="email_id">Correo: </label>
+	      <input name="email" type="text" id="email_id" value="" />
+	      <br>
+	
+	      <label for="password_id">Clave: </label>
+	      <input name="password" type="password" id="password_id" value="" />
+	      <br>
+	
+	      <input type="submit" name="accept" value="Aceptar">
+	      <br>
+	
+	      {{ error }}
+	
+	      <ul>
+	        <li><input type="submit" name="google" value="Google"></li>
+	        <li><input type="submit" name="facebook" value="Facebook"></li>
+	      </ul>  
+	    </form>
+	
+		<ul>
+	        <li><a href="/register">Registro</a></li>
+	        <li><a href="/recover_password">Recuperar clave</a></li>
+	    </ul>
+    </body>
+{% endblock %}
