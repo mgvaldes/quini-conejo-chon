@@ -1,12 +1,14 @@
 <html>
+
 	<head>
 		<script type="text/javascript" src="/sitemedia/js/jquery-1.4.4.js"></script>
 		<script type="text/javascript" src="/sitemedia/js/quinHandler.js"></script>		
 	</head>
   <body onload="loadQuinEvents();">
 	<div id="pool-full"></div>
-	<form action="/create/step2" method="post" id="create-step1">
-		
+
+  <body>
+    	<form action="/create/step2" method="post" id="create-step1">
 		<label class="title-label" for="football_pool_name">Nombre</label>
 		<input name="football-pool-name" class="title-field" type="text" value="" />
 	
@@ -45,10 +47,19 @@
 				  	</tr>
 			  	{% endfor %}
 		  	</table>
+		  	
+		  	<ul id="classif-{{ group.2 }}" class="classif-info">
+		  		<li></li>
+		  		<li></li>
+		  		<li></li>
+		  	</ul>
 		  		
 		{% endfor %}
 	    
 	  	<input type="submit" name="step2" value="Siguiente">
+	  	
+	  	<div id="submit-notice" class="notice">
+	  	</div>
 	  	
 	  	<input name="first-round-winners" type="hidden" value="{{ test }}" />
   	</form>

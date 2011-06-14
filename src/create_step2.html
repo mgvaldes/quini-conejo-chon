@@ -1,14 +1,16 @@
 <html>
-  <body>
-    
-  	<form action="/save" method="post">
+		<script type="text/javascript" src="/sitemedia/js/jquery-1.4.4.js"></script>
+		<script type="text/javascript" src="/sitemedia/js/quinHandler.js"></script>		
+	</head>
+<body onload="loadFinalRoundEvents();">
+  	<form action="/save" method="post" id="create-step2">
 		<ul class="group-matches">
 		    {% for teams in quarter_finals_teams %}
 				<li class="group-match">
-					<label class="e1" for="{{ teams.0|slice:":3" }}-{{ teams.1|slice:":3" }}-g1">{{ teams.0 }}</label> 
+					<label class="e1-qf" for="{{ teams.0|slice:":3" }}-{{ teams.1|slice:":3" }}-g1">{{ teams.0 }}</label> 
 					<input id="{{ teams.0|slice:":3" }}-{{ teams.1|slice:":3" }}-g1" name="{{ teams.0|slice:":3" }}-{{ teams.1|slice:":3" }}-g1" class="goals-field" type="text" value="" /> 
 					<input id="{{ teams.0|slice:":3" }}-{{ teams.1|slice:":3" }}-g2" name="{{ teams.0|slice:":3" }}-{{ teams.1|slice:":3" }}-g2" class="goals-field" type="text" value="" /> 
-					<label class="e2" for="{{ teams.0|slice:":3" }}-{{ teams.1|slice:":3" }}-g2">{{ teams.1 }}</label>
+					<label class="e2-qf" for="{{ teams.0|slice:":3" }}-{{ teams.1|slice:":3" }}-g2">{{ teams.1 }}</label>
 				</li>
 		    {% endfor %}
 		</ul>
@@ -48,10 +50,13 @@
 			  	
 	  	<input type="submit" name="step2" value="Guardar">
 	  	
+	  	<div id="submit-notice" class="notice">
+	  	</div>
+	  	
 	  	<input name="football-pool-name" type="hidden" value="{{ football_pool_name }}" />
 	  	<input name="first-round-matches" type="hidden" value="{{ first_round_matches }}" />
 	  	<input name="second-round-matches" type="hidden" value="{{ test }}" />
   	</form>
-
+	<div id="box"><div>
   </body>
 </html>

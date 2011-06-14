@@ -200,15 +200,11 @@ function fetchAndUpdate(id) {
     // team1 - team2
     var team1 = split_id[0];
     var team2 = split_id[1];
-alert("calc team");
     var classif1 = calcTeamClassification(team1);
     var classif2 = calcTeamClassification(team2);
     var group = team_group[team1];
-alert("updating");
     updateClassifTable(group, classif1, classif2);
-alert("update advancing");
-    updateAdvancingTeams(group);
-alert("yes");      
+    updateAdvancingTeams(group);     
 
     if(isPoolFull()){
         $('#pool-full').html("IS FULL");
@@ -742,18 +738,108 @@ $('#Chi-Per-g1').change(function() {fetchAndUpdate('Chi-Per-g1');})
 $('#Chi-Per-g2').change(function() {fetchAndUpdate('Chi-Per-g2');})
 }
 
+function loadPrevResults(){
+    fetchAndUpdate('Arg-Bol-g1')
+    fetchAndUpdate('Arg-Bol-g2');
+    fetchAndUpdate('Arg-Cos-g1');
+    fetchAndUpdate('Arg-Cos-g2');
+    fetchAndUpdate('Arg-Col-g1');
+    fetchAndUpdate('Arg-Col-g2');
+    fetchAndUpdate('Col-Cos-g1');
+    fetchAndUpdate('Col-Cos-g2');
+    fetchAndUpdate('Col-Bol-g1');
+    fetchAndUpdate('Col-Bol-g2');
+    fetchAndUpdate('Bol-Cos-g1');
+    fetchAndUpdate('Bol-Cos-g2');
+    fetchAndUpdate('Bra-Ven-g1');
+    fetchAndUpdate('Bra-Ven-g2');
+    fetchAndUpdate('Bra-Par-g1');
+    fetchAndUpdate('Bra-Par-g2');
+    fetchAndUpdate('Bra-Ecu-g1');
+    fetchAndUpdate('Bra-Ecu-g2');
+    fetchAndUpdate('Ven-Ecu-g1');
+    fetchAndUpdate('Ven-Ecu-g2');
+    fetchAndUpdate('Par-Ven-g1');
+    fetchAndUpdate('Par-Ven-g2');
+    fetchAndUpdate('Par-Ecu-g1');
+    fetchAndUpdate('Par-Ecu-g2');
+    fetchAndUpdate('Uru-Per-g1');
+    fetchAndUpdate('Uru-Per-g2');
+    fetchAndUpdate('Chi-Mex-g1');
+    fetchAndUpdate('Chi-Mex-g2');
+    fetchAndUpdate('Uru-Chi-g1');
+    fetchAndUpdate('Uru-Chi-g2');
+    fetchAndUpdate('Per-Mex-g1');
+    fetchAndUpdate('Per-Mex-g2');
+    fetchAndUpdate('Uru-Mex-g1');
+    fetchAndUpdate('Uru-Mex-g2');
+    fetchAndUpdate('Chi-Per-g1');
+    fetchAndUpdate('Chi-Per-g2');
+}
+
 function loadQuinEvents(){
-    fetchAllResults();
+    loadPrevResults();
+	fetchAllResults();
     
     $('#create-step1').submit(function(event){
         if(!isPoolFull()){
             alert("Pooll is not full");
             event.preventDefault();
             return false;
-        };
+        }
+		// must provide pool name
+		else{
+			if($("input[name=football-pool-name]").val()==""){
+				alert("Provide Name");
+				event.preventDefault();
+				return false;
+			}
+		};
         return true;
-    });
-    
-    
+    });    
 }
-//loadQuinEvents();
+
+function loadFinalRoundEvents(){
+	fetchFinalRoundEvents();
+	
+	
+}
+
+function fetchFinalRoundEvents(){
+	var qf_games = getFinalRoundMatches("e1-qf");
+	var match_name;
+	var match_id;
+	for(var index_qf in qf_games){
+		match_name=qf_games[index_qf].split('-');
+		match_id = match_name[0]+"-"+match_name[1];
+		
+		$("#"+match_id+"-g1").change(function(){
+			fetchQfGame(match_id+"");
+			alert("match ID"+match_id);
+		});
+		$("#"+match_id+"-g2").change(function(){
+			fetchQfGame(match_id+"");	
+		});
+	}
+}
+
+function fetchQfGame(qfmatch){
+	alert(qfmatch+" <-- Match ID");
+	alert(getTeamGoals(match_id+"-g2").val() + " "+getTeamGoals(match_id+"-g1") );
+}
+
+function getFinalRoundMatches(className){
+	var games = $("."+className);
+	var games_id = [];
+	games.each(function(index) {
+	    games_id.push($(this).attr('for'));
+	  });
+	return games_id;
+}
+
+
+
+
+
+
+
