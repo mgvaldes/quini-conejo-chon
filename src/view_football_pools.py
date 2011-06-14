@@ -161,10 +161,24 @@ class ViewFootballPool(webapp.RequestHandler):
                     
                 render_template(self, 'view_football_pool.html', template_values)
             elif pay:
-                template_values = {
-                    'selected_football_pool_key': self.request.get('selected_football_pool')
-                }
+                selected_football_pool = CAFootballPool.get(Key(self.request.get('selected_football_pool')))
                 
-                render_template(self, 'pay_football_pool.html', template_values)
+                if selected_football_pool.payment:
+                    active_user = session['active_user']
+                
+                    active_user_football_pools = CAFootballPool.all().filter("user =", active_user).filter("privacy =", False).fetch(1000)
+                    
+                    template_values = {
+                        'football_pools': active_user_football_pools,
+                        'message':'Esta quiniela ya fue pagada'
+                    } 
+                    
+                    render_template(self, 'list_football_pools.html', template_values)
+                else:
+                    template_values = {
+                        'selected_football_pool_key': self.request.get('selected_football_pool')
+                    }
+                    
+                    render_template(self, 'pay_football_pool.html', template_values)
         else:
             self.redirect('/')
