@@ -6,13 +6,13 @@ from google.appengine.ext import db
 
 from gaesessions import get_current_session
 
-from ca_utils import check_session_status, render_template
+from ca_utils import check_session_status, render_template, update_session_time
 from models.ca_models import CAFootballPool, CAPayment, CACompetitonGroup, CAGroupRanking
 
 class PayFootballPool(webapp.RequestHandler):
     def post(self):
+        update_session_time()
         session = get_current_session()
-        
         check_session_status()
             
         if session.is_active():

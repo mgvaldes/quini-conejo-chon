@@ -3,13 +3,13 @@ from google.appengine.ext.db import Key
 
 from gaesessions import get_current_session
 
-from ca_utils import check_session_status, render_template, get_pending_membership_requests
+from ca_utils import check_session_status, render_template, get_pending_membership_requests, update_session_time
 from models.ca_models import CARequestGroupMembership, CAFootballPool, CAGroupRanking
 
 class AcceptGroupMembershipRequest(webapp.RequestHandler):
     def get(self):
+        update_session_time()
         session = get_current_session()
-        
         check_session_status()
             
         if session.is_active():
@@ -42,8 +42,8 @@ class AcceptGroupMembershipRequest(webapp.RequestHandler):
 
 class RejectGroupMembershipRequest(webapp.RequestHandler):
     def get(self):
+        update_session_time()
         session = get_current_session()
-        
         check_session_status()
             
         if session.is_active():

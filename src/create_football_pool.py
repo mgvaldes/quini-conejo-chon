@@ -6,14 +6,14 @@ from google.appengine.ext import db
 from google.appengine.ext import webapp
 
 from models.ca_models import CAFootballPool, CAMatch, CATeam
-from ca_utils import check_session_status, render_template, get_team_whole_name
+from ca_utils import check_session_status, render_template, get_team_whole_name, update_session_time
 
 from gaesessions import get_current_session
 
 class CreateFootballPoolStepOne(webapp.RequestHandler):
     def get(self):
+        update_session_time()
         session = get_current_session()
-        
         check_session_status()
         
         if session.is_active():
@@ -73,8 +73,8 @@ class CreateFootballPoolStepOne(webapp.RequestHandler):
         
 class CreateFootballPoolStepTwo(webapp.RequestHandler):
     def post(self):
+        update_session_time()
         session = get_current_session()
-        
         check_session_status()
         
         if session.is_active():
@@ -129,8 +129,8 @@ class CreateFootballPoolStepTwo(webapp.RequestHandler):
         
 class SaveFootbalPool(webapp.RequestHandler):
     def post(self):
+        update_session_time()
         session = get_current_session()
-        
         check_session_status()
         
         if session.is_active():

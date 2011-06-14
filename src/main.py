@@ -12,7 +12,9 @@ from view_competition_groups import ListCompetitionGroups, ViewCompetitionGroup,
 from group_membership_request import AcceptGroupMembershipRequest, RejectGroupMembershipRequest
 
 from session import LoginHandler, LogoutHandler, FacebookLoginHandler, GoogleLoginHandler
-from ca_utils import render_template
+from ca_utils import render_template, check_session_status, get_pending_membership_requests
+
+from gaesessions import get_current_session
 
 """
 Handler inicial que maneja el metodo de autenticacion del usuario.
@@ -21,11 +23,23 @@ de Facebook.
 """
 class MainHandler(webapp.RequestHandler):
     def get(self):
-        template_values = {
-            'error': ''   
-        }
-
-        render_template(self, 'index.html', template_values)
+        session = get_current_session()
+        
+        check_session_status()
+            
+        if session.is_active():
+            template_values = {
+                'user': session['active_user'],
+                'pending_membership_requests': get_pending_membership_requests(session['active_user'])
+            }
+                        
+            render_template(self, 'home.html', template_values)
+        else:
+            template_values = {
+                'error': ''   
+            }
+    
+            render_template(self, 'index.html', template_values)
             
 application = webapp.WSGIApplication([('/', MainHandler),
                                       ('/register', LoadRegistryForm),

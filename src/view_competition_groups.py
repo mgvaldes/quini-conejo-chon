@@ -3,13 +3,13 @@ from google.appengine.ext.db import Key
 
 from gaesessions import get_current_session
 
-from ca_utils import check_session_status, render_template
+from ca_utils import check_session_status, render_template, get_total_points, update_session_time
 from models.ca_models import CACompetitonGroup, CAGroupRanking, CAUser, CARequestGroupMembership, CAFootballPool
 
 class ListCompetitionGroups(webapp.RequestHandler):
     def get(self):
+        update_session_time()
         session = get_current_session()
-        
         check_session_status()
             
         if session.is_active():
@@ -27,8 +27,8 @@ class ListCompetitionGroups(webapp.RequestHandler):
             
 class ViewCompetitionGroup(webapp.RequestHandler):
     def post(self):
+        update_session_time()
         session = get_current_session()
-        
         check_session_status()
             
         if session.is_active():
@@ -66,7 +66,7 @@ class ViewCompetitionGroup(webapp.RequestHandler):
                     else:
                         name = rank.football_pool.user.native_user.name
                         
-                    group_ranking_list.append((name, rank.football_pool.name, 0, selected))
+                    group_ranking_list.append((name, rank.football_pool.name, get_total_points(rank.football_pool), selected))
                     
                 template_values = {
                     'competition_group_name': competition_group.name,
@@ -79,8 +79,8 @@ class ViewCompetitionGroup(webapp.RequestHandler):
                 
 class CreateCompetitionGroup(webapp.RequestHandler):
     def get(self):
+        update_session_time()
         session = get_current_session()
-        
         check_session_status()
             
         if session.is_active():
@@ -97,8 +97,8 @@ class CreateCompetitionGroup(webapp.RequestHandler):
             self.redirect('/')
             
     def post(self):
+        update_session_time()
         session = get_current_session()
-        
         check_session_status()
             
         if session.is_active():
@@ -185,8 +185,8 @@ class CreateCompetitionGroup(webapp.RequestHandler):
             
 class AddMemberToCompetitionGroup(webapp.RequestHandler):
     def get(self):
+        update_session_time()
         session = get_current_session()
-        
         check_session_status()
             
         if session.is_active():
@@ -224,8 +224,8 @@ class AddMemberToCompetitionGroup(webapp.RequestHandler):
             
 class DeleteMemberFromCompetitionGroup(webapp.RequestHandler):
     def get(self):
+        update_session_time()
         session = get_current_session()
-        
         check_session_status()
             
         if session.is_active():
