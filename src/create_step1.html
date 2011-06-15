@@ -1,13 +1,13 @@
-<html>
+{% extends 'base.html' %}
 
-	<head>
-		<script type="text/javascript" src="/sitemedia/js/jquery-1.4.4.js"></script>
-		<script type="text/javascript" src="/sitemedia/js/quinHandler.js"></script>		
-	</head>
+{% block headers %}
+	<script type="text/javascript" src="/sitemedia/js/jquery-1.4.4.js"></script>
+	<script type="text/javascript" src="/sitemedia/js/quinHandler.js"></script>
+{% endblock %}
+		
+{% block contents %}
   <body onload="loadQuinEvents();">
-	<div id="pool-full"></div>
-
-  <body>
+  	<div id="pool-full"></div>
     	<form action="/create/step2" method="post" id="create-step1">
 		<label class="title-label" for="football_pool_name">Nombre</label>
 		<input name="football-pool-name" class="title-field" type="text" value="" />
@@ -65,4 +65,4 @@
   	</form>
 
   </body>
-</html>
+{% endblock %}
