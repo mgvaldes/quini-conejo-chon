@@ -3,6 +3,7 @@
 		<script type="text/javascript" src="/sitemedia/js/quinHandler.js"></script>		
 	</head>
 <body onload="loadFinalRoundEvents();">
+	<div id="box"></div>
   	<form action="/save" method="post" id="create-step2">
 		<ul class="group-matches">
 		    {% for teams in quarter_finals_teams %}
@@ -57,6 +58,5 @@
 	  	<input name="first-round-matches" type="hidden" value="{{ first_round_matches }}" />
 	  	<input name="second-round-matches" type="hidden" value="{{ test }}" />
   	</form>
-	<div id="box"><div>
   </body>
 </html>

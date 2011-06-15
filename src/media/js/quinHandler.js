@@ -72,9 +72,18 @@ group_teams = {
     'C': ['Uru', 'Per', 'Mex', 'Chi']
 }
 
+next_game_id_pos = {
+	'qf1':['sf1','1'],
+	'qf2':['sf1','2'],
+	'qf3':['sf2','1'],
+	'qf4':['sf2','2'],
+	'sf1-l':['tf','1'],
+	'sf2-l':['tf','2'],
+	'sf1-w':['f','1'],
+	'sf2-w':['f','2']
+}
+
 // Checks if an input value is a positive string
-
-
 function isPosInt(value) {
     if (!isNaN(value) && (parseFloat(value) == parseInt(value))) {
         if (parseInt(value) >= 0) {
@@ -119,6 +128,15 @@ function getWinner(g1, g2) {
 function getTeamGoals(inputName) {
     var goals_field = $("input[name=" + inputName + "]");
     return goals_field.val();
+}
+
+function resetTeamGoals(inputName){
+    $("input[name=" + inputName + "]").val("");
+}
+
+function cleanNextMatch(match_label){
+    var next = next_game_id_pos[match_label];
+    $("label[for="+next[0]+"-g"+next[1]+"]").html("?");
 }
 
 // from matches of the form 'team-team' get
@@ -166,6 +184,13 @@ function calcTeamClassification(team) {
                 teamResult["gf"] += parseInt(t1_goals);
                 teamResult["gc"] += parseInt(t2_goals);
                 teamResult["pts"] += 1;
+            }
+        }else{
+            if(!isPosInt(t1_goals)){
+                resetTeamGoals(match + "-g1");
+            }
+            if(!isPosInt(t2_goals)){
+                resetTeamGoals(match + "-g2");
             }
         }
     }
@@ -596,6 +621,44 @@ function isPoolFull(){
     return false;
 }
 
+// determines whether the pool has been 
+// filled totally or not
+function isFinalPoolFull(){
+    var goals_field = $(".goals-field");
+    var isfull = true;
+    goals_field.each(function(){
+        if(!(isPosInt($(this).val()))){
+			isfull = false;
+        }
+    });
+	var qf_label = $(".e1-qf");
+    qf_label.each(function(){
+        if($(this).html()=="?"){
+			isfull = false;
+        }
+    });
+	var qf_label = $(".e2-qf");
+    qf_label.each(function(){
+        if($(this).html()=="?"){
+			isfull = false;
+        }
+    });
+	qf_label = $(".e1");
+    qf_label.each(function(){
+        if($(this).html()=="?"){
+			isfull = false;
+        }
+    });
+	qf_label = $(".e2");
+    qf_label.each(function(){
+        if($(this).html()=="?"){
+			isfull = false;
+        }
+    });
+
+    return isfull;
+}
+
 // Updates the advancing teams hidden field. The best third
 // are passed to optimize updating speed
 function updateAdvancingTeamsMeta(thirdParty){
@@ -801,31 +864,127 @@ function loadQuinEvents(){
 
 function loadFinalRoundEvents(){
 	fetchFinalRoundEvents();
+            
+    $('#create-step2').submit(function(event){
+        if(!isFinalPoolFull()){
+            alert("Pooll is not full");
+            event.preventDefault();
+            return false;
+        }
+        return true;
+    });    
 	
 	
 }
 
 function fetchFinalRoundEvents(){
-	var qf_games = getFinalRoundMatches("e1-qf");
+
+    var qf_games = getFinalRoundMatches("e1-qf");
 	var match_name;
 	var match_id;
+	var match_element;
 	for(var index_qf in qf_games){
-		match_name=qf_games[index_qf].split('-');
+		match_name=(qf_games[index_qf]).split('-');
 		match_id = match_name[0]+"-"+match_name[1];
-		
 		$("#"+match_id+"-g1").change(function(){
-			fetchQfGame(match_id+"");
-			alert("match ID"+match_id);
+			fetchQfGame($(this).attr('id'), $(this));
 		});
 		$("#"+match_id+"-g2").change(function(){
-			fetchQfGame(match_id+"");	
+			fetchQfGame($(this).attr('id'),$(this));	
 		});
 	}
 }
 
-function fetchQfGame(qfmatch){
-	alert(qfmatch+" <-- Match ID");
-	alert(getTeamGoals(match_id+"-g2").val() + " "+getTeamGoals(match_id+"-g1") );
+function fetchQfGame(qfmatch, input_element){
+
+	var match = qfmatch.split('-');
+	var t1_goals = getTeamGoals(match[0]+"-"+match[1]+"-g1");
+	var t2_goals = getTeamGoals(match[0]+"-"+match[1]+"-g2");
+	
+	if (isPosInt(t1_goals) && isPosInt(t2_goals)) {
+        var t1_goals_int = parseInt(t1_goals);
+        var t2_goals_int = parseInt(t2_goals);
+
+		var winner = getWinner(t1_goals_int, t2_goals_int);
+		var parent;
+         if(winner==1){
+			parent = input_element.parent();
+			setNextGameTeam(parent.attr("id"), match[0]);
+		}
+		else if(winner==2){
+			parent = input_element.parent();
+			setNextGameTeam(parent.attr("id"), match[1]);
+		}
+		else if(winner==0){
+			alert("El partido no puede quedar empatado");
+		}
+    }else{
+        parent = input_element.parent();
+        if(!isPosInt(t1_goals)){
+            resetTeamGoals(match[0]+"-"+match[1]+"-g1");
+            cleanNextMatch(parent.attr("id"));
+        }
+        if(!isPosInt(t2_goals)){
+            resetTeamGoals(match[0]+"-"+match[1]+"-g2");
+            cleanNextMatch(parent.attr("id"));          
+        }
+    }
+}
+
+function setNextGameTeam(prev_game_id, team_name){
+	var next_game = next_game_id_pos[prev_game_id];
+	var game_level= next_game[0];
+	var team_pos = next_game[1];
+	
+	if(team_pos =='1'){
+		$("label[for="+game_level+"-g1"+"]").html(team_long[team_name]);
+		$("input[name="+game_level+"-g1]").change(function(){
+			fetchFRGame($(this));	
+		});
+	}
+	else if(team_pos =='2'){
+		$("label[for="+game_level+"-g2"+"]").html(team_long[team_name]);
+		$("input[name="+game_level+"-g2]").change(function(){
+			fetchFRGame($(this));	
+		});
+	}
+}
+
+function fetchFRGame(input_element){
+	var split_name = input_element.attr("name").split('-');
+	var round = split_name[0];
+	var calling_team_g = split_name[1];
+	var t1_goals = getTeamGoals(round+"-g1");
+	var t2_goals = getTeamGoals(round+"-g2");
+	
+	if (isPosInt(t1_goals) && isPosInt(t2_goals)) {
+        var t1_goals_int = parseInt(t1_goals);
+        var t2_goals_int = parseInt(t2_goals);
+
+		var winner = getWinner(t1_goals_int, t2_goals_int);
+		var parent;
+         if(winner==1){   
+			setNextGameTeam(round+"-w", team_acronym[$("label[for="+round+"-g1"+"]").html()]);
+                        setNextGameTeam(round+"-l", team_acronym[$("label[for="+round+"-g2"+"]").html()]);
+		}
+		else if(winner==2){
+			setNextGameTeam(round+"-w", team_acronym[$("label[for="+round+"-g2"+"]").html()]);
+                        setNextGameTeam(round+"-l", team_acronym[$("label[for="+round+"-g1"+"]").html()]);
+		}
+		else if(winner==0){
+			alert("El partido no puede quedar empatado");
+		}
+    }else{parent = input_element.parent();
+            if(!isPosInt(t1_goals)){
+                resetTeamGoals(round+"-g1");
+                cleanNextMatch(parent.attr("id")); 
+                
+            }
+            if(!isPosInt(t2_goals)){
+                resetTeamGoals(round+"-g2");
+                cleanNextMatch(parent.attr("id")); 
+            }
+        }
 }
 
 function getFinalRoundMatches(className){
