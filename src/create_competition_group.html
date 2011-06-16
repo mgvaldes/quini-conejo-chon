@@ -1,8 +1,8 @@
 {% extends 'base.html' %}
 
+{% block openbody %}<body>{% endblock %}
 {% block contents %}
-	<body>
-	
+
 		<form action="/create/group" method="post">
 			<input name="search" type="text" id="search" value="" />
 			<input type="submit" name="search_user" value="Buscar">
@@ -36,6 +36,5 @@
 		    
 		    <input type="submit" name="save" value="Guardar">
 		</form>
-	
-	</body>
+
 {% endblock %}

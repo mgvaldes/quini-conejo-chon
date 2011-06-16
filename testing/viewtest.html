@@ -1,0 +1,417 @@
+<!DOCTYPE html> 
+<html> 
+    <head> 
+        <title>Quinielaca.com - La Quiniela de la Copa Am�rica -</title>	
+        <meta name="google-site-verification" content="702uUYwfHiF0NdlZ8ndl-ypFfG-orrTbp9zcL8GsFP4" /> 
+	<link rel="stylesheet" type="text/css" href="file:///Users/javierfdr/devel/quinielaca/devel/quini-conejo-chon/testing/base.css" media="screen" />	
+        
+	<script type="text/javascript" src="/sitemedia/js/jquery-1.4.4.js"></script> 
+	<script type="text/javascript" src="/sitemedia/js/quinHandler.js"></script> 
+ 
+    </head> 
+    <body onload="loadQuinEvents();"> 
+ 
+	<div id="top"> 
+		
+	        <div id="login-div" class="login-not"> 
+	            <div id="buttons-area"> 
+	                <ul id="login-buttons" class="show-login-buttons"> 
+	                    <li><a href="#iniciarsesion"> Iniciar Sesi�n </a></li> 
+	                    <li><a href="#registrarse"> Registrarse </a></li> 
+	                </ul> 
+	            </div> 
+	        </div> 
+ 
+ 
+	            <!-- 
+		    <div id="login-div" class="login-yes">
+		        <div id="login-info">
+				<p> Hola, Mar�a G<p>
+				<ul id="login-buttons" class="show-user-login">
+					<li><a href="#verperfil> Ver perfil </a></li>
+					<li><a href="#cerrarsesion> Cerrar sesi�n </a></li>
+				</ul>
+		        </div> 
+		    </div>	
+		--> 
+ 
+		
+                
+		<div id="logo"></div> 
+        <div id="pote"></div> 
+	
+	</div> 
+    <div class = "wrapper"> 
+ 
+        <div id="content-body"> 
+            <div id="buttons-layer"> 
+                <ul> 
+                    <li>Quinielas<li> 
+                    <li>Grupos<li> 
+                    <li>Reglas<li> 
+                    <li>Mi Perfil<li> 
+                    <li>Copa Am�rica<li> 
+                </ul> 
+            </div> 
+            <div id="main-content"> 
+                <div id="left-content"> 
+                    <div class="left-block"></div> 
+                </div> 
+                <div id="center-content"> 
+                    
+                    <h4> 
+                        
+                    </h4> 
+                    <p id="content-description"></p> 
+                    
+ 
+    	<form action="/create/step2" method="post" id="create-step1"> 
+		<label class="title-label" for="football_pool_name">Nombre</label> 
+		<input name="football-pool-name" class="title-field" type="text" value="" /> 
+	
+		
+			<ul class="group-matches"> 
+		    	
+					<li class="group-match"> 
+						<label class="e1" for="Arg-Bol-g1">Argentina</label> 
+						<input id="Arg-Bol-g1" name="Arg-Bol-g1" class="goals-field" type="text" value="" /> 
+						<input id="Arg-Bol-g2" name="Arg-Bol-g2" class="goals-field" type="text" value="" /> 
+						<label class="e2" for="Arg-Bol-g2">Bolivia</label> 
+					</li> 
+		    	
+					<li class="group-match"> 
+						<label class="e1" for="Col-Cos-g1">Colombia</label> 
+						<input id="Col-Cos-g1" name="Col-Cos-g1" class="goals-field" type="text" value="" /> 
+						<input id="Col-Cos-g2" name="Col-Cos-g2" class="goals-field" type="text" value="" /> 
+						<label class="e2" for="Col-Cos-g2">Costa Rica</label> 
+					</li> 
+		    	
+					<li class="group-match"> 
+						<label class="e1" for="Arg-Col-g1">Argentina</label> 
+						<input id="Arg-Col-g1" name="Arg-Col-g1" class="goals-field" type="text" value="" /> 
+						<input id="Arg-Col-g2" name="Arg-Col-g2" class="goals-field" type="text" value="" /> 
+						<label class="e2" for="Arg-Col-g2">Colombia</label> 
+					</li> 
+		    	
+					<li class="group-match"> 
+						<label class="e1" for="Bol-Cos-g1">Bolivia</label> 
+						<input id="Bol-Cos-g1" name="Bol-Cos-g1" class="goals-field" type="text" value="" /> 
+						<input id="Bol-Cos-g2" name="Bol-Cos-g2" class="goals-field" type="text" value="" /> 
+						<label class="e2" for="Bol-Cos-g2">Costa Rica</label> 
+					</li> 
+		    	
+					<li class="group-match"> 
+						<label class="e1" for="Col-Bol-g1">Colombia</label> 
+						<input id="Col-Bol-g1" name="Col-Bol-g1" class="goals-field" type="text" value="" /> 
+						<input id="Col-Bol-g2" name="Col-Bol-g2" class="goals-field" type="text" value="" /> 
+						<label class="e2" for="Col-Bol-g2">Bolivia</label> 
+					</li> 
+		    	
+					<li class="group-match"> 
+						<label class="e1" for="Arg-Cos-g1">Argentina</label> 
+						<input id="Arg-Cos-g1" name="Arg-Cos-g1" class="goals-field" type="text" value="" /> 
+						<input id="Arg-Cos-g2" name="Arg-Cos-g2" class="goals-field" type="text" value="" /> 
+						<label class="e2" for="Arg-Cos-g2">Costa Rica</label> 
+					</li> 
+		    	
+		  	</ul> 
+		  	
+		  	<table id="table-A" class="group-table"> 
+		  		<tr> 
+		  			<th>País</th> 
+		  			<th>G</th> 
+		  			<th>E</th> 
+		  			<th>P</th> 
+		  			<th>GF</th> 
+		  			<th>GC</th> 
+		  			<th>Pts</th> 
+		  		</tr> 
+		  		
+			  	
+			  		<tr class="pair"> 
+			  			<td>Argentina</td> 
+				  		<td>0</td> 
+				  		<td>0</td> 
+				  		<td>0</td> 
+				  		<td>0</td> 
+				  		<td>0</td> 
+				  		<td>0</td> 
+				  	</tr> 
+			  	
+			  		<tr class="odd"> 
+			  			<td>Bolivia</td> 
+				  		<td>0</td> 
+				  		<td>0</td> 
+				  		<td>0</td> 
+				  		<td>0</td> 
+				  		<td>0</td> 
+				  		<td>0</td> 
+				  	</tr> 
+			  	
+			  		<tr class="pair"> 
+			  			<td>Costa Rica</td> 
+				  		<td>0</td> 
+				  		<td>0</td> 
+				  		<td>0</td> 
+				  		<td>0</td> 
+				  		<td>0</td> 
+				  		<td>0</td> 
+				  	</tr> 
+			  	
+			  		<tr class="odd"> 
+			  			<td>Colombia</td> 
+				  		<td>0</td> 
+				  		<td>0</td> 
+				  		<td>0</td> 
+				  		<td>0</td> 
+				  		<td>0</td> 
+				  		<td>0</td> 
+				  	</tr> 
+			  	
+		  	</table> 
+		  	
+		  	<ul id="classif-A" class="classif-info"> 
+		  		<li></li> 
+		  		<li></li> 
+		  		<li></li> 
+		  	</ul> 
+		  		
+		
+			<ul class="group-matches"> 
+		    	
+					<li class="group-match"> 
+						<label class="e1" for="Bra-Ven-g1">Brasil</label> 
+						<input id="Bra-Ven-g1" name="Bra-Ven-g1" class="goals-field" type="text" value="" /> 
+						<input id="Bra-Ven-g2" name="Bra-Ven-g2" class="goals-field" type="text" value="" /> 
+						<label class="e2" for="Bra-Ven-g2">Venezuela</label> 
+					</li> 
+		    	
+					<li class="group-match"> 
+						<label class="e1" for="Par-Ecu-g1">Paraguay</label> 
+						<input id="Par-Ecu-g1" name="Par-Ecu-g1" class="goals-field" type="text" value="" /> 
+						<input id="Par-Ecu-g2" name="Par-Ecu-g2" class="goals-field" type="text" value="" /> 
+						<label class="e2" for="Par-Ecu-g2">Ecuador</label> 
+					</li> 
+		    	
+					<li class="group-match"> 
+						<label class="e1" for="Bra-Par-g1">Brasil</label> 
+						<input id="Bra-Par-g1" name="Bra-Par-g1" class="goals-field" type="text" value="" /> 
+						<input id="Bra-Par-g2" name="Bra-Par-g2" class="goals-field" type="text" value="" /> 
+						<label class="e2" for="Bra-Par-g2">Paraguay</label> 
+					</li> 
+		    	
+					<li class="group-match"> 
+						<label class="e1" for="Ven-Ecu-g1">Venezuela</label> 
+						<input id="Ven-Ecu-g1" name="Ven-Ecu-g1" class="goals-field" type="text" value="" /> 
+						<input id="Ven-Ecu-g2" name="Ven-Ecu-g2" class="goals-field" type="text" value="" /> 
+						<label class="e2" for="Ven-Ecu-g2">Ecuador</label> 
+					</li> 
+		    	
+					<li class="group-match"> 
+						<label class="e1" for="Bra-Ecu-g1">Brasil</label> 
+						<input id="Bra-Ecu-g1" name="Bra-Ecu-g1" class="goals-field" type="text" value="" /> 
+						<input id="Bra-Ecu-g2" name="Bra-Ecu-g2" class="goals-field" type="text" value="" /> 
+						<label class="e2" for="Bra-Ecu-g2">Ecuador</label> 
+					</li> 
+		    	
+					<li class="group-match"> 
+						<label class="e1" for="Par-Ven-g1">Paraguay</label> 
+						<input id="Par-Ven-g1" name="Par-Ven-g1" class="goals-field" type="text" value="" /> 
+						<input id="Par-Ven-g2" name="Par-Ven-g2" class="goals-field" type="text" value="" /> 
+						<label class="e2" for="Par-Ven-g2">Venezuela</label> 
+					</li> 
+		    	
+		  	</ul> 
+		  	
+		  	<table id="table-B" class="group-table"> 
+		  		<tr> 
+		  			<th>País</th> 
+		  			<th>G</th> 
+		  			<th>E</th> 
+		  			<th>P</th> 
+		  			<th>GF</th> 
+		  			<th>GC</th> 
+		  			<th>Pts</th> 
+		  		</tr> 
+		  		
+			  	
+			  		<tr class="pair"> 
+			  			<td>Paraguay</td> 
+				  		<td>0</td> 
+				  		<td>0</td> 
+				  		<td>0</td> 
+				  		<td>0</td> 
+				  		<td>0</td> 
+				  		<td>0</td> 
+				  	</tr> 
+			  	
+			  		<tr class="odd"> 
+			  			<td>Venezuela</td> 
+				  		<td>0</td> 
+				  		<td>0</td> 
+				  		<td>0</td> 
+				  		<td>0</td> 
+				  		<td>0</td> 
+				  		<td>0</td> 
+				  	</tr> 
+			  	
+			  		<tr class="pair"> 
+			  			<td>Brasil</td> 
+				  		<td>0</td> 
+				  		<td>0</td> 
+				  		<td>0</td> 
+				  		<td>0</td> 
+				  		<td>0</td> 
+				  		<td>0</td> 
+				  	</tr> 
+			  	
+			  		<tr class="odd"> 
+			  			<td>Ecuador</td> 
+				  		<td>0</td> 
+				  		<td>0</td> 
+				  		<td>0</td> 
+				  		<td>0</td> 
+				  		<td>0</td> 
+				  		<td>0</td> 
+				  	</tr> 
+			  	
+		  	</table> 
+		  	
+		  	<ul id="classif-B" class="classif-info"> 
+		  		<li></li> 
+		  		<li></li> 
+		  		<li></li> 
+		  	</ul> 
+		  		
+		
+			<ul class="group-matches"> 
+		    	
+					<li class="group-match"> 
+						<label class="e1" for="Chi-Mex-g1">Chile</label> 
+						<input id="Chi-Mex-g1" name="Chi-Mex-g1" class="goals-field" type="text" value="" /> 
+						<input id="Chi-Mex-g2" name="Chi-Mex-g2" class="goals-field" type="text" value="" /> 
+						<label class="e2" for="Chi-Mex-g2">Mexico</label> 
+					</li> 
+		    	
+					<li class="group-match"> 
+						<label class="e1" for="Uru-Per-g1">Uruguay</label> 
+						<input id="Uru-Per-g1" name="Uru-Per-g1" class="goals-field" type="text" value="" /> 
+						<input id="Uru-Per-g2" name="Uru-Per-g2" class="goals-field" type="text" value="" /> 
+						<label class="e2" for="Uru-Per-g2">Peru</label> 
+					</li> 
+		    	
+					<li class="group-match"> 
+						<label class="e1" for="Uru-Chi-g1">Uruguay</label> 
+						<input id="Uru-Chi-g1" name="Uru-Chi-g1" class="goals-field" type="text" value="" /> 
+						<input id="Uru-Chi-g2" name="Uru-Chi-g2" class="goals-field" type="text" value="" /> 
+						<label class="e2" for="Uru-Chi-g2">Chile</label> 
+					</li> 
+		    	
+					<li class="group-match"> 
+						<label class="e1" for="Per-Mex-g1">Peru</label> 
+						<input id="Per-Mex-g1" name="Per-Mex-g1" class="goals-field" type="text" value="" /> 
+						<input id="Per-Mex-g2" name="Per-Mex-g2" class="goals-field" type="text" value="" /> 
+						<label class="e2" for="Per-Mex-g2">Mexico</label> 
+					</li> 
+		    	
+					<li class="group-match"> 
+						<label class="e1" for="Uru-Mex-g1">Uruguay</label> 
+						<input id="Uru-Mex-g1" name="Uru-Mex-g1" class="goals-field" type="text" value="" /> 
+						<input id="Uru-Mex-g2" name="Uru-Mex-g2" class="goals-field" type="text" value="" /> 
+						<label class="e2" for="Uru-Mex-g2">Mexico</label> 
+					</li> 
+		    	
+					<li class="group-match"> 
+						<label class="e1" for="Chi-Per-g1">Chile</label> 
+						<input id="Chi-Per-g1" name="Chi-Per-g1" class="goals-field" type="text" value="" /> 
+						<input id="Chi-Per-g2" name="Chi-Per-g2" class="goals-field" type="text" value="" /> 
+						<label class="e2" for="Chi-Per-g2">Peru</label> 
+					</li> 
+		    	
+		  	</ul> 
+		  	
+		  	<table id="table-C" class="group-table"> 
+		  		<tr> 
+		  			<th>País</th> 
+		  			<th>G</th> 
+		  			<th>E</th> 
+		  			<th>P</th> 
+		  			<th>GF</th> 
+		  			<th>GC</th> 
+		  			<th>Pts</th> 
+		  		</tr> 
+		  		
+			  	
+			  		<tr class="pair"> 
+			  			<td>Uruguay</td> 
+				  		<td>0</td> 
+				  		<td>0</td> 
+				  		<td>0</td> 
+				  		<td>0</td> 
+				  		<td>0</td> 
+				  		<td>0</td> 
+				  	</tr> 
+			  	
+			  		<tr class="odd"> 
+			  			<td>Peru</td> 
+				  		<td>0</td> 
+				  		<td>0</td> 
+				  		<td>0</td> 
+				  		<td>0</td> 
+				  		<td>0</td> 
+				  		<td>0</td> 
+				  	</tr> 
+			  	
+			  		<tr class="pair"> 
+			  			<td>Chile</td> 
+				  		<td>0</td> 
+				  		<td>0</td> 
+				  		<td>0</td> 
+				  		<td>0</td> 
+				  		<td>0</td> 
+				  		<td>0</td> 
+				  	</tr> 
+			  	
+			  		<tr class="odd"> 
+			  			<td>Mexico</td> 
+				  		<td>0</td> 
+				  		<td>0</td> 
+				  		<td>0</td> 
+				  		<td>0</td> 
+				  		<td>0</td> 
+				  		<td>0</td> 
+				  	</tr> 
+			  	
+		  	</table> 
+		  	
+		  	<ul id="classif-C" class="classif-info"> 
+		  		<li></li> 
+		  		<li></li> 
+		  		<li></li> 
+		  	</ul> 
+		  		
+		
+	    
+	  	<input type="submit" name="step2" value="Siguiente"> 
+	  	
+	  	<div id="submit-notice" class="notice"> 
+	  	</div> 
+	  	
+	  	<input name="first-round-winners" type="hidden" value="[['qf1', 'Arg-Col'], ['qf2', 'Uru-Chi'], ['qf3', 'Bol-Cos'], ['qf4', 'Ven-Ecu']]" /> 
+  	</form> 
+ 
+                </div> 
+            </div> 
+        </div> 
+ 
+                            <!-- for sticky footer --> 
+          <!--<div class="push"></div>-->
+            <!-- closing wrapper--> 
+        </div> 
+
+        <div class="footer"> 
+            <p>Quinielaca.com</p> 
+        </div>
+    </body> 
+ 
+</html>

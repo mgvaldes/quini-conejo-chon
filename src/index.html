@@ -1,7 +1,9 @@
 {% extends 'base.html' %}
 
+{% block openbody %}
+<body>
+{% endblock %}
 {% block contents %}
-	<body>
 		Inicio de sesion
 	    <br>
 	
@@ -29,5 +31,4 @@
 	        <li><a href="/register">Registro</a></li>
 	        <li><a href="/recover_password">Recuperar clave</a></li>
 	    </ul>
-    </body>
 {% endblock %}

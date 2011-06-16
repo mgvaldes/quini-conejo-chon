@@ -1,8 +1,8 @@
 {% extends 'base.html' %}
 
+{% block openbody %}<body>{% endblock %}
 {% block contents %}
-	<body>
-		
+
 		<h3>Información de pago<h3>
 		
 		<table id="table-payment-info">
@@ -57,6 +57,5 @@
 		
 			<input name="selected_football_pool_key" type="hidden" value="{{ selected_football_pool_key }}" />
 		</form>
-		
-	</body>
+
 {% endblock %}
