@@ -1,7 +1,13 @@
 {% extends 'base.html' %}
 
+{% block headers %}
+	<script type="text/javascript" src="/sitemedia/js/jquery-1.4.4.js"></script>
+	<script type="text/javascript" src="/sitemedia/js/quinHandler.js"></script>		
+{% endblock %}
+
+{% block openbody %}<body onload="loadPrevResults();">{% endblock %}
 {% block contents %}
-	<body>
+
     
 		{% for group in groups %}
 			<ul class="group-matches">
@@ -38,7 +44,12 @@
 				  	</tr>
 			  	{% endfor %}
 		  	</table>
-		  		
+		  	<ul id="classif-{{ group.2 }}" class="classif-info">
+		  		<li></li>
+		  		<li></li>
+		  		<li></li>
+		  	</ul>  		
+		
 		{% endfor %}
 		
 		<ul class="group-matches">
@@ -80,6 +91,5 @@
 				<label class="e2" for="f-{{ final_match.0|slice:":3" }}-{{ final_match.3|slice:":3" }}-g2">{{ final_match.3 }}</label>
 			</li>
 		</ul>
-		
-	</body>
+
 {% endblock %}

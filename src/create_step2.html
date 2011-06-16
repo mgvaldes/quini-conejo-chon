@@ -3,8 +3,8 @@
 	<script type="text/javascript" src="/sitemedia/js/quinHandler.js"></script>		
 {% endblock %}
 
+{% block openbody %}<body onload="loadFinalRoundEvents();">{% endblock %}
 {% block contents %}
-<body onload="loadFinalRoundEvents();">
 	<div id="box"></div>
   	<form action="/save" method="post" id="create-step2">
 		<ul class="group-matches">
@@ -60,5 +60,4 @@
 	  	<input name="first-round-matches" type="hidden" value="{{ first_round_matches }}" />
 	  	<input name="second-round-matches" type="hidden" value="{{ test }}" />
   	</form>
-  </body>
 {% endblock %}

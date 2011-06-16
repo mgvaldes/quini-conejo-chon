@@ -220,7 +220,7 @@ function PrintL() {
 
 
 function fetchAndUpdate(id) {
-	
+
     var split_id = id.split('-');
     // team1 - team2
     var team1 = split_id[0];
@@ -231,12 +231,7 @@ function fetchAndUpdate(id) {
     updateClassifTable(group, classif1, classif2);
     updateAdvancingTeams(group);     
 
-    if(isPoolFull()){
-        $('#pool-full').html("IS FULL");
-    }
-    else{
-        $('#pool-full').html("STILL NOT FULL");
-    }
+
 }
 
 function updateAdvancingTeams(group){
@@ -917,6 +912,9 @@ function fetchQfGame(qfmatch, input_element){
 		}
 		else if(winner==0){
 			alert("El partido no puede quedar empatado");
+			resetTeamGoals(match[0]+"-"+match[1]+"-g1");
+			resetTeamGoals(match[0]+"-"+match[1]+"-g2");
+			cleanNextMatch(parent.attr("id"));
 		}
     }else{
         parent = input_element.parent();
@@ -972,6 +970,8 @@ function fetchFRGame(input_element){
                         setNextGameTeam(round+"-l", team_acronym[$("label[for="+round+"-g1"+"]").html()]);
 		}
 		else if(winner==0){
+			resetTeamGoals(round+"-g1");
+			resetTeamGoals(round+"-g2");
 			alert("El partido no puede quedar empatado");
 		}
     }else{parent = input_element.parent();

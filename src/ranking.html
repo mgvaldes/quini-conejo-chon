@@ -1,8 +1,8 @@
 {% extends 'base.html' %}
 
+{% block openbody %}<body>{% endblock %}
 {% block contents %}
-	<body>
-	
+
 		<h3>{{ competition_group_name }}</h3>
 	
 		<table id="table-global-ranking" class="ranking-table">
@@ -26,7 +26,5 @@
 			  	</tr>
 			{% endfor %}
 		</table>
-		
-	</body>
+
 {% endblock %}
-</html>
