@@ -2,6 +2,7 @@
 
 {% block contents %}
 	<body>
+		<h2>{{ name }}</h2>
     
 		{% for group in groups %}
 			<ul class="group-matches">
@@ -67,7 +68,7 @@
 			<li class="group-match" id="tf">
 				<label class="e1" for="tf-{{ third_fourth_match.0|slice:":3" }}-{{ third_fourth_match.3|slice:":3" }}-g1">{{ third_fourth_match.0 }}</label> 
 				<input name="tf-{{ third_fourth_match.0|slice:":3" }}-{{ third_fourth_match.3|slice:":3" }}-g1" class="goals-field" type="text" value="{{ third_fourth_match.1 }}" readolny="readonly" /> 
-				<input name="tf1-{{ third_fourth_match.0|slice:":3" }}-{{ third_fourth_match.3|slice:":3" }}-g2" class="goals-field" type="text" value="{{ third_fourth_match.2 }}" readonly="readonly" /> 
+				<input name="tf-{{ third_fourth_match.0|slice:":3" }}-{{ third_fourth_match.3|slice:":3" }}-g2" class="goals-field" type="text" value="{{ third_fourth_match.2 }}" readonly="readonly" /> 
 				<label class="e2" for="tf-{{ third_fourth_match.0|slice:":3" }}-{{ third_fourth_match.3|slice:":3" }}-g2">{{ third_fourth_match.3 }}</label>
 			</li>
 		</ul>

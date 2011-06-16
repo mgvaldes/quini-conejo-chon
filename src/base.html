@@ -1,16 +1,79 @@
+<!DOCTYPE html>
 <html>
-
-	<head>
-		<title>
-			Titulo de base
-		</title>
-			
-		<meta name="google-site-verification" content="702uUYwfHiF0NdlZ8ndl-ypFfG-orrTbp9zcL8GsFP4" />
-			
+    <head>
+        <title>Quinielaca.com - La Quiniela de la Copa Amrica -</title>	
+        <meta name="google-site-verification" content="702uUYwfHiF0NdlZ8ndl-ypFfG-orrTbp9zcL8GsFP4" />
 		{% block headers %}
 		{% endblock %}
-	</head>
+    </head>
+    {% block openbody %}
+    {% endblock %}
+
+	<div id="top">
+		{% block login %}
+	        <div id="login-div" class="login-not">
+	            <div id="buttons-area">
+	                <ul id="login-buttons" class="show-login-buttons">
+	                    <li><a href="#iniciarsesion"> Iniciar Sesin </a></li>
+	                    <li><a href="#registrarse"> Registrarse </a></li>
+	                </ul>
+	            </div> 
+	        </div>
+
+
+	            <!-- 
+		    <div id="login-div" class="login-yes">
+		        <div id="login-info">
+				<p> Hola, Mara G<p>
+				<ul id="login-buttons" class="show-user-login">
+					<li><a href="#verperfil> Ver perfil </a></li>
+					<li><a href="#cerrarsesion> Cerrar sesin </a></li>
+				</ul>
+		        </div> 
+		    </div>	
+		-->
+
+		{% endblock %}
+                
+		<div id="logo"></div>
+        <div id="pote"></div>
 	
-	{% block contents %}
-	{% endblock %}
+	</div>
+    <div class = "wrapper">
+
+        <div id="content-body">
+            <div id="buttons-layer">
+                <ul>
+                    <li>Quinielas<li>
+                    <li>Grupos<li>
+                    <li>Reglas<li>
+                    <li>Mi Perfil<li>
+                    <li>Copa Amrica<li>
+                </ul>
+            </div>
+            <div id="main-content">
+                <div id="left-content">
+                    <div class="left-block"></div>
+                </div>
+                <div id="center-content">
+                    {% block content_submenu %}{% endblock %}
+                    <h4>
+                        {% block content_title %}{% endblock %}
+                    </h4>
+                    <p id="content-description">{% block content_description %}{% endblock %}</p>
+                    {% block contents %}{% endblock %}
+                </div>
+            </div>
+        </div>
+
+
+            <!-- for sticky footer -->
+            <div id="push"></div>
+            <!-- closing wrapper-->
+        </div>
+        <div class="footer">
+            <p>Quinielaca.com</p>
+        </div>
+    </body>
+
 </html>

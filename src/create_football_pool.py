@@ -1,5 +1,3 @@
-import datetime
-
 from sets import Set
 
 from google.appengine.ext import db
@@ -130,7 +128,7 @@ class CreateFootballPoolStepTwo(webapp.RequestHandler):
         else:
             self.redirect('/')
         
-class SaveFootbalPool(webapp.RequestHandler):
+class SaveCreateFootbalPool(webapp.RequestHandler):
     def post(self):
         update_session_time()
         session = get_current_session()
