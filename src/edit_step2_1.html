@@ -3,8 +3,8 @@
 	<script type="text/javascript" src="/sitemedia/js/quinHandler.js"></script>		
 {% endblock %}
 
+{% block openbody %}<body onload="loadFinalRoundEvents();">{% endblock %}
 {% block contents %}
-<body onload="loadFinalRoundEvents();">
   	<form action="/save/edit" method="post" id="create-step2">
 		<ul class="group-matches">
 		    {% for teams in quarter_finals_teams %}
@@ -57,11 +57,6 @@
 	  	
 	  	<input name="football-pool-key" type="hidden" value="{{ football_pool_key }}" />
 	  	<input name="first-round-matches" type="hidden" value="{{ first_round_matches }}" />
-	  	<input name="second-round-matches" type="hidden" value="{{ test }}" />
-	  	
-	  	No entiendo que pasa!
-	  	
+	  	<input name="second-round-matches" type="hidden" value="" />
   	</form>
-	<div id="box"><div>
-  </body>
 {% endblock %}

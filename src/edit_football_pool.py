@@ -5,7 +5,7 @@ from google.appengine.ext.db import Key
 from google.appengine.ext import webapp
 
 from models.ca_models import CAFootballPool, CAMatch, CATeam
-from ca_utils import check_session_status, render_template, get_team_whole_name, update_session_time
+from ca_utils import check_session_status, render_template, get_team_whole_name, update_session_time, get_top_scorers, get_pending_membership_requests, get_top_users_global_ranking
 
 from gaesessions import get_current_session
 
@@ -143,15 +143,7 @@ class EditFootballPoolStepTwo(webapp.RequestHandler):
                 template_values = {
                     'football_pool_key': selected_football_pool.key(),
                     'first_round_matches': str(final_matches),
-                    'quarter_finals_teams': quarter_finals_teams,
-                    'test': str([['qf1-Arg-Col-g1', '2', 'qf1-Arg-Col-g2', '2'], 
-                                 ['qf2-Uru-Chi-g1', '3', 'qf2-Uru-Chi-g2', '0'], 
-                                 ['qf3-Bol-Cos-g1', '0', 'qf3-Bol-Cos-g2', '4'], 
-                                 ['qf4-Ven-Ecu-g1', '6', 'qf4-Ven-Ecu-g2', '2'], 
-                                 ['sf1-Ven-Bol-g1', '2', 'sf1-Ven-Bol-g2', '1'], 
-                                 ['sf2-Col-Bol-g1', '0', 'sf2-Col-Bol-g2', '1'], 
-                                 ['tf-Ecu-Chi-g1', '1', 'tf-Ecu-Chi-g2', '4'], 
-                                 ['f-Ven-Bra-g1', '3', 'f-Ven-Bra-g2', '2']])
+                    'quarter_finals_teams': quarter_finals_teams
                 }
                 
                 render_template(self, 'edit_step2_1.html', template_values)
@@ -212,18 +204,10 @@ class EditFootballPoolStepTwo(webapp.RequestHandler):
                     'quarter_finals_matches': quarter_finals_matches,
                     'semi_final_matches': semi_final_matches,
                     'third_fourth_match': third_fourth_match,
-                    'final_match': final_match,
-                    'test': str([['qf1-Arg-Col-g1', '2', 'qf1-Arg-Col-g2', '2'], 
-                                 ['qf2-Uru-Chi-g1', '3', 'qf2-Uru-Chi-g2', '0'], 
-                                 ['qf3-Bol-Cos-g1', '0', 'qf3-Bol-Cos-g2', '4'], 
-                                 ['qf4-Ven-Ecu-g1', '6', 'qf4-Ven-Ecu-g2', '2'], 
-                                 ['sf1-Ven-Bol-g1', '2', 'sf1-Ven-Bol-g2', '1'], 
-                                 ['sf2-Col-Bra-g1', '3', 'sf2-Col-Bra-g2', '1'], 
-                                 ['tf-Bol-Col-g1', '1', 'tf-Bol-Col-g2', '4'], 
-                                 ['f-Ven-Bra-g1', '2', 'f-Ven-Bra-g2', '0']])
+                    'final_match': final_match
                 }
             
-            render_template(self, 'edit_step2_2.html', template_values)
+                render_template(self, 'edit_step2_2.html', template_values)
         else:
             self.redirect('/')
         
@@ -273,7 +257,10 @@ class SaveEditFootbalPool(webapp.RequestHandler):
                     selected_match.put()
                 
                 template_values = {
-                    'user': session['active_user']
+                    'user': session['active_user'],
+                    'pending_membership_requests': get_pending_membership_requests(session['active_user']),
+                    'top_scorers': get_top_scorers(),
+                    'top_users': get_top_users_global_ranking()
                 }
                         
                 render_template(self, 'home.html', template_values)

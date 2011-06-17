@@ -247,7 +247,6 @@ class ViewFootballPool(webapp.RequestHandler):
                     template_values = {
                         'name': selected_football_pool.name,
                         'groups': [(ga_results, ga_teams_info, 'A'), (gb_results, gb_teams_info, 'B'), (gc_results, gc_teams_info, 'C')],
-                        'test': str([['qf1', 'Arg-Col'], ['qf2', 'Uru-Chi'], ['qf3', 'Bol-Cos'], ['qf4', 'Ven-Ecu']]),
                         'football_pool_key': selected_football_pool.key()
                     } 
                             

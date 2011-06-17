@@ -118,3 +118,12 @@ class CARequestGroupMembership(db.Model):
     users = db.ListProperty(db.Key)
     status = db.BooleanProperty()
     group = db.ReferenceProperty(CACompetitonGroup)
+    
+class CAScorer(db.Model):
+    name = db.StringProperty()
+    team = db.ReferenceProperty(CATeam)
+    goals = db.IntegerProperty
+    
+class CAJackPot(db.Model):
+    amount = db.IntegerProperty()
+    last_update = db.DateTimeProperty()

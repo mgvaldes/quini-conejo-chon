@@ -13,7 +13,7 @@ from view_competition_groups import ListCompetitionGroups, ViewCompetitionGroup,
 from group_membership_request import AcceptGroupMembershipRequest, RejectGroupMembershipRequest
 
 from session import LoginHandler, LogoutHandler, FacebookLoginHandler, GoogleLoginHandler
-from ca_utils import render_template, check_session_status, get_pending_membership_requests
+from ca_utils import render_template, check_session_status, get_pending_membership_requests, get_top_scorers, get_top_users_global_ranking
 
 from gaesessions import get_current_session
 
@@ -31,7 +31,9 @@ class MainHandler(webapp.RequestHandler):
         if session.is_active():
             template_values = {
                 'user': session['active_user'],
-                'pending_membership_requests': get_pending_membership_requests(session['active_user'])
+                'pending_membership_requests': get_pending_membership_requests(session['active_user']),
+                'top_scorers': get_top_scorers(),
+                'top_users': get_top_users_global_ranking()
             }
                         
             render_template(self, 'home.html', template_values)

@@ -5,9 +5,8 @@
 	<script type="text/javascript" src="/sitemedia/js/quinHandler.js"></script>
 {% endblock %}
 
+{% block openbody %}<body onload="loadQuinEvents();">{% endblock %}			
 {% block contents %}
-	<body onload="loadQuinEvents();">
-		<div id="pool-full"></div>
 		<h2>{{ name }}</h2>
    
    		<form action="/edit/step2" method="post" id="edit-step1"> 
@@ -61,8 +60,6 @@
 		  	</div>
 		  	
 		  	<input name="football-pool-key" type="hidden" value="{{ football_pool_key }}" />
-		  	<input name="first-round-winners" type="hidden" value="{{ test }}" />
+		  	<input name="first-round-winners" type="hidden" value="" />
 	  	</form>
-		
-	</body>
 {% endblock %}
