@@ -116,18 +116,24 @@
                     </div> 
                 </div> 
                 <div id="center-content"> 
-                    
-                    <h4> 
-                        
-                    </h4> 
-                    <p id="content-description"></p> 
-                    
+                    <ul id="center-buttons">
+                        <li class="not-selected"><a href="#"><span>Mis Quinielas</span></a></li>
+                        <li class="selected"><a href="#"><span>Crear Quiniela</span></a></li>
+                        <li class="not-selected"><a href="#"><span>Registrar Quiniela</span></a></li>
+                    </ul>
+                    <div id="center-block-content">
+                    <h4 id="title">Primera Etapa: Fase de Grupos</h4>
+                    <p id="content-description">
+                        Ingresa tu pron—stico para cada partido de la fase de grupos. A partir de los resultados que
+ingreses se calcular‡n los equipos clasificados para la siguiente ronda
+                    </p> 
+                    <div id="block-info">
  
     	<form action="/create/step2" method="post" id="create-step1"> 
 		<label class="title-label" for="football_pool_name">Nombre</label> 
 		<input name="football-pool-name" class="title-field" type="text" value="" /> 
 	
-		
+                    <h5 class="group-title">Grupo A</h5>
 			<ul class="group-matches"> 
 		    	
 					<li class="group-match"> 
@@ -457,7 +463,8 @@
 	  	
 	  	<input name="first-round-winners" type="hidden" value="[['qf1', 'Arg-Col'], ['qf2', 'Uru-Chi'], ['qf3', 'Bol-Cos'], ['qf4', 'Ven-Ecu']]" /> 
   	</form> 
- 
+                    </div>
+                    </div>
                 </div> 
             </div> 
         </div> 
