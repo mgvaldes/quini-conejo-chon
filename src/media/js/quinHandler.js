@@ -212,9 +212,6 @@ function classifToString(classif) {
     return res;
 }
 
-function PrintL() {
-    $("#box").html("HOLA");
-}
 
 // fetchs a goal modification and updates de results
 
@@ -654,6 +651,81 @@ function isFinalPoolFull(){
     return isfull;
 }
 
+// determines whether the pool has been 
+// filled totally or not
+function getAllResultsData(){
+    var goals_field = $(".goals-field");
+    
+    // get all qf goals
+    var count=0;
+    var pair=0;
+    var total="";
+    var construct ="";
+    goals_field.each(function(){
+        if(count==8) return false;
+        if(pair==0){
+            construct="[";
+            construct+="qf-"+$(this).attr("name");
+            construct+=",";
+            construct+=$(this).val();
+            construct+=",";
+        }
+        if(pair==1){
+            construct+="qf-"+$(this).attr("name");
+            construct+=",";
+            construct+=$(this).val();
+            construct+="]";
+            if(total==""){
+              total+=construct;   
+            }else{
+            total+=","+construct;
+            }
+     }	
+        pair+=1;
+        if(pair==2){
+            pair=0;
+        }
+        count+=1;        
+    });       
+ 
+    var glabel= $("label[for=sf1-g1]");
+    
+ 
+ 
+    
+    /*
+    goals_field.each(function(){
+        if(!(isPosInt($(this).val()))){
+			isfull = false;
+        }
+    });
+	var qf_label = $(".e1-qf");
+    qf_label.each(function(){
+        if($(this).html()=="?"){
+			isfull = false;
+        }
+    });
+	var qf_label = $(".e2-qf");
+    qf_label.each(function(){
+        if($(this).html()=="?"){
+			isfull = false;
+        }
+    });
+	qf_label = $(".e1");
+    qf_label.each(function(){
+        if($(this).html()=="?"){
+			isfull = false;
+        }
+    });
+	qf_label = $(".e2");
+    qf_label.each(function(){
+        if($(this).html()=="?"){
+			isfull = false;
+        }
+    });*/
+
+}
+
 // Updates the advancing teams hidden field. The best third
 // are passed to optimize updating speed
 function updateAdvancingTeamsMeta(thirdParty){
@@ -680,8 +752,10 @@ function updateAdvancingTeamsMeta(thirdParty){
     qf_matches+="]";
     
     $("input[name=first-round-winners]").val(qf_matches);
+}
 
-
+function updateFinalTeamsMeta(){
+    
 }
 
 function getQfMatchAsString(number, team1, team2){
@@ -861,11 +935,14 @@ function loadFinalRoundEvents(){
 	fetchFinalRoundEvents();
             
     $('#create-step2').submit(function(event){
-        if(!isFinalPoolFull()){
+        getAllResultsData();
+    if(!isFinalPoolFull()){
             alert("Pooll is not full");
             event.preventDefault();
             return false;
         }
+
+        
         return true;
     });    
 	
