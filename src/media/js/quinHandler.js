@@ -653,7 +653,7 @@ function isFinalPoolFull(){
 
 // determines whether the pool has been 
 // filled totally or not
-function getAllResultsData(){
+function setAllResultsData(){
     var goals_field = $(".goals-field");
     
     // get all qf goals
@@ -665,15 +665,15 @@ function getAllResultsData(){
         if(count==8) return false;
         if(pair==0){
             construct="[";
-            construct+="qf-"+$(this).attr("name");
+            construct+="'qf-"+$(this).attr("name")+"'";
             construct+=",";
-            construct+=$(this).val();
+            construct+="'"+$(this).val()+"'";
             construct+=",";
         }
         if(pair==1){
-            construct+="qf-"+$(this).attr("name");
+            construct+="'qf-"+$(this).attr("name")+"'";
             construct+=",";
-            construct+=$(this).val();
+            construct+="'"+$(this).val()+"'";
             construct+="]";
             if(total==""){
               total+=construct;   
@@ -687,43 +687,50 @@ function getAllResultsData(){
         }
         count+=1;        
     });       
- 
-    var glabel= $("label[for=sf1-g1]");
+    construct="[";
+    var gname = "'sf-"+team_acronym[$("label[for=sf1-g1]").html()]+
+        "-"+team_acronym[$("label[for=sf1-g2]").html()]+"-";
+    construct+=gname+"g1'"+",";
+    construct+="'"+$("input[name=sf1-g1]").val()+"',";
+    construct+=gname+"g2'"+", ";
+    construct+="'"+$("input[name=sf1-g2]").val()+"']";
+    total+=","+construct+", ";
     
- 
- 
+    construct="[";
+    var gname = "'sf-"+team_acronym[$("label[for=sf2-g1]").html()]+
+    "-"+team_acronym[$("label[for=sf2-g2]").html()]+"-";
+    construct+=gname+"g1'"+",";
+    construct+="'"+$("input[name=sf2-g1]").val()+"',";
+    construct+=gname+"g2'"+", ";
+    construct+="'"+$("input[name=sf2-g2]").val()+"']";
+    total+=construct+", ";
     
-    /*
-    goals_field.each(function(){
-        if(!(isPosInt($(this).val()))){
-			isfull = false;
-        }
-    });
-	var qf_label = $(".e1-qf");
-    qf_label.each(function(){
-        if($(this).html()=="?"){
-			isfull = false;
-        }
-    });
-	var qf_label = $(".e2-qf");
-    qf_label.each(function(){
-        if($(this).html()=="?"){
-			isfull = false;
-        }
-    });
-	qf_label = $(".e1");
-    qf_label.each(function(){
-        if($(this).html()=="?"){
-			isfull = false;
-        }
-    });
-	qf_label = $(".e2");
-    qf_label.each(function(){
-        if($(this).html()=="?"){
-			isfull = false;
-        }
-    });*/
+    construct="[";
+    var gname = "'tf-"+team_acronym[$("label[for=tf-g1]").html()]+
+    "-"+team_acronym[$("label[for=tf-g2]").html()]+"-";
+    construct+=gname+"g1'"+",";
+    construct+="'"+$("input[name=tf-g1]").val()+"',";
+    construct+=gname+"g2'"+", ";
+    construct+="'"+$("input[name=tf-g2]").val()+"']";
+    total+=construct+", ";
+    
+    construct="[";
+    var gname = "'f-"+team_acronym[$("label[for=f-g1]").html()]+
+    "-"+team_acronym[$("label[for=f-g2]").html()]+"-";
+    construct+=gname+"g1'"+",";
+    construct+="'"+$("input[name=f-g1]").val()+"',";
+    construct+=gname+"g2'"+", ";
+    construct+="'"+$("input[name=f-g2]").val()+"']";
+    total+=construct;
 
+    
+    var finalRes = "["+total+"]";
+    alert(finalRes);
+    //var cable = "[['qf1-Arg-Col-g1', '2', 'qf1-Arg-Col-g2', '2'], ['qf2-Uru-Chi-g1', '3', 'qf2-Uru-Chi-g2', '0'], ['qf3-Bol-Cos-g1', '0', 'qf3-Bol-Cos-g2', '4'], ['qf4-Ven-Ecu-g1', '6', 'qf4-Ven-Ecu-g2', '2'], ['sf1-Ven-Bol-g1', '2', 'sf1-Ven-Bol-g2', '1'], ['sf2-Col-Bol-g1', '0', 'sf2-Col-Bol-g2', '1'], ['tf-Ecu-Chi-g1', '1', 'tf-Ecu-Chi-g2', '4'], ['f-Ven-Bra-g1', '3', 'f-Ven-Bra-g2', '2']]";
+    $("input[name=second-round-matches]").val(finalRes);
+    //alert(finalRes);
+    //alert( $("input[name=second-round-matches]").val());
+    
 }
 
 // Updates the advancing teams hidden field. The best third
@@ -932,16 +939,17 @@ function loadQuinEvents(){
 }
 
 function loadFinalRoundEvents(){
-	fetchFinalRoundEvents();
+    fetchFinalRoundEvents();
             
     $('#create-step2').submit(function(event){
-        getAllResultsData();
-    if(!isFinalPoolFull()){
+
+        if(!isFinalPoolFull()){
             alert("Pooll is not full");
             event.preventDefault();
             return false;
         }
-
+        //set hidden data
+        setAllResultsData();
         
         return true;
     });    
