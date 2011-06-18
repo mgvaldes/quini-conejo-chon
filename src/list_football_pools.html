@@ -8,6 +8,7 @@
 		<form action="/view" method="post">
 		
 			<select name="selected_football_pool">
+				<option value="default" selected="selected">Selecciona una quiniela</option>
 				{% for football_pool in football_pools %}
 					<option value="{{ football_pool.key }}">{{ football_pool.name }}</option>
 				{% endfor %}
@@ -15,6 +16,7 @@
 			
 			<input type="submit" name="view" value="Ver">
 			<input type="submit" name="pay" value="Pagar">
+			<input type="submit" name="edit" value="Editar">
 		</form>
 
 {% endblock %}

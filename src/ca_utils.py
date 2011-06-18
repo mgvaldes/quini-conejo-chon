@@ -5,7 +5,7 @@ from google.appengine.ext.webapp import template
 
 from gaesessions import get_current_session
 
-from models.ca_models import CATeam, CAUser, CAFootballPool
+from models.ca_models import CATeam, CAUser, CAFootballPool, CAScorer, CAMatch, CAJackPot
 
 def check_session_status():
     session = get_current_session()
@@ -84,9 +84,6 @@ def get_total_points(football_pool):
     #Quarter finals matches
     original_teams = []
     teams = []
-    
-    original_matches = []
-    matches = []
     
     for x in range(0, 4):
         if original_pool_second_round_matches[x].teams:
@@ -223,3 +220,47 @@ def add_points_for_match(original_team1, original_team1_goals, original_team2, o
             points += 3
 
     return points
+
+def get_top_scorers():
+    return CAScorer.all().order('goals').fetch(5)
+
+def get_top_users_global_ranking():
+    counter = 0
+    position_points = []
+    
+    football_pools = CAFootballPool.all().filter("privacy =", False).fetch(10000)
+    
+    for football_pool in football_pools:
+        position_points.append(counter, get_total_points(football_pool))
+        counter += 1
+    
+    football_pools_sorted_by_total_points = sorted(position_points, key=lambda position_point: position_point[1])
+    
+    top_football_pools_sorted_by_total_points = football_pools_sorted_by_total_points[:5]
+    
+    top_users = []
+    
+    for position_point in top_football_pools_sorted_by_total_points:
+        football_pool = football_pools[position_point[0]] 
+        user = football_pool.user
+        
+        if user.type == 0:
+            username = user.google_user.nickname
+        elif user.type == 1:
+            username = user.facebook_user.name
+        else:
+            username = user.native_user.name
+        
+        top_users.append(username, football_pool.name, position_point[1])
+        
+    return top_users
+
+def get_upcomming_matches():
+    football_pool = CAFootballPool.all().filter("privacy =", True).fetch(1)[0]
+    
+    return CAMatch.all().filter("football_pool =", football_pool).filter("date >=", datetime.datetime.now()).order("date").fetch(3)
+
+def get_last_jackpot():
+    jackpot = CAJackPot.all().fetch(1)[0]
+    
+    return jackpot

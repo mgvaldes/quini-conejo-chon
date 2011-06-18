@@ -32,48 +32,53 @@ class ViewCompetitionGroup(webapp.RequestHandler):
         check_session_status()
             
         if session.is_active():
-            selected_competition_group_key = Key(self.request.get('selected_competition_group'))
+            selected = self.request.get('selected_competition_group')
             
-            edit = self.request.get('edit')
-            ranking = self.request.get('ranking')
-            
-            if edit:
-                print ''
-            elif ranking:
-                competition_group = CACompetitonGroup.get(selected_competition_group_key)
+            if selected != "default":
+                selected_competition_group_key = Key(selected)
                 
-                group_ranking = CAGroupRanking.all().filter("group =", selected_competition_group_key).fetch(10000)
+                edit = self.request.get('edit')
+                ranking = self.request.get('ranking')
                 
-                active_user = session['active_user']
-                active_user_football_pools = active_user.football_pools
-                
-                active_user_football_pools_keys = []
-                for football_pool in active_user_football_pools: 
-                    active_user_football_pools_keys.append(football_pool.key())
-                
-                group_ranking_list = []
-                
-                for rank in group_ranking:
-                    if rank.football_pool.key() in active_user_football_pools_keys:
-                        selected = True
-                    else:
-                        selected = False
+                if edit:
+                    print ''
+                elif ranking:
+                    competition_group = CACompetitonGroup.get(selected_competition_group_key)
                     
-                    if rank.football_pool.user.type == 0:
-                        name = rank.football_pool.user.google_user.nickname()
-                    elif rank.football_pool.user.type == 1:
-                        name = rank.football_pool.user.facebook_user.name
-                    else:
-                        name = rank.football_pool.user.native_user.name
+                    group_ranking = CAGroupRanking.all().filter("group =", selected_competition_group_key).fetch(10000)
+                    
+                    active_user = session['active_user']
+                    active_user_football_pools = active_user.football_pools
+                    
+                    active_user_football_pools_keys = []
+                    for football_pool in active_user_football_pools: 
+                        active_user_football_pools_keys.append(football_pool.key())
+                    
+                    group_ranking_list = []
+                    
+                    for rank in group_ranking:
+                        if rank.football_pool.key() in active_user_football_pools_keys:
+                            selected = True
+                        else:
+                            selected = False
                         
-                    group_ranking_list.append((name, rank.football_pool.name, get_total_points(rank.football_pool), selected))
+                        if rank.football_pool.user.type == 0:
+                            name = rank.football_pool.user.google_user.nickname()
+                        elif rank.football_pool.user.type == 1:
+                            name = rank.football_pool.user.facebook_user.name
+                        else:
+                            name = rank.football_pool.user.native_user.name
+                            
+                        group_ranking_list.append((name, rank.football_pool.name, get_total_points(rank.football_pool), selected))
+                        
+                    template_values = {
+                        'competition_group_name': competition_group.name,
+                        'group_ranking': group_ranking_list
+                    }
                     
-                template_values = {
-                    'competition_group_name': competition_group.name,
-                    'group_ranking': group_ranking_list
-                }
-                
-                render_template(self, 'ranking.html', template_values)
+                    render_template(self, 'ranking.html', template_values)
+            else:
+                self.redirect('/list/groups')
         else:
             self.redirect('/')
                 

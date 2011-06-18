@@ -1,12 +1,10 @@
-import datetime
-
 from sets import Set
 
 from google.appengine.ext import db
 from google.appengine.ext import webapp
 
 from models.ca_models import CAFootballPool, CAMatch, CATeam
-from ca_utils import check_session_status, render_template, get_team_whole_name, update_session_time
+from ca_utils import check_session_status, render_template, get_team_whole_name, update_session_time, get_top_scorers, get_pending_membership_requests, get_top_users_global_ranking
 
 from gaesessions import get_current_session
 
@@ -64,7 +62,6 @@ class CreateFootballPoolStepOne(webapp.RequestHandler):
                 
             template_values = {
                 'groups': [(group_a_teams, ga_teams, 'A'), (group_b_teams, gb_teams, 'B'), (group_c_teams, gc_teams, 'C')],
-                'test': str([['qf1', 'Arg-Col'], ['qf2', 'Uru-Chi'], ['qf3', 'Bol-Cos'], ['qf4', 'Ven-Ecu']])
             }
                 
             render_template(self, 'create_step1.html', template_values)
@@ -115,22 +112,14 @@ class CreateFootballPoolStepTwo(webapp.RequestHandler):
             template_values = {
                 'football_pool_name': self.request.get('football-pool-name'),
                 'first_round_matches': str(final_matches),
-                'quarter_finals_teams': quarter_finals_teams,
-                'test': str([['qf1-Arg-Col-g1', '2', 'qf1-Arg-Col-g2', '2'], 
-                             ['qf2-Uru-Chi-g1', '3', 'qf2-Uru-Chi-g2', '0'], 
-                             ['qf3-Bol-Cos-g1', '0', 'qf3-Bol-Cos-g2', '4'], 
-                             ['qf4-Ven-Ecu-g1', '6', 'qf4-Ven-Ecu-g2', '2'], 
-                             ['sf1-Ven-Bol-g1', '2', 'sf1-Ven-Bol-g2', '1'], 
-                             ['sf2-Col-Bol-g1', '0', 'sf2-Col-Bol-g2', '1'], 
-                             ['tf-Ecu-Chi-g1', '1', 'tf-Ecu-Chi-g2', '4'], 
-                             ['f-Ven-Bra-g1', '3', 'f-Ven-Bra-g2', '2']])
+                'quarter_finals_teams': quarter_finals_teams
             }     
             
             render_template(self, 'create_step2.html', template_values)
         else:
             self.redirect('/')
         
-class SaveFootbalPool(webapp.RequestHandler):
+class SaveCreateFootbalPool(webapp.RequestHandler):
     def post(self):
         update_session_time()
         session = get_current_session()
@@ -186,7 +175,10 @@ class SaveFootbalPool(webapp.RequestHandler):
                     active_user_match.put()
                 
                 template_values = {
-                    'user': session['active_user']
+                    'user': session['active_user'],
+                    'pending_membership_requests': get_pending_membership_requests(session['active_user']),
+                    'top_scorers': get_top_scorers(),
+                    'top_users': get_top_users_global_ranking()
                 }
                         
                 render_template(self, 'home.html', template_values)

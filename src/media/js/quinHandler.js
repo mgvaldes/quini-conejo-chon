@@ -212,6 +212,9 @@ function classifToString(classif) {
     return res;
 }
 
+function PrintL() {
+    $("#box").html("HOLA");
+}
 
 // fetchs a goal modification and updates de results
 
@@ -651,6 +654,7 @@ function isFinalPoolFull(){
     return isfull;
 }
 
+
 // determines whether the pool has been 
 // filled totally or not
 function setAllResultsData(){
@@ -759,10 +763,8 @@ function updateAdvancingTeamsMeta(thirdParty){
     qf_matches+="]";
     
     $("input[name=first-round-winners]").val(qf_matches);
-}
 
-function updateFinalTeamsMeta(){
-    
+
 }
 
 function getQfMatchAsString(number, team1, team2){
@@ -948,9 +950,10 @@ function loadFinalRoundEvents(){
             event.preventDefault();
             return false;
         }
+
         //set hidden data
         setAllResultsData();
-        
+
         return true;
     });    
 	

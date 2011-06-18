@@ -259,6 +259,10 @@ button{
 	margin-top: 10px;
 	top: 10px;
 	left: 20px;
+	border: solid 1px #959595;
+	background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#efefef), to(#dfe0e1));
+	background: -moz-linear-gradient(top, #efefef, #dfe0e1);
+	width: 100px
 	
 }
 

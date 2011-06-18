@@ -5,7 +5,7 @@
 
 {% block openbody %}<body onload="loadFinalRoundEvents();">{% endblock %}
 {% block contents %}
-  	<form action="/save/create" method="post" id="create-step2">
+  	<form action="/save/edit" method="post" id="create-step2">
 		<ul class="group-matches">
 		    {% for teams in quarter_finals_teams %}
 				<li class="group-match" id="qf{{ teams.2 }}">
@@ -36,7 +36,7 @@
 			<li class="group-match">
 				<label class="e1" for="tf-g1">?</label> 
 				<input name="tf-g1" class="goals-field" type="text" value="" /> 
-				<input name="tf-g2" class="goals-field" type="text" value="" /> 
+				<input name="tf1-g2" class="goals-field" type="text" value="" /> 
 				<label class="e2" for="tf-g2">?</label>
 			</li>
 		</ul>
@@ -55,7 +55,7 @@
 	  	<div id="submit-notice" class="notice">
 	  	</div>
 	  	
-	  	<input name="football-pool-name" type="hidden" value="{{ football_pool_name }}" />
+	  	<input name="football-pool-key" type="hidden" value="{{ football_pool_key }}" />
 	  	<input name="first-round-matches" type="hidden" value="{{ first_round_matches }}" />
 	  	<input name="second-round-matches" type="hidden" value="" />
   	</form>

@@ -4,7 +4,8 @@ import sys
 from google.appengine.ext import webapp
 from google.appengine.ext.webapp.util import run_wsgi_app
 
-from create_football_pool import CreateFootballPoolStepOne, CreateFootballPoolStepTwo, SaveFootbalPool
+from create_football_pool import CreateFootballPoolStepOne, CreateFootballPoolStepTwo, SaveCreateFootbalPool
+from edit_football_pool import EditFootballPoolStepTwo, SaveEditFootbalPool
 from view_football_pools import ListFootballPools, ViewFootballPool
 from pay_football_pool import PayFootballPool
 from register import LoadRegistryForm, RegisterCANativeUser
@@ -12,7 +13,7 @@ from view_competition_groups import ListCompetitionGroups, ViewCompetitionGroup,
 from group_membership_request import AcceptGroupMembershipRequest, RejectGroupMembershipRequest
 
 from session import LoginHandler, LogoutHandler, FacebookLoginHandler, GoogleLoginHandler
-from ca_utils import render_template, check_session_status, get_pending_membership_requests
+from ca_utils import render_template, check_session_status, get_pending_membership_requests, get_top_scorers, get_top_users_global_ranking
 
 from gaesessions import get_current_session
 
@@ -30,7 +31,9 @@ class MainHandler(webapp.RequestHandler):
         if session.is_active():
             template_values = {
                 'user': session['active_user'],
-                'pending_membership_requests': get_pending_membership_requests(session['active_user'])
+                'pending_membership_requests': get_pending_membership_requests(session['active_user']),
+                'top_scorers': get_top_scorers(),
+                'top_users': get_top_users_global_ranking()
             }
                         
             render_template(self, 'home.html', template_values)
@@ -50,7 +53,9 @@ application = webapp.WSGIApplication([('/', MainHandler),
                                       ('/logout', LogoutHandler),
                                       ('/create/step1', CreateFootballPoolStepOne),
                                       ('/create/step2', CreateFootballPoolStepTwo),
-                                      ('/save', SaveFootbalPool),
+                                      ('/save/create', SaveCreateFootbalPool),
+                                      ('/edit/step2', EditFootballPoolStepTwo),
+                                      ('/save/edit', SaveEditFootbalPool),
                                       ('/list', ListFootballPools),
                                       ('/view', ViewFootballPool),
                                       ('/pay', PayFootballPool),

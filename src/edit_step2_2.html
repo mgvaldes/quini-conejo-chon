@@ -1,0 +1,61 @@
+{% block headers %}
+	<script type="text/javascript" src="/sitemedia/js/jquery-1.4.4.js"></script>
+	<script type="text/javascript" src="/sitemedia/js/quinHandler.js"></script>		
+{% endblock %}
+
+Hola!!!!!
+
+{% block openbody %}<body onload="loadFinalRoundEvents();">{% endblock %}
+{% block contents %}
+  	<form action="/save/edit" method="post" id="create-step2">
+  	
+  		<ul class="group-matches">
+		    {% for teams in quarter_finals_matches %}
+				<li class="group-match" id="qf{{ teams.4 }}">
+					<label class="e1" for="qf{{ teams.4 }}-{{ teams.0|slice:":3" }}-{{ teams.3|slice:":3" }}-g1">{{ teams.0 }}</label> 
+					<input id="qf{{ teams.4 }}-{{ teams.0|slice:":3" }}-{{ teams.3|slice:":3" }}-g1" name="qf{{ teams.4 }}-{{ teams.0|slice:":3" }}-{{ teams.3|slice:":3" }}-g1" class="goals-field" type="text" value="{{ teams.1 }}" /> 
+					<input id="qf{{ teams.4 }}-{{ teams.0|slice:":3" }}-{{ teams.3|slice:":3" }}-g2" name="qf{{ teams.4 }}-{{ teams.0|slice:":3" }}-{{ teams.3|slice:":3" }}-g2" class="goals-field" type="text" value="{{ teams.2 }}" /> 
+					<label class="e2" for="qf{{ teams.4 }}-{{ teams.0|slice:":3" }}-{{ teams.3|slice:":3" }}-g2">{{ teams.3 }}</label>
+				</li>
+		    {% endfor %}
+		</ul>
+		
+		<ul class="group-matches">
+		    {% for teams in semi_final_matches %}
+				<li class="group-match" id="sf{{ teams.4 }}">
+					<label class="e1" for="sf{{ teams.4 }}-{{ teams.0|slice:":3" }}-{{ teams.3|slice:":3" }}-g1">{{ teams.0 }}</label> 
+					<input id="sf{{ teams.4 }}-{{ teams.0|slice:":3" }}-{{ teams.3|slice:":3" }}-g1" name="sf{{ teams.4 }}-{{ teams.0|slice:":3" }}-{{ teams.3|slice:":3" }}-g1" class="goals-field" type="text" value="{{ teams.1 }}" /> 
+					<input id="sf{{ teams.4 }}-{{ teams.0|slice:":3" }}-{{ teams.3|slice:":3" }}-g2" name="sf{{ teams.4 }}-{{ teams.0|slice:":3" }}-{{ teams.3|slice:":3" }}-g2" class="goals-field" type="text" value="{{ teams.2 }}" /> 
+					<label class="e2" for="sf{{ teams.4 }}-{{ teams.0|slice:":3" }}-{{ teams.3|slice:":3" }}-g2">{{ teams.3 }}</label>
+				</li>
+		    {% endfor %}
+		</ul>
+		
+		<ul class="group-matches">
+			<li class="group-match" id="tf">
+				<label class="e1" for="tf-{{ third_fourth_match.0|slice:":3" }}-{{ third_fourth_match.3|slice:":3" }}-g1">{{ third_fourth_match.0 }}</label> 
+				<input name="tf-{{ third_fourth_match.0|slice:":3" }}-{{ third_fourth_match.3|slice:":3" }}-g1" class="goals-field" type="text" value="{{ third_fourth_match.1 }}" /> 
+				<input name="tf1-{{ third_fourth_match.0|slice:":3" }}-{{ third_fourth_match.3|slice:":3" }}-g2" class="goals-field" type="text" value="{{ third_fourth_match.2 }}" /> 
+				<label class="e2" for="tf-{{ third_fourth_match.0|slice:":3" }}-{{ third_fourth_match.3|slice:":3" }}-g2">{{ third_fourth_match.3 }}</label>
+			</li>
+		</ul>
+		
+		<ul class="group-matches">
+			<li class="group-match" id="f">
+				<label class="e1" for="f-{{ final_match.0|slice:":3" }}-{{ final_match.3|slice:":3" }}-g1">{{ final_match.0 }}</label> 
+				<input name="f-{{ final_match.0|slice:":3" }}-{{ final_match.3|slice:":3" }}-g1" class="goals-field" type="text" value="{{ final_match.1 }}" /> 
+				<input name="f-{{ final_match.0|slice:":3" }}-{{ final_match.3|slice:":3" }}-g2" class="goals-field" type="text" value="{{ final_match.2 }}" /> 
+				<label class="e2" for="f-{{ final_match.0|slice:":3" }}-{{ final_match.3|slice:":3" }}-g2">{{ final_match.3 }}</label>
+			</li>
+		</ul>
+  	
+  		<input type="submit" name="step2" value="Guardar">
+	  	
+	  	<div id="submit-notice" class="notice">
+	  	</div>
+	  	
+	  	<input name="football-pool-key" type="hidden" value="{{ football_pool_key }}" />
+	  	<input name="first-round-matches" type="hidden" value="{{ first_round_matches }}" />
+	  	<input name="second-round-matches" type="hidden" value="" />
+  	</form>
+{% endblock %}
