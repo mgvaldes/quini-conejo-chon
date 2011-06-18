@@ -262,7 +262,7 @@ button{
 	border: solid 1px #959595;
 	background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#efefef), to(#dfe0e1));
 	background: -moz-linear-gradient(top, #efefef, #dfe0e1);
-	width: 100px
+	width: 100px;
 	
 }
 

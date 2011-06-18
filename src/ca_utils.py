@@ -231,7 +231,7 @@ def get_top_users_global_ranking():
     football_pools = CAFootballPool.all().filter("privacy =", False).fetch(10000)
     
     for football_pool in football_pools:
-        position_points.append(counter, get_total_points(football_pool))
+        position_points.append((counter, get_total_points(football_pool)))
         counter += 1
     
     football_pools_sorted_by_total_points = sorted(position_points, key=lambda position_point: position_point[1])
@@ -251,7 +251,7 @@ def get_top_users_global_ranking():
         else:
             username = user.native_user.name
         
-        top_users.append(username, football_pool.name, position_point[1])
+        top_users.append((username, football_pool.name, position_point[1]))
         
     return top_users
 

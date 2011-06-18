@@ -159,6 +159,7 @@ function calcTeamClassification(team) {
         match = matches[match];
         var t1_goals = getTeamGoals(match + "-g1");
         var t2_goals = getTeamGoals(match + "-g2");
+
         if (isPosInt(t1_goals) && isPosInt(t2_goals)) {
             var teamsId = getTeamsId(match);
             // swap t1_goals if calling team is not the first one
@@ -225,11 +226,13 @@ function fetchAndUpdate(id) {
     // team1 - team2
     var team1 = split_id[0];
     var team2 = split_id[1];
+
     var classif1 = calcTeamClassification(team1);
     var classif2 = calcTeamClassification(team2);
     var group = team_group[team1];
-    updateClassifTable(group, classif1, classif2);
-    updateAdvancingTeams(group);     
+
+	updateClassifTable(group, classif1, classif2);
+ 	updateAdvancingTeams(group);     
 
 
 }
@@ -729,7 +732,6 @@ function setAllResultsData(){
 
     
     var finalRes = "["+total+"]";
-    alert(finalRes);
     //var cable = "[['qf1-Arg-Col-g1', '2', 'qf1-Arg-Col-g2', '2'], ['qf2-Uru-Chi-g1', '3', 'qf2-Uru-Chi-g2', '0'], ['qf3-Bol-Cos-g1', '0', 'qf3-Bol-Cos-g2', '4'], ['qf4-Ven-Ecu-g1', '6', 'qf4-Ven-Ecu-g2', '2'], ['sf1-Ven-Bol-g1', '2', 'sf1-Ven-Bol-g2', '1'], ['sf2-Col-Bol-g1', '0', 'sf2-Col-Bol-g2', '1'], ['tf-Ecu-Chi-g1', '1', 'tf-Ecu-Chi-g2', '4'], ['f-Ven-Bra-g1', '3', 'f-Ven-Bra-g2', '2']]";
     $("input[name=second-round-matches]").val(finalRes);
     //alert(finalRes);
@@ -880,8 +882,8 @@ $('#Chi-Per-g2').change(function() {fetchAndUpdate('Chi-Per-g2');})
 }
 
 function loadPrevResults(){
-    fetchAndUpdate('Arg-Bol-g1')
-    fetchAndUpdate('Arg-Bol-g2');
+    fetchAndUpdate('Arg-Bol-g1');
+	fetchAndUpdate('Arg-Bol-g2');
     fetchAndUpdate('Arg-Cos-g1');
     fetchAndUpdate('Arg-Cos-g2');
     fetchAndUpdate('Arg-Col-g1');
@@ -919,6 +921,7 @@ function loadPrevResults(){
 }
 
 function loadQuinEvents(){
+
     loadPrevResults();
 	fetchAllResults();
     
