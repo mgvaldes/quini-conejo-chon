@@ -6,7 +6,7 @@ from google.appengine.ext import db
 
 from gaesessions import get_current_session
 
-from ca_utils import check_session_status, render_template, update_session_time
+from ca_utils import check_session_status, render_template, update_session_time, get_top_scorers, get_top_users_global_ranking, get_last_jackpot
 from models.ca_models import CAFootballPool
 
 class ListFootballPools(webapp.RequestHandler):
@@ -23,7 +23,10 @@ class ListFootballPools(webapp.RequestHandler):
                 
                 template_values = {
                     'football_pools': active_user_football_pools,
-                    'message':''
+                    'message':'',
+                    'top_scorers': get_top_scorers(),
+                    'top_users': get_top_users_global_ranking(),
+                    'last_jackpot': get_last_jackpot()
                 } 
                 
                 render_template(self, 'list_football_pools.html', template_values)
@@ -161,7 +164,10 @@ class ViewFootballPool(webapp.RequestHandler):
                         'quarter_finals_matches': quarter_finals_matches,
                         'semi_final_matches': semi_final_matches,
                         'third_fourth_match': third_fourth_match,
-                        'final_match': final_match
+                        'final_match': final_match,
+                        'top_scorers': get_top_scorers(),
+                        'top_users': get_top_users_global_ranking(),
+                        'last_jackpot': get_last_jackpot()
                     } 
                         
                     render_template(self, 'view_football_pool.html', template_values)

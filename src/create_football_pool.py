@@ -4,7 +4,7 @@ from google.appengine.ext import db
 from google.appengine.ext import webapp
 
 from models.ca_models import CAFootballPool, CAMatch, CATeam
-from ca_utils import check_session_status, render_template, get_team_whole_name, update_session_time, get_top_scorers, get_pending_membership_requests, get_top_users_global_ranking
+from ca_utils import check_session_status, render_template, get_team_whole_name, update_session_time, get_top_scorers, get_pending_membership_requests, get_top_users_global_ranking, get_last_jackpot
 
 from gaesessions import get_current_session
 
@@ -62,6 +62,9 @@ class CreateFootballPoolStepOne(webapp.RequestHandler):
                 
             template_values = {
                 'groups': [(group_a_teams, ga_teams, 'A'), (group_b_teams, gb_teams, 'B'), (group_c_teams, gc_teams, 'C')],
+                'top_scorers': get_top_scorers(),
+                'top_users': get_top_users_global_ranking(),
+                'last_jackpot': get_last_jackpot()
             }
                 
             render_template(self, 'create_step1.html', template_values)
@@ -112,7 +115,10 @@ class CreateFootballPoolStepTwo(webapp.RequestHandler):
             template_values = {
                 'football_pool_name': self.request.get('football-pool-name'),
                 'first_round_matches': str(final_matches),
-                'quarter_finals_teams': quarter_finals_teams
+                'quarter_finals_teams': quarter_finals_teams,
+                'top_scorers': get_top_scorers(),
+                'top_users': get_top_users_global_ranking(),
+                'last_jackpot': get_last_jackpot()
             }     
             
             render_template(self, 'create_step2.html', template_values)
@@ -176,9 +182,9 @@ class SaveCreateFootbalPool(webapp.RequestHandler):
                 
                 template_values = {
                     'user': session['active_user'],
-                    'pending_membership_requests': get_pending_membership_requests(session['active_user']),
                     'top_scorers': get_top_scorers(),
-                    'top_users': get_top_users_global_ranking()
+                    'top_users': get_top_users_global_ranking(),
+                    'last_jackpot': get_last_jackpot()
                 }
                         
                 render_template(self, 'home.html', template_values)

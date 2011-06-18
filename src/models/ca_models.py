@@ -122,7 +122,7 @@ class CARequestGroupMembership(db.Model):
 class CAScorer(db.Model):
     name = db.StringProperty()
     team = db.ReferenceProperty(CATeam)
-    goals = db.IntegerProperty
+    goals = db.IntegerProperty()
     
 class CAJackPot(db.Model):
     amount = db.IntegerProperty()

@@ -3,6 +3,17 @@
 {% block openbody %}<body>{% endblock %}
 {% block contents %}
 	
+		<ul>
+			{% for membership_request in pending_membership_requests %}
+				<li>
+					<lable>{{ membership_request.0 }}</label> 
+					<lable>{{ membership_request.1 }}</label>
+					<a href="/accept/membership?request={{ membership_request.2 }}">Aceptar</a> 
+					<a href="/reject/membership?request={{ membership_request.2 }}">Rechazar</a>
+				</li>
+			{% endfor %}
+		</ul>
+	
 		<a href='/create/group'>Crear grupo</a>
 		<br>
 	
@@ -16,7 +27,7 @@
 			</select>
 			
 			<input type="submit" name="edit" value="Editar">
-			<input type="submit" name="ranking" value="Ver ranking global">
+			<input type="submit" name="ranking" value="Ver ranking">
 		</form>
 	
 {% endblock %}

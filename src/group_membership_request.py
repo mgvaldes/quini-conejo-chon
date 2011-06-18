@@ -3,7 +3,7 @@ from google.appengine.ext.db import Key
 
 from gaesessions import get_current_session
 
-from ca_utils import check_session_status, render_template, get_pending_membership_requests, update_session_time, get_top_scorers, get_top_users_global_ranking
+from ca_utils import check_session_status, render_template, get_pending_membership_requests, update_session_time, get_top_scorers, get_top_users_global_ranking, get_last_jackpot
 from models.ca_models import CARequestGroupMembership, CAFootballPool, CAGroupRanking
 
 class AcceptGroupMembershipRequest(webapp.RequestHandler):
@@ -33,9 +33,9 @@ class AcceptGroupMembershipRequest(webapp.RequestHandler):
             
             template_values = {
                 'user': session['active_user'],
-                'pending_membership_requests': get_pending_membership_requests(session['active_user']),
                 'top_scorers': get_top_scorers(),
-                'top_users': get_top_users_global_ranking()
+                'top_users': get_top_users_global_ranking(),
+                'last_jackpot': get_last_jackpot()
             }
                         
             render_template(self, 'home.html', template_values)
