@@ -1,0 +1,5 @@
+Agregados!!
+
+- class = "quiniela-form"    --> Agregar esta clase al <form> de quiniela (tanto step 1 como step2)
+- <p class="sep-quin"></p> en el medio del input de dos goles   
+- <button type="submit" name="step2">Siguiente</button>   --> Cambiar todos los <input type="submit"> por <button> como sale al lado

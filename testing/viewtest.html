@@ -61,54 +61,39 @@
                         <div id="left-block-content">
                         <table> 
 		  		<tr> 
-		  			<th>Pa√≠s</th> 
-		  			<th>G</th> 
-		  			<th>E</th> 
-		  			<th>P</th> 
-		  			<th>GF</th> 
-		  			<th>GC</th> 
-		  			<th>Pts</th> 
+		  			<th>Nombre</th> 
+		  			<th>País</th> 
+		  			<th>Goles</th> 
+		
 		  		</tr> 
 		  		
 			  	
 			  		<tr class="pair"> 
-			  			<td>Argentina</td> 
-				  		<td>0</td> 
-				  		<td>0</td> 
-				  		<td>0</td> 
-				  		<td>0</td> 
-				  		<td>0</td> 
-				  		<td>0</td> 
+			  			<td>Juan Arango</td> 
+				  		<td>Venezuela</td> 
+				  		<td>10</td> 
+	
 				  	</tr> 
 			  	
 			  		<tr class="odd"> 
 			  			<td>Bolivia</td> 
 				  		<td>0</td> 
 				  		<td>0</td> 
-				  		<td>0</td> 
-				  		<td>0</td> 
-				  		<td>0</td> 
-				  		<td>0</td> 
+
 				  	</tr> 
 			  	
 			  		<tr class="pair"> 
 			  			<td>Costa Rica</td> 
 				  		<td>0</td> 
 				  		<td>0</td> 
-				  		<td>0</td> 
-				  		<td>0</td> 
-				  		<td>0</td> 
-				  		<td>0</td> 
+
 				  	</tr> 
 			  	
 			  		<tr class="odd"> 
 			  			<td>Colombia</td> 
 				  		<td>0</td> 
 				  		<td>0</td> 
-				  		<td>0</td> 
-				  		<td>0</td> 
-				  		<td>0</td> 
-				  		<td>0</td> 
+
 				  	</tr> 
 			  	
 		  	</table> 
@@ -130,7 +115,7 @@ ingreses se calcularán los equipos clasificados para la siguiente ronda
                     </p> 
                     <div id="block-info">
  
-    	<form action="/create/step2" method="post" id="create-step1"> 
+    	<form action="/create/step2" method="post" id="create-step1" class="quiniela-form"> 
 		<label class="title-label" for="football_pool_name">Nombre</label> 
 		<input name="football-pool-name" class="title-field" type="text" value="" /> 
 	
@@ -138,43 +123,43 @@ ingreses se calcularán los equipos clasificados para la siguiente ronda
 			<ul class="group-matches"> 
 		    	
 					<li class="group-match"> 
-						<label class="e1" for="Arg-Bol-g1">Argentina</label> 
-						<input id="Arg-Bol-g1" name="Arg-Bol-g1" class="goals-field" type="text" value="" /> 
+						<label class="e1" for="Arg-Bol-g1">Costa Rica</label> 
+						<input id="Arg-Bol-g1" name="Arg-Bol-g1" class="goals-field" type="text" value="" /><p class="quin-sep">-</p>
 						<input id="Arg-Bol-g2" name="Arg-Bol-g2" class="goals-field" type="text" value="" /> 
 						<label class="e2" for="Arg-Bol-g2">Bolivia</label> 
 					</li> 
 		    	
 					<li class="group-match"> 
 						<label class="e1" for="Col-Cos-g1">Colombia</label> 
-						<input id="Col-Cos-g1" name="Col-Cos-g1" class="goals-field" type="text" value="" /> 
+						<input id="Col-Cos-g1" name="Col-Cos-g1" class="goals-field" type="text" value="" /><p class="quin-sep">-</p>
 						<input id="Col-Cos-g2" name="Col-Cos-g2" class="goals-field" type="text" value="" /> 
 						<label class="e2" for="Col-Cos-g2">Costa Rica</label> 
 					</li> 
 		    	
 					<li class="group-match"> 
 						<label class="e1" for="Arg-Col-g1">Argentina</label> 
-						<input id="Arg-Col-g1" name="Arg-Col-g1" class="goals-field" type="text" value="" /> 
+						<input id="Arg-Col-g1" name="Arg-Col-g1" class="goals-field" type="text" value="" /><p class="quin-sep">-</p> 
 						<input id="Arg-Col-g2" name="Arg-Col-g2" class="goals-field" type="text" value="" /> 
 						<label class="e2" for="Arg-Col-g2">Colombia</label> 
 					</li> 
 		    	
 					<li class="group-match"> 
 						<label class="e1" for="Bol-Cos-g1">Bolivia</label> 
-						<input id="Bol-Cos-g1" name="Bol-Cos-g1" class="goals-field" type="text" value="" /> 
+						<input id="Bol-Cos-g1" name="Bol-Cos-g1" class="goals-field" type="text" value="" /><p class="quin-sep">-</p> 
 						<input id="Bol-Cos-g2" name="Bol-Cos-g2" class="goals-field" type="text" value="" /> 
 						<label class="e2" for="Bol-Cos-g2">Costa Rica</label> 
 					</li> 
 		    	
 					<li class="group-match"> 
 						<label class="e1" for="Col-Bol-g1">Colombia</label> 
-						<input id="Col-Bol-g1" name="Col-Bol-g1" class="goals-field" type="text" value="" /> 
+						<input id="Col-Bol-g1" name="Col-Bol-g1" class="goals-field" type="text" value="" /><p class="quin-sep">-</p> 
 						<input id="Col-Bol-g2" name="Col-Bol-g2" class="goals-field" type="text" value="" /> 
 						<label class="e2" for="Col-Bol-g2">Bolivia</label> 
 					</li> 
 		    	
 					<li class="group-match"> 
 						<label class="e1" for="Arg-Cos-g1">Argentina</label> 
-						<input id="Arg-Cos-g1" name="Arg-Cos-g1" class="goals-field" type="text" value="" /> 
+						<input id="Arg-Cos-g1" name="Arg-Cos-g1" class="goals-field" type="text" value="" /><p class="quin-sep">-</p> 
 						<input id="Arg-Cos-g2" name="Arg-Cos-g2" class="goals-field" type="text" value="" /> 
 						<label class="e2" for="Arg-Cos-g2">Costa Rica</label> 
 					</li> 
@@ -241,7 +226,7 @@ ingreses se calcularán los equipos clasificados para la siguiente ronda
 		  		<li></li> 
 		  	</ul> 
 		  		
-		
+                    <h5 class="group-title">Grupo B</h5>
 			<ul class="group-matches"> 
 		    	
 					<li class="group-match"> 
@@ -348,7 +333,7 @@ ingreses se calcularán los equipos clasificados para la siguiente ronda
 		  		<li></li> 
 		  	</ul> 
 		  		
-		
+                        <h5 class="group-title">Grupo C</h5>
 			<ul class="group-matches"> 
 		    	
 					<li class="group-match"> 
@@ -457,7 +442,7 @@ ingreses se calcularán los equipos clasificados para la siguiente ronda
 		  		
 		
 	    
-	  	<input type="submit" name="step2" value="Siguiente"> 
+                        <button type="submit" name="step2">Siguiente</button>
 	  	
 	  	<div id="submit-notice" class="notice"> 
 	  	</div> 

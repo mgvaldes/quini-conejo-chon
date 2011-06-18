@@ -141,6 +141,131 @@ ul#buttons-ul span{
 	
 }
 
+
+/* ------------------------*/
+/* General Table Styling --*/
+/* ------------------------*/
+
+table{
+	border-collapse:collapse;
+	-moz-box-shadow: 0px 4px 12px #999;
+	-webkit-box-shadow: 0px 4px 12px #999;
+	text-align: center;
+	color: #3b3b3c;
+}
+
+table th{
+	background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#3da0fb), to(#2f7bc1));
+background: -moz-linear-gradient(top, #3da0fb, #2f7bc1);
+	padding: 4px 10px;
+	color: #f5f5f5;
+}
+
+table td{
+	padding: 2px 5px;
+}
+
+table tr{
+	border-bottom: solid 1px #bbbbbb;
+}
+
+tr.pair{
+background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#cecfd1), to(#d7d8da));
+background: -moz-linear-gradient(top, #cecfd1, #d7d8da);
+}
+
+table tr{
+	padding-left: 10px;
+}
+
+
+/* ------------------------*/
+/* General Form Styling    */
+/* ------------------------*/
+
+form{
+	color: #626263;
+}
+
+form ul{
+	list-style-type: none;
+}
+
+form input{
+	text-align: center;
+	font-size: #313030;
+}
+
+
+/* ------------------------*/
+/* Quiniela Form	       */
+/* ------------------------*/
+
+form.quiniela-form{
+	margin-left: 10px;
+}
+
+form label.e1{
+	display:block;
+	text-align:right;
+	width:70px;
+	float:left;
+	margin-right: 10px;
+}
+
+form label.e2{
+	margin-left: 10px;
+	position: relative;
+	top: -4px;
+}
+
+form.quiniela-form input{
+	position: relative;
+	top: -4px;
+	font-size:12px;
+	padding:2px 2px;
+	border:solid 1px #929292;
+	width:20px;
+	height: 20px;
+	background-color: #d4e0eb;
+	margin-bottom: 10px;
+}
+form.quiniela-form p.quin-sep{
+	display: inline;
+	margin-right: 7px;
+	margin-left: 9px;
+	position: relative;
+	top: -4px;
+}
+
+
+form.quiniela-form input.title-field{
+	width: 200px;
+	position: reltive;
+	display: inline;
+	top: 0px;
+	margin-left: 10px;
+}
+
+form.quiniela-form table{
+	position: relative;
+	top: -200px;
+	left: -20px;
+}
+
+button{
+	padding: 10px 10px;
+	position: relative;
+	margin-top: 10px;
+	top: 10px;
+	left: 20px;
+	
+}
+
+/* ------------------------*/
+/* Styling the left column */
+/* ------------------------*/
+
 #left-content{
 	float: left;
 	width: 268px;
@@ -166,8 +291,7 @@ background: -moz-linear-gradient(top, #efefef, #dfe0e1);
 	margin-left: 0px;
 	margin-bottom:0px;
 	background-image: url('file:///Users/javierfdr/devel/quinielaca/devel/quini-conejo-chon/testing/media/img/mini-box-top.png');
-	
-	
+		
 }
 #left-block-title h3{
 	color: #4E4E4E;
@@ -177,6 +301,24 @@ background: -moz-linear-gradient(top, #efefef, #dfe0e1);
 	padding-top: 12px;
 	text-shadow: px 0px 4px #AAA;
 }
+
+div#left-block-content {
+	font-size: 14px;
+}
+
+/* ----- Left Table ------- */
+div#left-block-content tr{
+	font-size: 14px;
+}
+
+div#left-block-content table{
+	width: 245px;
+}
+
+
+/* ------------------------*/
+/* Styling the center column */
+/* ------------------------*/
 
 #center-content{
 	float: right;
@@ -246,50 +388,18 @@ ul#center-buttons li.not-selected{
 	margin-top:30px;
 }
 
+/* Quiniela content styling */
 #center-block-content table{
 	font-size: 14px;
 }
 
-form ul{
-	list-style-type: none;
-}
 
 #center-block-content table{
 	margin-top: 10px;
 	margin-bottom: 10px;
 	float: right;
-}
-
-table{
-	border-collapse:collapse;
-	-moz-box-shadow: 0px 4px 12px #999;
-	-webkit-box-shadow: 0px 4px 12px #999;
-	text-align: center;
-	color: #3b3b3c;
-}
-
-table th{
-	background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#3da0fb), to(#2f7bc1));
-background: -moz-linear-gradient(top, #3da0fb, #2f7bc1);
-	padding: 4px 10px;
-	color: #f5f5f5;
-}
-
-table td{
-	padding: 2px 5px;
-}
-
-table tr{
-	border-bottom: solid 1px #bbbbbb;
-}
-
-tr.pair{
-background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#cecfd1), to(#d7d8da));
-background: -moz-linear-gradient(top, #cecfd1, #d7d8da);
-}
-
-table tr{
-	padding-left: 10px;
+	display: inline-table;
+	
 }
 
 /*
