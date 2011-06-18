@@ -15,7 +15,7 @@ from google.appengine.ext import webapp
 from gaesessions import get_current_session
 
 from models.ca_models import CAFacebookUser, CANativeUser, CAUser
-from ca_utils import render_template, save_session_info, get_pending_membership_requests, get_top_scorers, get_top_users_global_ranking
+from ca_utils import render_template, save_session_info, get_top_scorers, get_top_users_global_ranking, get_last_jackpot
 
 FACEBOOK_APP_ID = "176955699024734"
 FACEBOOK_APP_SECRET = "b7d8f9f20519d0d54a2bc96569f6c15f"
@@ -65,9 +65,9 @@ class LoginHandler(webapp.RequestHandler):
                         
                         template_values = {
                             'user': session['active_user'],
-                            'pending_membership_requests': get_pending_membership_requests(ca_user),
                             'top_scorers': get_top_scorers(),
-                            'top_users': get_top_users_global_ranking()
+                            'top_users': get_top_users_global_ranking(),
+                            'last_jackpot': get_last_jackpot()
                         }
                         
                         render_template(self, 'home.html', template_values)
@@ -133,9 +133,9 @@ class GoogleLoginHandler(webapp.RequestHandler):
         
         template_values = {
             'user': session['active_user'],
-            'pending_membership_requests': get_pending_membership_requests(ca_user),
             'top_scorers': get_top_scorers(),
-            'top_users': get_top_users_global_ranking()
+            'top_users': get_top_users_global_ranking(),
+            'last_jackpot': get_last_jackpot()
         }
                 
         render_template(self, 'home.html', template_values)
@@ -185,9 +185,9 @@ class FacebookLoginHandler(webapp.RequestHandler):
             
             template_values = {
                 'user': session.get('active_user'),
-                'pending_membership_requests': get_pending_membership_requests(ca_user),
                 'top_scorers': get_top_scorers(),
-                'top_users': get_top_users_global_ranking()
+                'top_users': get_top_users_global_ranking(),
+                'last_jackpot': get_last_jackpot()
             }
         
             set_cookie(self.response, "fb_user",

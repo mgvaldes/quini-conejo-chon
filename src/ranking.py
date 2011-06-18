@@ -2,7 +2,7 @@ from google.appengine.ext import webapp
 
 from gaesessions import get_current_session
 
-from ca_utils import check_session_status, render_template
+from ca_utils import check_session_status, render_template, get_top_scorers, get_top_users_global_ranking, get_last_jackpot
 from models.ca_models import CAGroupRanking, CACompetitonGroup
 
 class ViewGlobalRanking(webapp.RequestHandler):
@@ -37,7 +37,10 @@ class ViewGlobalRanking(webapp.RequestHandler):
                 
                 template_values = {
                     'ranking': global_rank_list,
-                    'competition_group_name': global_competition_group.name
+                    'competition_group_name': global_competition_group.name,
+                    'top_scorers': get_top_scorers(),
+                    'top_users': get_top_users_global_ranking(),
+                    'last_jackpot': get_last_jackpot()
                 }
                 
                 render_template(self, 'view_global_ranking.html', template_values)

@@ -131,4 +131,7 @@ def create_initial_info():
     add_empty_team_match(7, 23, 14, 30, copa_america)
     add_empty_team_match(7, 24, 14, 30, copa_america)
     
+    jackpot = CAJackPot(amount=4000, last_update=datetime.datetime.now())
+    jackpot.put()
+    
 create_initial_info()

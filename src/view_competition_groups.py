@@ -3,7 +3,7 @@ from google.appengine.ext.db import Key
 
 from gaesessions import get_current_session
 
-from ca_utils import check_session_status, render_template, get_total_points, update_session_time
+from ca_utils import check_session_status, render_template, get_total_points, update_session_time, get_pending_membership_requests, get_top_scorers, get_top_users_global_ranking, get_last_jackpot
 from models.ca_models import CACompetitonGroup, CAGroupRanking, CAUser, CARequestGroupMembership, CAFootballPool
 
 class ListCompetitionGroups(webapp.RequestHandler):
@@ -18,7 +18,11 @@ class ListCompetitionGroups(webapp.RequestHandler):
             competition_groups = CACompetitonGroup.get(active_user.groups)
             
             template_values = {
-                'groups': competition_groups
+                'groups': competition_groups,
+                'pending_membership_requests': get_pending_membership_requests(active_user),
+                'top_scorers': get_top_scorers(),
+                'top_users': get_top_users_global_ranking(),
+                'last_jackpot': get_last_jackpot()
             }
             
             render_template(self, 'list_competition_groups.html', template_values)
@@ -73,7 +77,10 @@ class ViewCompetitionGroup(webapp.RequestHandler):
                         
                     template_values = {
                         'competition_group_name': competition_group.name,
-                        'group_ranking': group_ranking_list
+                        'group_ranking': group_ranking_list,
+                        'top_scorers': get_top_scorers(),
+                        'top_users': get_top_users_global_ranking(),
+                        'last_jackpot': get_last_jackpot()
                     }
                     
                     render_template(self, 'ranking.html', template_values)
@@ -94,7 +101,10 @@ class CreateCompetitionGroup(webapp.RequestHandler):
                 'members': [],
                 'name': '',
                 'last_search': str([]),
-                'last_members': str([])
+                'last_members': str([]),
+                'top_scorers': get_top_scorers(),
+                'top_users': get_top_users_global_ranking(),
+                'last_jackpot': get_last_jackpot()
             }
             
             render_template(self, 'create_competition_group.html', template_values)
@@ -148,7 +158,10 @@ class CreateCompetitionGroup(webapp.RequestHandler):
                     'members': eval(self.request.get('last-members')),
                     'name': self.request.get('name'),
                     'last_search': str(search_result),
-                    'last_members': self.request.get('last-members')
+                    'last_members': self.request.get('last-members'),
+                    'top_scorers': get_top_scorers(),
+                    'top_users': get_top_users_global_ranking(),
+                    'last_jackpot': get_last_jackpot()
                 }
                 
                 render_template(self, 'create_competition_group.html', template_values)
@@ -220,7 +233,10 @@ class AddMemberToCompetitionGroup(webapp.RequestHandler):
                 'members': members,
                 'name': self.request.get('name'),
                 'last_search': str(searched_users),
-                'last_members': str(members)
+                'last_members': str(members),
+                'top_scorers': get_top_scorers(),
+                'top_users': get_top_users_global_ranking(),
+                'last_jackpot': get_last_jackpot()
             }
                     
             render_template(self, 'create_competition_group.html', template_values)
@@ -258,7 +274,10 @@ class DeleteMemberFromCompetitionGroup(webapp.RequestHandler):
                 'members': members,
                 'name': self.request.get('name'),
                 'last_search': str(searched_users),
-                'last_members': str(members)
+                'last_members': str(members),
+                'top_scorers': get_top_scorers(),
+                'top_users': get_top_users_global_ranking(),
+                'last_jackpot': get_last_jackpot()
             }
                     
             render_template(self, 'create_competition_group.html', template_values)
