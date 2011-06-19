@@ -9,7 +9,7 @@ from gaesessions import get_current_session
 from ca_utils import check_session_status, render_template, update_session_time, get_top_scorers, get_top_users_global_ranking, get_last_jackpot
 from models.ca_models import CAFootballPool
 
-class ListFootballPools(webapp.RequestHandler):
+class ListFootballPoolsToView(webapp.RequestHandler):
     def get(self):
         update_session_time()
         session = get_current_session()
@@ -29,7 +29,31 @@ class ListFootballPools(webapp.RequestHandler):
                     'last_jackpot': get_last_jackpot()
                 } 
                 
-                render_template(self, 'list_football_pools.html', template_values)
+                render_template(self, 'list_football_pools_to_view.html', template_values)
+        else:
+            self.redirect('/')
+            
+class ListFootballPoolsToPay(webapp.RequestHandler):
+    def get(self):
+        update_session_time()
+        session = get_current_session()
+        check_session_status()
+            
+        if session.is_active():
+            if session.has_key('active_user'):
+                active_user = session['active_user']
+                
+                active_user_football_pools = CAFootballPool.all().filter("user =", active_user).filter("privacy =", False).fetch(1000)
+                
+                template_values = {
+                    'football_pools': active_user_football_pools,
+                    'message':'',
+                    'top_scorers': get_top_scorers(),
+                    'top_users': get_top_users_global_ranking(),
+                    'last_jackpot': get_last_jackpot()
+                } 
+                
+                render_template(self, 'list_football_pools_to_pay.html', template_values)
         else:
             self.redirect('/')
             

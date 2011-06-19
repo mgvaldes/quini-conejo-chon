@@ -1,65 +1,111 @@
 {% extends 'base.html' %}
 
 {% block headers %}
-	<script type="text/javascript" src="/sitemedia/js/jquery-1.4.4.js"></script>
-	<script type="text/javascript" src="/sitemedia/js/quinHandler.js"></script>
+<script type="text/javascript" src="/sitemedia/js/jquery-1.4.4.js"></script>
+<script type="text/javascript" src="/sitemedia/js/quinHandler.js"></script>
 {% endblock %}
 
-{% block openbody %}<body onload="loadQuinEvents();">{% endblock %}			
+{% block openbody %}
+<body onload="loadQuinEvents();">
+{% endblock %}			
+
+{% block left_content %}
+<div id="left-block-title">
+  <h3>Goleadores del Torneo</h3>
+</div>
+
+<div id="left-block-content">
+  <table>
+	<tr>
+	  <th>Nombre</th>
+	  <th>Pa&iacute;s</th>
+	  <th>Goles</th>
+	</tr>
+	
+	{% for scorer in top_scorers %}
+	<tr class={{ scorer.3 }}>
+	  <td>{{ scorer.0 }}</td>
+	  <td>{{ scorer.1 }}</td>
+	  <td>{{ scorer.2 }}</td>
+	</tr>
+	{% endfor %}
+	
+  </table>
+</div>
+{% endblock %}
+
+{% block content_submenu %}
+<ul id="center-buttons">
+  <li class="selected"><a href="#"><span>Mis Quinielas</span></a></li>
+  <li class="not-selected"><a href="#"><span>Crear Quiniela</span></a></li>
+  <li class="not-selected"><a href="#"><span>Pagar Quiniela</span></a></li>
+</ul>
+{% endblock %}
+
+{% block content_title %}
+<h4 id="title">{{ name }}</h4>
+{% endblock %}
+
+{% block content_description %}
+<p id="content-description">
+  Ingresa tu pron&oacute;tico para cada partido de la fase de grupos. A partir de los resultados que ingreses se calcular&aacute;n los equipos clasificados para la siguiente ronda
+</p>
+{% endblock %}
+
 {% block contents %}
-		<h2>{{ name }}</h2>
-   
-   		<form action="/edit/step2" method="post" id="edit-step1"> 
-			{% for group in groups %}
-				<ul class="group-matches">
-			    	{% for team in group.0 %}
-						<li class="group-match">
-							<label class="e1" for="{{ team.0|slice:":3" }}-{{ team.3|slice:":3" }}-g1">{{ team.0 }}</label> 
-							<input id="{{ team.0|slice:":3" }}-{{ team.3|slice:":3" }}-g1" name="{{ team.0|slice:":3" }}-{{ team.3|slice:":3" }}-g1" class="goals-field" type="text" value="{{ team.1 }}" /> 
-							<input id="{{ team.0|slice:":3" }}-{{ team.3|slice:":3" }}-g2" name="{{ team.0|slice:":3" }}-{{ team.3|slice:":3" }}-g2" class="goals-field" type="text" value="{{ team.2 }}" /> 
-							<label class="e2" for="{{ team.0|slice:":3" }}-{{ team.3|slice:":3" }}-g2">{{ team.3 }}</label>
-						</li>
-			    	{% endfor %}
-			  	</ul>
-			  	
-			  	<table id="table-{{ group.2 }}" class="group-table">
-			  		<tr>
-			  			<th>País</th>
-			  			<th>G</th>
-			  			<th>E</th>
-			  			<th>P</th>
-			  			<th>GF</th>
-			  			<th>GC</th>
-			  			<th>Pts</th>
-			  		</tr>
-			  		
-				  	{% for team_info in group.1 %}
-				  		<tr class="{{ team_info.1 }}">
-				  			<td>{{ team_info.0 }}</td>
-					  		<td>0</td>
-					  		<td>0</td>
-					  		<td>0</td>
-					  		<td>0</td>
-					  		<td>0</td>
-					  		<td>0</td>
-					  	</tr>
-				  	{% endfor %}
-			  	</table>
-			  	
-			  	<ul id="classif-{{ group.2 }}" class="classif-info">
-			  		<li></li>
-			  		<li></li>
-			  		<li></li>
-			  	</ul>
-			  		
-			{% endfor %}
-		
-			<input type="submit" name="step2" value="Siguiente">
-		  	
-		  	<div id="submit-notice" class="notice">
-		  	</div>
-		  	
-		  	<input name="football-pool-key" type="hidden" value="{{ football_pool_key }}" />
-		  	<input name="first-round-winners" type="hidden" value="" />
-	  	</form>
+<form action="/edit/step2" method="post" id="edit-step1" class="quiniela-form"> 
+  {% for group in groups %}
+  <h5 class="group-title">Grupo {{ group.2 }}</h5>
+  <ul class="group-matches">
+	{% for team in group.0 %}
+	<li class="group-match">
+	  <label class="e1" for="{{ team.0|slice:":3" }}-{{ team.3|slice:":3" }}-g1">{{ team.0 }}</label> 
+	  <input id="{{ team.0|slice:":3" }}-{{ team.3|slice:":3" }}-g1" name="{{ team.0|slice:":3" }}-{{ team.3|slice:":3" }}-g1" class="goals-field" type="text" value="{{ team.1 }}" />
+      <p class="quin-sep">-</p>
+	  <input id="{{ team.0|slice:":3" }}-{{ team.3|slice:":3" }}-g2" name="{{ team.0|slice:":3" }}-{{ team.3|slice:":3" }}-g2" class="goals-field" type="text" value="{{ team.2 }}" /> 
+	  <label class="e2" for="{{ team.0|slice:":3" }}-{{ team.3|slice:":3" }}-g2">{{ team.3 }}</label>
+	</li>
+	{% endfor %}
+  </ul>
+  
+  <table id="table-{{ group.2 }}" class="group-table">
+	<tr>
+	  <th>Pa&iacute;s</th>
+	  <th>G</th>
+	  <th>E</th>
+	  <th>P</th>
+	  <th>GF</th>
+	  <th>GC</th>
+	  <th>Pts</th>
+	</tr>
+	
+	{% for team_info in group.1 %}
+	<tr class="{{ team_info.1 }}">
+	  <td>{{ team_info.0 }}</td>
+	  <td>0</td>
+	  <td>0</td>
+	  <td>0</td>
+	  <td>0</td>
+	  <td>0</td>
+	  <td>0</td>
+	</tr>
+	{% endfor %}
+  </table>
+  
+  <ul id="classif-{{ group.2 }}" class="classif-info">
+	<li></li>
+	<li></li>
+	<li></li>
+  </ul>
+  
+  {% endfor %}
+  
+  <button type="submit" name="step2">Siguiente</button>
+  
+  <div id="submit-notice" class="notice">
+  </div>
+  
+  <input name="football-pool-key" type="hidden" value="{{ football_pool_key }}" />
+  <input name="first-round-winners" type="hidden" value="" />
+</form>
 {% endblock %}

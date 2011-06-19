@@ -5,12 +5,12 @@ padding: 0px;
 
 @font-face {
 font-family: 'folks';
-src: url('file:///Users/javierfdr/devel/quinielaca/devel/quini-conejo-chon/testing/media/Folks-Normal.ttf');
+src: url('/sitemedia/Folks-Normal.ttf');
 }
 
 @font-face {
 font-family: 'folks-bold';
-src: url('file:///Users/javierfdr/devel/quinielaca/devel/quini-conejo-chon/testing/media/Folks-Bold.ttf');
+src: url('/sitemedia/Folks-Bold.ttf');
 }
 
 body {
@@ -18,7 +18,7 @@ body {
 	font-family: 'folks', Helvetica, Arial;
 	font-weight: 100;
 	font-size: 16px;
-	background: #1b1d1f url('file:///Users/javierfdr/devel/quinielaca/quinielaca-bg.jpg') center center fixed no-repeat;
+	background: #1b1d1f url('/sitemedia/img/quinielaca-bg.jpg') center center fixed no-repeat;
 	-moz-background-size: cover;
   	background-size: cover;
   	height: 100%;
@@ -58,7 +58,7 @@ ul {
 	left: 0px;
 	top: 0%;
 	opacity: 1;
-	background: url('file:///Users/javierfdr/devel/quinielaca/devel/quini-conejo-chon/testing/media/img/top-mini-bg.png') repeat-x;
+	background: url('/sitemedia/img/top-mini-bg.png') repeat-x;
 	-moz-box-shadow: -150px 80px 120px #EEE;
 	-webkit-box-shadow: -40px 80px 120px rgba(255,255,255,0.5);
 	/*box-shadow: 0 80px 40px #000;*/
@@ -294,7 +294,7 @@ background: -moz-linear-gradient(top, #efefef, #dfe0e1);
 	padding: 0px 0px;
 	margin-left: 0px;
 	margin-bottom:0px;
-	background-image: url('file:///Users/javierfdr/devel/quinielaca/devel/quini-conejo-chon/testing/media/img/mini-box-top.png');
+	background-image: url('/sitemedia/img/mini-box-top.png');
 		
 }
 #left-block-title h3{

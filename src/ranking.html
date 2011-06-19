@@ -1,30 +1,66 @@
 {% extends 'base.html' %}
 
-{% block openbody %}<body>{% endblock %}
-{% block contents %}
+{% block openbody %}
+<body>
+{% endblock %}
 
-		<h3>{{ competition_group_name }}</h3>
+{% block left_content %}
+<div id="left-block-title">
+  <h3>Goleadores del Torneo</h3>
+</div>
+
+<div id="left-block-content">
+  <table>
+	<tr>
+	  <th>Nombre</th>
+	  <th>Pa&iacute;s</th>
+	  <th>Goles</th>
+	</tr>
 	
-		<table id="table-global-ranking" class="ranking-table">
-		  	<tr>
-		  		<th>Nombre</th>
-		  		<th>Quiniela</th>
-		  		<th>Puntos</th>
-		  	</tr>
-		  		
-			{% for rank in group_ranking %}
-				<tr>
-					{% if rank.3 %}
-						<td class="active-user"><h4>{{ rank.0 }}</h4></td>
-						<td class="active-user"><h4>{{ rank.1 }}</h4></td>
-			  			<td class="active-user"><h4>{{ rank.2 }}</h4></td>
-			  		{% else %}
-			  			<td class="regular-user">{{ rank.0 }}</td>
-			  			<td class="regular-user">{{ rank.1 }}</td>
-			  			<td class="regular-user">{{ rank.2 }}</td>
-					{% endif %}
-			  	</tr>
-			{% endfor %}
-		</table>
+	{% for scorer in top_scorers %}
+	<tr class={{ scorer.3 }}>
+	  <td>{{ scorer.0 }}</td>
+	  <td>{{ scorer.1 }}</td>
+	  <td>{{ scorer.2 }}</td>
+	</tr>
+	{% endfor %}
+	
+  </table>
+</div>
+{% endblock %}
 
+{% block content_submenu %}
+<ul id="center-buttons">
+  <li class="selected"><a href="#"><span>Mis Grupos</span></a></li>
+  <li class="not-selected"><a href="#"><span>Crear Grupo</span></a></li>
+  <li class="not-selected"><a href="#"><span>Ver Ranking</span></a></li>
+</ul>
+{% endblock %}
+
+{% block content_title %}
+<h4 id="title">{{ competition_group_name }}</h4>
+{% endblock %}
+
+{% block contents %}
+<table id="table-global-ranking" class="ranking-table">
+  <tr>
+	<th>Nombre</th>
+	<th>Quiniela</th>
+	<th>Puntos</th>
+  </tr>
+  
+  {% for rank in group_ranking %}
+  <tr>
+	{% if rank.3 %}
+	<td class="active-user"><h4>{{ rank.0 }}</h4></td>
+	<td class="active-user"><h4>{{ rank.1 }}</h4></td>
+	<td class="active-user"><h4>{{ rank.2 }}</h4></td>
+	{% else %}
+	<td class="regular-user">{{ rank.0 }}</td>
+	<td class="regular-user">{{ rank.1 }}</td>
+	<td class="regular-user">{{ rank.2 }}</td>
+	{% endif %}
+  </tr>
+  {% endfor %}
+</table>
 {% endblock %}

@@ -1,62 +1,115 @@
+{% extends 'base.html' %}
+
 {% block headers %}
-	<script type="text/javascript" src="/sitemedia/js/jquery-1.4.4.js"></script>
-	<script type="text/javascript" src="/sitemedia/js/quinHandler.js"></script>		
+<script type="text/javascript" src="/sitemedia/js/jquery-1.4.4.js"></script>
+<script type="text/javascript" src="/sitemedia/js/quinHandler.js"></script>		
 {% endblock %}
 
-{% block openbody %}<body onload="loadFinalRoundEvents();">{% endblock %}
+{% block openbody %}
+<body onload="loadFinalRoundEvents();">
+{% endblock %}
+
+{% block left_content %}
+<div id="left-block-title">
+  <h3>Goleadores del Torneo</h3>
+</div>
+
+<div id="left-block-content">
+  <table>
+	<tr>
+	  <th>Nombre</th>
+	  <th>Pa&iacute;s</th>
+	  <th>Goles</th>
+	</tr>
+	
+	{% for scorer in top_scorers %}
+	<tr class={{ scorer.3 }}>
+	  <td>{{ scorer.0 }}</td>
+	  <td>{{ scorer.1 }}</td>
+	  <td>{{ scorer.2 }}</td>
+	</tr>
+	{% endfor %}
+	
+  </table>
+</div>
+{% endblock %}
+
+{% block content_submenu %}
+<ul id="center-buttons">
+  <li class="not-selected"><a href="/list/football-pools/view"><span>Mis Quinielas</span></a></li>
+  <li class="selected"><a href="/create/step1"><span>Crear Quiniela</span></a></li>
+  <li class="not-selected"><a href="/list/football-pools/pay"><span>Pagar Quiniela</span></a></li>
+</ul>
+{% endblock %}
+
+{% block content_title %}
+<h4 id="title">Segunda Etapa</h4>
+{% endblock %}
+
+{% block content_description %}
+<p id="content-description">
+  Ingresa tu pron&oacute;tico para cada partido de los cuartos de final, semifinal, tercero y cuarto y final.
+</p>
+{% endblock %}
+
 {% block contents %}
-  	<form action="/save/create" method="post" id="create-step2">
-		<ul class="group-matches">
-		    {% for teams in quarter_finals_teams %}
-				<li class="group-match" id="qf{{ teams.2 }}">
-					<label class="e1-qf" for="{{ teams.0|slice:":3" }}-{{ teams.1|slice:":3" }}-g1">{{ teams.0 }}</label> 
-					<input id="{{ teams.0|slice:":3" }}-{{ teams.1|slice:":3" }}-g1" name="{{ teams.0|slice:":3" }}-{{ teams.1|slice:":3" }}-g1" class="goals-field" type="text" value="" /> 
-					<input id="{{ teams.0|slice:":3" }}-{{ teams.1|slice:":3" }}-g2" name="{{ teams.0|slice:":3" }}-{{ teams.1|slice:":3" }}-g2" class="goals-field" type="text" value="" /> 
-					<label class="e2-qf" for="{{ teams.0|slice:":3" }}-{{ teams.1|slice:":3" }}-g2">{{ teams.1 }}</label>
-				</li>
-		    {% endfor %}
-		</ul>
-		
-		<ul class="group-matches">
-			<li class="group-match" id="sf1">
-				<label class="e1" for="sf1-g1">?</label> 
-				<input name="sf1-g1" class="goals-field" type="text" value="" /> 
-				<input name="sf1-g2" class="goals-field" type="text" value="" /> 
-				<label class="e2" for="sf1-g2">?</label>
-			</li>
-			<li class="group-match" id="sf2">
-				<label class="e1" for="sf2-g1">?</label> 
-				<input name="sf2-g1" class="goals-field" type="text" value="" /> 
-				<input name="sf2-g2" class="goals-field" type="text" value="" /> 
-				<label class="e2" for="sf2-g2">?</label>
-			</li>
-		</ul>
-		
-		<ul class="group-matches" id="tf">
-			<li class="group-match">
-				<label class="e1" for="tf-g1">?</label> 
-				<input name="tf-g1" class="goals-field" type="text" value="" /> 
-				<input name="tf-g2" class="goals-field" type="text" value="" /> 
-				<label class="e2" for="tf-g2">?</label>
-			</li>
-		</ul>
-		
-		<ul class="group-matches" id="f">
-			<li class="group-match">
-				<label class="e1" for="f-g1">?</label> 
-				<input name="f-g1" class="goals-field" type="text" value="" /> 
-				<input name="f-g2" class="goals-field" type="text" value="" /> 
-				<label class="e2" for="f-g2">?</label>
-			</li>
-		</ul>
-			  	
-	  	<input type="submit" name="step2" value="Guardar">
-	  	
-	  	<div id="submit-notice" class="notice">
-	  	</div>
-	  	
-	  	<input name="football-pool-name" type="hidden" value="{{ football_pool_name }}" />
-	  	<input name="first-round-matches" type="hidden" value="{{ first_round_matches }}" />
-	  	<input name="second-round-matches" type="hidden" value="" />
-  	</form>
+<form action="/save/create" method="post" id="create-step2" class="quiniela-form">
+  <ul class="group-matches">
+    <h5 class="group-title">Cuartos de Final</h5>
+	{% for teams in quarter_finals_teams %}
+	<li class="group-match" id="qf{{ teams.2 }}">
+	  <label class="e1-qf" for="{{ teams.0|slice:":3" }}-{{ teams.1|slice:":3" }}-g1">{{ teams.0 }}</label> 
+	  <input id="{{ teams.0|slice:":3" }}-{{ teams.1|slice:":3" }}-g1" name="{{ teams.0|slice:":3" }}-{{ teams.1|slice:":3" }}-g1" class="goals-field" type="text" value="" />
+      <p class="quin-sep">-</p>
+	  <input id="{{ teams.0|slice:":3" }}-{{ teams.1|slice:":3" }}-g2" name="{{ teams.0|slice:":3" }}-{{ teams.1|slice:":3" }}-g2" class="goals-field" type="text" value="" /> 
+	  <label class="e2-qf" for="{{ teams.0|slice:":3" }}-{{ teams.1|slice:":3" }}-g2">{{ teams.1 }}</label>
+	</li>
+	{% endfor %}
+  </ul>
+  
+  <h5 class="group-title">Semi Final</h5>
+  <ul class="group-matches">
+	<li class="group-match" id="sf1">
+	  <label class="e1" for="sf1-g1">?</label> 
+	  <input name="sf1-g1" class="goals-field" type="text" value="" /> 
+	  <input name="sf1-g2" class="goals-field" type="text" value="" /> 
+	  <label class="e2" for="sf1-g2">?</label>
+	</li>
+	<li class="group-match" id="sf2">
+	  <label class="e1" for="sf2-g1">?</label> 
+	  <input name="sf2-g1" class="goals-field" type="text" value="" /> 
+	  <input name="sf2-g2" class="goals-field" type="text" value="" /> 
+	  <label class="e2" for="sf2-g2">?</label>
+	</li>
+  </ul>
+  
+  <h5 class="group-title">Tercero y Cuarto</h5>
+  <ul class="group-matches" id="tf">
+	<li class="group-match">
+	  <label class="e1" for="tf-g1">?</label> 
+	  <input name="tf-g1" class="goals-field" type="text" value="" /> 
+	  <input name="tf-g2" class="goals-field" type="text" value="" /> 
+	  <label class="e2" for="tf-g2">?</label>
+	</li>
+  </ul>
+  
+  <h5 class="group-title">Final</h5>
+  <ul class="group-matches" id="f">
+	<li class="group-match">
+	  <label class="e1" for="f-g1">?</label> 
+	  <input name="f-g1" class="goals-field" type="text" value="" /> 
+	  <input name="f-g2" class="goals-field" type="text" value="" /> 
+	  <label class="e2" for="f-g2">?</label>
+	</li>
+  </ul>
+  
+  <button type="submit" name="step2">Guardar</button>
+  
+  <div id="submit-notice" class="notice">
+  </div>
+  
+  <input name="football-pool-name" type="hidden" value="{{ football_pool_name }}" />
+  <input name="first-round-matches" type="hidden" value="{{ first_round_matches }}" />
+  <input name="second-round-matches" type="hidden" value="" />
+</form>
 {% endblock %}

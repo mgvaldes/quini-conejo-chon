@@ -6,7 +6,7 @@ from google.appengine.ext.webapp.util import run_wsgi_app
 
 from create_football_pool import CreateFootballPoolStepOne, CreateFootballPoolStepTwo, SaveCreateFootbalPool
 from edit_football_pool import EditFootballPoolStepTwo, SaveEditFootbalPool
-from view_football_pools import ListFootballPools, ViewFootballPool
+from view_football_pools import ListFootballPoolsToView, ListFootballPoolsToPay, ViewFootballPool
 from pay_football_pool import PayFootballPool
 from register import LoadRegistryForm, RegisterCANativeUser
 from view_competition_groups import ListCompetitionGroups, ViewCompetitionGroup, CreateCompetitionGroup, AddMemberToCompetitionGroup, DeleteMemberFromCompetitionGroup
@@ -56,7 +56,8 @@ application = webapp.WSGIApplication([('/', MainHandler),
                                       ('/save/create', SaveCreateFootbalPool),
                                       ('/edit/step2', EditFootballPoolStepTwo),
                                       ('/save/edit', SaveEditFootbalPool),
-                                      ('/list', ListFootballPools),
+                                      ('/list/football-pools/view', ListFootballPoolsToView),
+                                      ('/list/football-pools/pay', ListFootballPoolsToPay),
                                       ('/view', ViewFootballPool),
                                       ('/pay', PayFootballPool),
                                       ('/list/groups', ListCompetitionGroups),

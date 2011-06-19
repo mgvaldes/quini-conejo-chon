@@ -36,8 +36,8 @@
 
 {% block content_submenu %}
 <ul id="center-buttons">
-  <li class="selected"><a href="#"><span>Mis Quinielas</span></a></li>
-  <li class="not-selected"><a href="#"><span>Crear Quiniela</span></a></li>
+  <li class="not-selected"><a href="#"><span>Mis Quinielas</span></a></li>
+  <li class="selected"><a href="#"><span>Crear Quiniela</span></a></li>
   <li class="not-selected"><a href="#"><span>Pagar Quiniela</span></a></li>
 </ul>
 {% endblock %}
@@ -53,7 +53,7 @@
 {% endblock %}
 
 {% block contents %}
-<form action="/save/edit" method="post" id="create-step2" class="quiniela-form">
+<form action="/save/create" method="post" id="create-step2" class="quiniela-form">
   <ul class="group-matches">
     <h5 class="group-title">Cuartos de Final</h5>
 	{% for teams in quarter_finals_teams %}
@@ -72,14 +72,12 @@
 	<li class="group-match" id="sf1">
 	  <label class="e1" for="sf1-g1">?</label> 
 	  <input name="sf1-g1" class="goals-field" type="text" value="" /> 
-      <p class="quin-sep">-</p>
 	  <input name="sf1-g2" class="goals-field" type="text" value="" /> 
 	  <label class="e2" for="sf1-g2">?</label>
 	</li>
 	<li class="group-match" id="sf2">
 	  <label class="e1" for="sf2-g1">?</label> 
 	  <input name="sf2-g1" class="goals-field" type="text" value="" /> 
-      <p class="quin-sep">-</p>
 	  <input name="sf2-g2" class="goals-field" type="text" value="" /> 
 	  <label class="e2" for="sf2-g2">?</label>
 	</li>
@@ -90,8 +88,7 @@
 	<li class="group-match">
 	  <label class="e1" for="tf-g1">?</label> 
 	  <input name="tf-g1" class="goals-field" type="text" value="" /> 
-      <p class="quin-sep">-</p>
-	  <input name="tf1-g2" class="goals-field" type="text" value="" /> 
+	  <input name="tf-g2" class="goals-field" type="text" value="" /> 
 	  <label class="e2" for="tf-g2">?</label>
 	</li>
   </ul>
@@ -101,7 +98,6 @@
 	<li class="group-match">
 	  <label class="e1" for="f-g1">?</label> 
 	  <input name="f-g1" class="goals-field" type="text" value="" /> 
-      <p class="quin-sep">-</p>
 	  <input name="f-g2" class="goals-field" type="text" value="" /> 
 	  <label class="e2" for="f-g2">?</label>
 	</li>
@@ -112,10 +108,8 @@
   <div id="submit-notice" class="notice">
   </div>
   
-  <input name="football-pool-key" type="hidden" value="{{ football_pool_key }}" />
-  <p class="quin-sep">-</p>
+  <input name="football-pool-name" type="hidden" value="{{ football_pool_name }}" />
   <input name="first-round-matches" type="hidden" value="{{ first_round_matches }}" />
-  <p class="quin-sep">-</p>
   <input name="second-round-matches" type="hidden" value="" />
 </form>
 {% endblock %}

@@ -1,40 +1,81 @@
 {% extends 'base.html' %}
 
-{% block openbody %}<body>{% endblock %}
-{% block contents %}
+{% block openbody %}
+<body>
+{% endblock %}
 
-		<form action="/create/group" method="post">
-			<input name="search" type="text" id="search" value="" />
-			<input type="submit" name="search_user" value="Buscar">
-			<br>
-			
-			<ul>
-		    	{% for user in searched_users %}
-		    		<li>
-		    			<label>{{ user.0 }}</label> 
-		    			<a href="/add/group?user={{ user.1 }}&last_search={{ last_search }}&last_members={{ last_members }}&name={{ name }}">Agregar</a>
-		    		</li>
-		    	{% endfor %}
-		    </ul>
-		    
-		    <input name="last-search" type="hidden" value="{{ last_search }}">
-			
-			<label for="name">Nombre: </label>
-		    <input name="name" type="text" id="name" value="{{ name }}" />
-		    <br>
-		    
-		    <ul>
-		    	{% for member in members %}
-		    		<li>
-		    			<label name="">{{ member.0 }}</label> 
-		    			<a href="/delete/group?user={{ member.1 }}&last_search={{ last_search }}&last_members={{ last_members }}&name={{ name }}">Eliminar</a>
-		    		</li>
-		    	{% endfor %}
-		    </ul>
-		    
-		    <input name="last-members" type="hidden" value="{{ last_members }}">
-		    
-		    <input type="submit" name="save" value="Guardar">
-		</form>
+{% block left_content %}
+<div id="left-block-title">
+  <h3>Goleadores del Torneo</h3>
+</div>
+
+<div id="left-block-content">
+  <table>
+	<tr>
+	  <th>Nombre</th>
+	  <th>Pa&iacute;s</th>
+	  <th>Goles</th>
+	</tr>
+	
+	{% for scorer in top_scorers %}
+	<tr class={{ scorer.3 }}>
+	  <td>{{ scorer.0 }}</td>
+	  <td>{{ scorer.1 }}</td>
+	  <td>{{ scorer.2 }}</td>
+	</tr>
+	{% endfor %}
+	
+  </table>
+</div>
+{% endblock %}
+
+{% block content_submenu %}
+<ul id="center-buttons">
+  <li class="not-selected"><a href="#"><span>Mis Grupos</span></a></li>
+  <li class="selected"><a href="#"><span>Crear Grupo</span></a></li>
+  <li class="not-selected"><a href="#"><span>Ver Ranking</span></a></li>
+</ul>
+{% endblock %}
+
+{% block content_description %}
+<p id="content-description">
+  Busca a tus amigos e inv&iacute;talos a formar parte de tu grupo
+</p>
+{% endblock %}
+
+{% block contents %}
+<form action="/create/group" method="post">
+  <input name="search" type="text" id="search" value="" class="title-field" />
+  <input type="submit" name="search_user" value="Buscar">
+  <br>
+  
+  <ul>
+	{% for user in searched_users %}
+	<li>
+	  <label>{{ user.0 }}</label> 
+	  <a href="/add/group?user={{ user.1 }}&last_search={{ last_search }}&last_members={{ last_members }}&name={{ name }}">Agregar</a>
+	</li>
+	{% endfor %}
+  </ul>
+  
+  <input name="last-search" type="hidden" value="{{ last_search }}">
+  
+  <label for="name" class="title-label">Nombre: </label>
+  <input name="name" type="text" id="name" value="{{ name }}" class="title-field"/>
+  <br>
+  
+  <ul>
+	{% for member in members %}
+	<li>
+	  <label name="">{{ member.0 }}</label> 
+	  <a href="/delete/group?user={{ member.1 }}&last_search={{ last_search }}&last_members={{ last_members }}&name={{ name }}">Eliminar</a>
+	</li>
+	{% endfor %}
+  </ul>
+  
+  <input name="last-members" type="hidden" value="{{ last_members }}">
+  
+  <input type="submit" name="save" value="Guardar">
+</form>
 
 {% endblock %}
