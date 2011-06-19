@@ -1,0 +1,419 @@
+* {
+margin: 0;
+padding: 0px;
+}
+
+@font-face {
+font-family: 'folks';
+src: url('file:///Users/javierfdr/devel/quinielaca/devel/quini-conejo-chon/testing/media/Folks-Normal.ttf');
+}
+
+@font-face {
+font-family: 'folks-bold';
+src: url('file:///Users/javierfdr/devel/quinielaca/devel/quini-conejo-chon/testing/media/Folks-Bold.ttf');
+}
+
+body {
+    font: normal 100% Helvetica, Arial, sans-serif;
+	font-family: 'folks', Helvetica, Arial;
+	font-weight: 100;
+	font-size: 16px;
+	background: #1b1d1f url('file:///Users/javierfdr/devel/quinielaca/quinielaca-bg.jpg') center center fixed no-repeat;
+	-moz-background-size: cover;
+  	background-size: cover;
+  	height: 100%;
+}
+
+h1 {
+    font-size: 1.5em;        /* 24px / 16px = 1.5em */
+	font-family: 'folks-bold';
+}
+
+h4 {
+    /*font-size: 1.0em;        /* 24px / 16px = 1.5em */
+	font-family: 'folks-bold';
+	font-size: 20px;
+	color: #238ef2;
+	text-shadow: #C3C3C3 1px 2px 2px;
+	font-weight: 100;
+}
+
+h5{
+	font-family: 'folks-bold';
+	font-size: 15px;
+	color: #238ef2;
+	text-shadow: #C3C3C3 1px 2px 2px;
+	font-weight: 100;
+}
+
+ul {
+    font-size: 0.875em;      /* 14px / 16px = 0.875em */
+}
+
+#top{
+	position: absolute;
+	top:0;
+	height: 113px;
+	width: 100%;
+	left: 0px;
+	top: 0%;
+	opacity: 1;
+	background: url('file:///Users/javierfdr/devel/quinielaca/devel/quini-conejo-chon/testing/media/img/top-mini-bg.png') repeat-x;
+	-moz-box-shadow: -150px 80px 120px #EEE;
+	-webkit-box-shadow: -40px 80px 120px rgba(255,255,255,0.5);
+	/*box-shadow: 0 80px 40px #000;*/
+
+}
+
+.wrapper {
+	position: relative;
+	top: 130px; /*top width*/
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 100px;
+    margin-top: auto;
+    padding: 0 1em;
+    width: 960px;
+    /*min-width: 60.00em;
+    max-width: 60.00em;      /* 960px / 16px = 60.00em */
+
+}
+
+.footer{
+	clear: both;
+	position: relative;
+	top: 100px;
+	width: 102%;
+	margin-left: -1.3%;
+	height: 30px;
+	bottom: 0;
+	background-color: #000;
+}
+
+div#buttons-layer{
+	position: relative;
+	height: 80px;
+	top: -5px;
+
+}
+div#buttons-layer ul{
+	display: inline;
+	list-style-type: none;
+	margin: auto;
+}
+
+div#buttons-layer li{
+	float: left;
+	width: 190px;
+	margin-left:2px;
+}
+
+ul#buttons-ul a{
+background-repeat: no-repeat;
+background-position: right;
+background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#2594FB), to(#093D69), color-stop(1,#0A2F33));
+background: -moz-linear-gradient(top, #2594FB, #093D69);
+-moz-box-shadow: 0px 4px 12px #AAA;
+-webkit-box-shadow: 0px 4px 12px #AAA;
+box-shadow: 0px 4px 12px #AAA;
+
+padding-right: 20px;
+padding-left: 20px;
+text-align: left;
+display: block;
+line-height: 80px;
+text-decoration: none;
+font-size: 21px;
+color: #ebe8e8;
+text-shadow: black 0.1em 0.1em 0.2em;
+}
+
+ul#buttons-ul span{
+	position: relative;
+	top: 18px;
+	left:-8px;
+}
+
+#main-content{
+	overflow: hidden;
+	background-color: #c4c4c4;
+	padding: 10px 10px;
+	
+}
+
+
+/* ------------------------*/
+/* General Table Styling --*/
+/* ------------------------*/
+
+table{
+	border-collapse:collapse;
+	-moz-box-shadow: 0px 4px 12px #999;
+	-webkit-box-shadow: 0px 4px 12px #999;
+	text-align: center;
+	color: #3b3b3c;
+}
+
+table th{
+	background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#3da0fb), to(#2f7bc1));
+background: -moz-linear-gradient(top, #3da0fb, #2f7bc1);
+	padding: 4px 10px;
+	color: #f5f5f5;
+}
+
+table td{
+	padding: 2px 5px;
+}
+
+table tr{
+	border-bottom: solid 1px #bbbbbb;
+}
+
+tr.pair{
+background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#cecfd1), to(#d7d8da));
+background: -moz-linear-gradient(top, #cecfd1, #d7d8da);
+}
+
+table tr{
+	padding-left: 10px;
+}
+
+
+/* ------------------------*/
+/* General Form Styling    */
+/* ------------------------*/
+
+form{
+	color: #626263;
+}
+
+form ul{
+	list-style-type: none;
+}
+
+form input{
+	text-align: center;
+	font-size: #313030;
+}
+
+
+/* ------------------------*/
+/* Quiniela Form	       */
+/* ------------------------*/
+
+form.quiniela-form{
+	margin-left: 10px;
+}
+
+form label.e1{
+	display:block;
+	text-align:right;
+	width:70px;
+	float:left;
+	margin-right: 10px;
+}
+
+form label.e2{
+	margin-left: 10px;
+	position: relative;
+	top: -4px;
+}
+
+form.quiniela-form input{
+	position: relative;
+	top: -4px;
+	font-size:12px;
+	padding:2px 2px;
+	border:solid 1px #929292;
+	width:20px;
+	height: 20px;
+	background-color: #d4e0eb;
+	margin-bottom: 10px;
+}
+form.quiniela-form p.quin-sep{
+	display: inline;
+	margin-right: 7px;
+	margin-left: 9px;
+	position: relative;
+	top: -4px;
+}
+
+
+form.quiniela-form input.title-field{
+	width: 200px;
+	position: reltive;
+	display: inline;
+	top: 0px;
+	margin-left: 10px;
+}
+
+form.quiniela-form table{
+	position: relative;
+	top: -200px;
+	left: -20px;
+}
+
+button{
+	padding: 10px 10px;
+	position: relative;
+	margin-top: 10px;
+	top: 10px;
+	left: 20px;
+	border: solid 1px #959595;
+	background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#efefef), to(#dfe0e1));
+	background: -moz-linear-gradient(top, #efefef, #dfe0e1);
+	width: 100px;
+	
+}
+
+/* ------------------------*/
+/* Styling the left column */
+/* ------------------------*/
+
+#left-content{
+	float: left;
+	width: 268px;
+	margin-right: 10px;
+}
+
+.left-block{
+	padding: 10px 10px;
+	background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#efefef), to(#dfe0e1));
+background: -moz-linear-gradient(top, #efefef, #dfe0e1);
+-moz-box-shadow: 0px 5px 30px #555;
+-webkit-box-shadow: 0px 5px 30px #555;
+}
+
+#left-block-title{
+	position: relative;
+	top: -10px;
+	left: -10px;
+	margin: 0px 0px;
+	width: 269px;
+	height:47px;
+	padding: 0px 0px;
+	margin-left: 0px;
+	margin-bottom:0px;
+	background-image: url('file:///Users/javierfdr/devel/quinielaca/devel/quini-conejo-chon/testing/media/img/mini-box-top.png');
+		
+}
+#left-block-title h3{
+	color: #4E4E4E;
+	font-size:15.4px;
+	font-family: 'folks-bold';
+	padding: 5px 10px;
+	padding-top: 12px;
+	text-shadow: px 0px 4px #AAA;
+}
+
+div#left-block-content {
+	font-size: 14px;
+}
+
+/* ----- Left Table ------- */
+div#left-block-content tr{
+	font-size: 14px;
+}
+
+div#left-block-content table{
+	width: 245px;
+}
+
+
+/* ------------------------*/
+/* Styling the center column */
+/* ------------------------*/
+
+#center-content{
+	float: right;
+	width: 660px;
+	background-color: #eeeeee;
+	-moz-box-shadow: 0px 5px 30px #555;
+    -webkit-box-shadow: 0px 5px 30px #555;
+}
+
+#center-block-content{
+	padding: 15px 15px;
+}
+
+#center-content ul#center-buttons{
+	pading:15px 15px;
+	list-style: none;
+	width: 100%;
+	margin: 15px 15px;
+	float: left;
+}
+
+ul#center-buttons li a{
+	text-decoration: none;
+	color: #484848;
+	font-size: 1.1em;
+}
+
+ul#center-buttons li{
+	display: inline;
+	float: left;
+	text-align: center;
+	width: 210px;
+	height: 20px;
+}
+
+ul#center-buttons li.selected{
+	border-bottom-style: solid;
+	border-bottom-width: 10px;
+	border-bottom-color: #3b8cd7;
+}
+
+ul#center-buttons li.not-selected{
+	border-bottom-style: solid;
+	border-bottom-width: 10px;
+	border-bottom-color: #484848;
+}
+
+#center-block-content{ 
+	padding: 20px 25px;
+}
+
+#center-block-content h4#title{
+	padding: 18px 0px;
+	margin-top: 30px;
+}
+
+#center-block-content h5.group-title{
+	padding: 18px 0px;
+	margin-top: 5px;
+}
+
+#center-block-content p#content-description{
+	color:#3c3c3c;
+}
+
+#center-block-content div#block-info{
+	margin-top:30px;
+}
+
+/* Quiniela content styling */
+#center-block-content table{
+	font-size: 14px;
+}
+
+
+#center-block-content table{
+	margin-top: 10px;
+	margin-bottom: 10px;
+	float: right;
+	display: inline-table;
+	
+}
+
+/*
+.footer, .push {
+	height: 142px;
+}
+.push{
+	background-color: #000;
+}*/
+
+
+
+
