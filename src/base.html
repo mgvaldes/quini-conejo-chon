@@ -19,77 +19,104 @@
 		<meta property="fb:app_id" content="176955699024734" />
 		<meta property="og:description" content="Quinielaca.com te permite crear quinielas y participar para ganar el gran pote al clasificar en los tres primeros lugares. Podr&aacute;s crear grupos con tus amigos para compartir tus resultados. "/>
         
+        <link rel="stylesheet" type="text/css" href="/sitemedia/css/base.css" media="screen" />	
+
 		{% block headers %}
 		{% endblock %}
     </head>
+
     {% block openbody %}
     {% endblock %}
 
 	<div id="top">
-		{% block login %}
-	        <div id="login-div" class="login-not">
-	            <div id="buttons-area">
-	                <ul id="login-buttons" class="show-login-buttons">
-	                    <li><a href="#iniciarsesion"> Iniciar Sesi&oacute;n </a></li>
-	                    <li><a href="#registrarse"> Registrarse </a></li>
-	                </ul>
-	            </div> 
-	        </div>
-
-
-	            <!-- 
-		    <div id="login-div" class="login-yes">
-		        <div id="login-info">
-				<p> Hola, Maria G<p>
-				<ul id="login-buttons" class="show-user-login">
-					<li><a href="#verperfil> Ver perfil </a></li>
-					<li><a href="#cerrarsesion> Cerrar sesi&oacute;n </a></li>
-				</ul>
-		        </div> 
-		    </div>	
-		-->
-
-		{% endblock %}
-                
-		<div id="logo"></div>
-        <div id="pote"></div>
-	
+	  {% block login %}
+	  <div id="login-div" class="login-not">
+	    <div id="buttons-area">
+	      <ul id="login-buttons" class="show-login-buttons">
+	        <li><a href="#iniciarsesion"> Iniciar Sesi&oacute;n </a></li>
+	        <li><a href="#registrarse"> Registrarse </a></li>
+	      </ul>
+	    </div> 
+	  </div>
+      
+      
+	  <!-- 
+		   <div id="login-div" class="login-yes">
+		     <div id="login-info">
+			   <p> Hola, Maria G<p>
+				 <ul id="login-buttons" class="show-user-login">
+				   <li><a href="#verperfil> Ver perfil </a></li>
+					            <li><a href="#cerrarsesion> Cerrar sesi&oacute;n </a></li>
+				 </ul>
+		     </div> 
+		   </div>	
+	       -->
+      
+	  {% endblock %}
+      
+	  <div id="logo"></div>
+      <div id="pote"></div>
+	  
 	</div>
     <div class = "wrapper">
+      
+      <div id="content-body">
+        <div id="buttons-layer">
+          <ul id="buttons-ul">
+            <li class="not-selected"><a href="#"><span>Quinielas</span></a><li>
+            <li class="not-selected"><a href="#"><span>Grupos</span></a><li>
+            <li class="not-selected"><a href="#"><span>Reglas</span></a><li>
+            <li class="not-selected"><a href="#"><span>Mi Perfil</span></a><li>
+            <li class="not-selected"><a href="#"><span>Copa Am&eacute;rica</span></a><li>          
+          </ul>
+        </div>
+        <div id="main-content">
+          <div id="left-content">
+            <div class="left-block">
+              <div id="left-block-title">
+                <h3>
+                  Goleadores del Torneo
+                </h3>
+              </div>
 
-        <div id="content-body">
-            <div id="buttons-layer">
-                <ul>
-                    <li>Quinielas<li>
-                    <li>Grupos<li>
-                    <li>Reglas<li>
-                    <li>Mi Perfil<li>
-                    <li>Copa Am&eacute;rica<li>
-                </ul>
+              <div id="left-block-content">
+                {% block left_content %}
+                {% endblock %}
+              </div>
             </div>
-            <div id="main-content">
-                <div id="left-content">
-                    <div class="left-block"></div>
-                </div>
-                <div id="center-content">
-                    {% block content_submenu %}{% endblock %}
-                    <h4>
-                        {% block content_title %}{% endblock %}
-                    </h4>
-                    <p id="content-description">{% block content_description %}{% endblock %}</p>
-                    {% block contents %}{% endblock %}
-                </div>
+          </div>
+
+          <div id="center-content">
+            {% block content_submenu %}
+            {% endblock %}
+
+            <div id="center-block-content">        
+              <h4 >
+                {% block content_title %}
+                {% endblock %}
+              </h4>
+
+              <p id="content-description">
+                {% block content_description %}
+                {% endblock %}
+              </p>
+
+              {% block contents %}
+              {% endblock %}
             </div>
+          </div>
         </div>
+      </div>
+      
+      
+      <!-- for sticky footer --> 
+      <!--<div class="push"></div>-->
+      <!-- closing wrapper--> 
+    </div>
 
-
-            <!-- for sticky footer -->
-            <div id="push"></div>
-            <!-- closing wrapper-->
-        </div>
-        <div class="footer">
-            <p>Quinielaca.com</p>
-        </div>
-    </body>
+    <div class="footer">
+      <p>Quinielaca.com</p>
+    </div>
+</body>
 
 </html>
