@@ -239,6 +239,7 @@ def get_top_users_global_ranking():
     top_football_pools_sorted_by_total_points = football_pools_sorted_by_total_points[:5]
     
     top_users = []
+    counter = 0
     
     for position_point in top_football_pools_sorted_by_total_points:
         football_pool = football_pools[position_point[0]] 
@@ -251,7 +252,12 @@ def get_top_users_global_ranking():
         else:
             username = user.native_user.name
         
-        top_users.append((username, football_pool.name, position_point[1]))
+        if counter % 2 == 1:
+            row = "odd"
+        else:
+            row = "pair"
+        
+        top_users.append((username, football_pool.name, position_point[1], row))
         
     return top_users
 

@@ -5,12 +5,12 @@ padding: 0px;
 
 @font-face {
 font-family: 'folks';
-src: url('/sitemedia/Folks-Normal.ttf');
+src: url('/sitemedia/fonts/Folks-Normal.ttf');
 }
 
 @font-face {
 font-family: 'folks-bold';
-src: url('/sitemedia/Folks-Bold.ttf');
+src: url('/sitemedia/fonts/Folks-Bold.ttf');
 }
 
 body {
@@ -317,6 +317,7 @@ div#left-block-content tr{
 
 div#left-block-content table{
 	width: 245px;
+	margin-bottom: 30px;
 }
 
 

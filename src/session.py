@@ -63,14 +63,16 @@ class LoginHandler(webapp.RequestHandler):
 
                         save_session_info(ca_user)
                         
-                        template_values = {
-                            'user': session['active_user'],
-                            'top_scorers': get_top_scorers(),
-                            'top_users': get_top_users_global_ranking(),
-                            'last_jackpot': get_last_jackpot()
-                        }
+#                        template_values = {
+#                            'session_status': True,
+#                            'user': session['active_user'],
+#                            'top_scorers': get_top_scorers(),
+#                            'top_users': get_top_users_global_ranking(),
+#                            'last_jackpot': get_last_jackpot()
+#                        }
                         
-                        render_template(self, 'home.html', template_values)
+#                        render_template(self, 'create_step1.html', template_values)
+                        self.redirect('/create/step1')
                     else:
                         logging.debug('Incorrect password. . Login failed')
                         
@@ -78,7 +80,7 @@ class LoginHandler(webapp.RequestHandler):
                             'error': 'Clave incorrecta. Intente de nuevo'
                         }
     
-                        render_template(self, 'index.html', template_values)
+                        render_template(self, 'login.html', template_values)
                 else:
                     logging.debug('Incorrect username. Login failed')
                     
@@ -86,7 +88,7 @@ class LoginHandler(webapp.RequestHandler):
                         'error': 'Usuario incorrecto. Intente de nuevo'
                     }
     
-                    render_template(self, 'index.html', template_values)
+                    render_template(self, 'login.html', template_values)
             else:
                 logging.debug('Username o password missing. Login failed')
                     
@@ -94,7 +96,7 @@ class LoginHandler(webapp.RequestHandler):
                     'error': 'Usuario o clave faltantes. Intente de nuevo'
                 }
                 
-                render_template(self, 'index.html', template_values)
+                render_template(self, 'login.html', template_values)
         else:
             """
             Login con autenticacion de google o facebook
@@ -131,14 +133,16 @@ class GoogleLoginHandler(webapp.RequestHandler):
             
         save_session_info(ca_user)
         
-        template_values = {
-            'user': session['active_user'],
-            'top_scorers': get_top_scorers(),
-            'top_users': get_top_users_global_ranking(),
-            'last_jackpot': get_last_jackpot()
-        }
-                
-        render_template(self, 'home.html', template_values)
+#        template_values = {
+#            'session_status': True,
+#            'user': session['active_user'],
+#            'top_scorers': get_top_scorers(),
+#            'top_users': get_top_users_global_ranking(),
+#            'last_jackpot': get_last_jackpot()
+#        }
+#                
+#        render_template(self, 'create_step1.html', template_values)
+        self.redirect('/create/step1')
 
 """
 Handler que se encarga de hacer el login en facebook y redirigir a la
@@ -183,18 +187,21 @@ class FacebookLoginHandler(webapp.RequestHandler):
                 
             save_session_info(ca_user)
             
-            template_values = {
-                'user': session.get('active_user'),
-                'top_scorers': get_top_scorers(),
-                'top_users': get_top_users_global_ranking(),
-                'last_jackpot': get_last_jackpot()
-            }
+#            template_values = {
+#                'session_status': True,
+#                'user': session.get('active_user'),
+#                'top_scorers': get_top_scorers(),
+#                'top_users': get_top_users_global_ranking(),
+#                'last_jackpot': get_last_jackpot()
+#            }
         
             set_cookie(self.response, "fb_user",
                        str(profile["id"]),
                        expires=time.time() + 30 * 86400)
             
-            render_template(self, 'home.html', template_values)
+#            render_template(self, 'create_step1.html', template_values)
+
+            self.redirect('/create/step1')
         else:
             self.redirect("https://graph.facebook.com/oauth/authorize?" +
                           urllib.urlencode(args))

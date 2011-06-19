@@ -69,34 +69,28 @@
 </div>
 {% endblock %}
 
-{% block content_submenu %}
-<ul id="center-buttons">
-  <li class="not-selected"><a href="/list/football-pools/view"><span>Mis Quinielas</span></a></li>
-  <li class="not-selected"><a href="/create/step1"><span>Crear Quiniela</span></a></li>
-  <li class="selected"><a href="/list/football-pools/pay"><span>Pagar Quiniela</span></a></li>
-</ul>
-{% endblock %}
-
-{% block content_description %}
-<p id="content-description">
-  Selecciona la quiniela que deseas pagar
-</p>
-{% endblock %}
-
 {% block contents %}
+	    <form action="/home" method="post">
+	      <label for="email_id">Correo: </label>
+	      <input name="email" type="text" id="email_id" value="" />
+	      <br>
 	
-		{{ message }}
-		
-		<form action="/view/football-pool" method="post">
-		
-			<select name="selected_football_pool">
-				<option value="default" selected="selected">Selecciona una quiniela</option>
-				{% for football_pool in football_pools %}
-					<option value="{{ football_pool.key }}">{{ football_pool.name }}</option>
-				{% endfor %}
-			</select>
-			
-			<input type="submit" name="pay" value="Pagar">
-		</form>
-
+	      <label for="password_id">Clave: </label>
+	      <input name="password" type="password" id="password_id" value="" />
+	      <br>
+	
+	      <input type="submit" name="accept" value="Aceptar">
+	      <br>
+	
+	      {{ error }}
+	
+	      <ul>
+	        <li><input type="submit" name="google" value="Google"></li>
+	        <li><input type="submit" name="facebook" value="Facebook"></li>
+	      </ul>  
+	    </form>
+	
+		<ul>
+	        <li><a href="/recover_password">Recuperar clave</a></li>
+	    </ul>
 {% endblock %}

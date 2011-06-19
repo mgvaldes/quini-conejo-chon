@@ -71,78 +71,41 @@
 
 {% block content_submenu %}
 <ul id="center-buttons">
-  <li class="not-selected"><a href="#"><span>Mis Quinielas</span></a></li>
-  <li class="not-selected"><a href="#"><span>Crear Quiniela</span></a></li>
-  <li class="selected"><a href="#"><span>Pagar Quiniela</span></a></li>
+  <li class="not-selected"><a href="/list/groups/view"><span>Mis Grupos</span></a></li>
+  <li class="not-selected"><a href="/create/group"><span>Crear Grupo</span></a></li>
+  <li class="selected"><a href="/list/groups/ranking"><span>Ver Ranking</span></a></li>
 </ul>
-{% endblock %}
-
-{% block content_title %}
-<h4 id="title">Informaci&oacute;n de Pago</h4>
 {% endblock %}
 
 {% block content_description %}
 <p id="content-description">
-  Cada quiniela tiene un costo de BsF. 100,00. Puedes pagar tus quinielas a trav&eacute;s de un dep&oacute;sito o transferencia a alguna de las siguientes cuentas:
+  Busca a tus amigos e inv&iacute;talos a formar parte de tu grupo
 </p>
 {% endblock %}
 
 {% block contents %}
-<table id="table-payment-info">
-  <tr>
-	<th>Banco</th>
-	<th>Cuenta</th>
-	<th>Tipo</th>
-  </tr>
-  
-  <tr>
-	<td>Banco Mercantil</td>
-	<td>00000000000000000000</td>
-	<td>Ahorros</td>
-  </tr>
-  
-  <tr>
-	<td>Banco Provincial</td>
-	<td>00000000000000000000</td>
-	<td>Corriente</td>
-  </tr>
-  
-  <tr>
-	<td>Banesco</td>
-	<td>00000000000000000000</td>
-	<td>Ahorros</td>
-  </tr>
-</table>
-
-<p id="content-description">
-  Todas las cuentas est&aacute;n a nombre de <label class="payment_info">Mar&iacute;a Gabriela Vald&eacute;s</label>, c&eacute;dula: <label class="payment_info">V-18.358.292<label> y correo electr&oacute;nico: <label class="payment_info">mgvaldesgraterol@gmail.com<label>
-</p>
-
-<form action="/pay" method="post" class="quiniela-form">
-  <label class="title-field">Tipo: </label>
-  
-  <input type="radio" name="payment_type" value="deposit" /> Deposito No. 
-  <input type="radio" name="payment_type" value="transfer" checked="checked" /> Transferencia No.
-  <br> 
-  
-  <input name="payment_number" type="text" id="payment_number" value="" />
-  <br>
-  
-  <label class="title-field" for="bank">Banco: </label>
-  <select name="bank">
-	<option value="mercantil">Banco Mercantil</option>
-	<option value="provincial">Banco Provincial</option>
-	<option value="banesco">Banesco</option>
-  </select>
-  <br>
-  
-  <button type="submit" name="register_payment">Registrar</button>
-
-  <div id="submit-notice" class="notice">
-  </div>
-  
-  <input name="selected_football_pool_key" type="hidden" value="{{ selected_football_pool_key }}" />
-</form>
-
+	
+		<ul>
+			{% for membership_request in pending_membership_requests %}
+				<li>
+					<lable>{{ membership_request.0 }}</label> 
+					<lable>{{ membership_request.1 }}</label>
+					<a href="/accept/membership?request={{ membership_request.2 }}">Aceptar</a> 
+					<a href="/reject/membership?request={{ membership_request.2 }}">Rechazar</a>
+				</li>
+			{% endfor %}
+		</ul>
+	
+		<form action="/view/group" method="post">
+		
+			<select name="selected_competition_group">
+				<option value="default" selected="selected">Selecciona un grupo</option>
+				{% for group in groups %}
+					<option value="{{ group.key }}">{{ group.name }}</option>
+				{% endfor %}
+			</select>
+			
+			<input type="submit" name="ranking" value="Ver ranking">
+		</form>
+	
 {% endblock %}
-

@@ -22,6 +22,7 @@ class ListFootballPoolsToView(webapp.RequestHandler):
                 active_user_football_pools = CAFootballPool.all().filter("user =", active_user).filter("privacy =", False).fetch(1000)
                 
                 template_values = {
+                    'session_status': True,
                     'football_pools': active_user_football_pools,
                     'message':'',
                     'top_scorers': get_top_scorers(),
@@ -66,12 +67,12 @@ class ViewFootballPool(webapp.RequestHandler):
         if session.is_active():
             selected = self.request.get('selected_football_pool')
             
+            view = self.request.get('view')
+            pay = self.request.get('pay')
+            edit = self.request.get('edit')
+            
             if selected != "default":
                 selected_football_pool_key = Key(selected)
-                
-                view = self.request.get('view')
-                pay = self.request.get('pay')
-                edit = self.request.get('edit')
                 
                 if view:
                     selected_football_pool = CAFootballPool.get(selected_football_pool_key)
@@ -208,7 +209,7 @@ class ViewFootballPool(webapp.RequestHandler):
                             'message':'Esta quiniela ya fue pagada'
                         } 
                         
-                        render_template(self, 'list_football_pools.html', template_values)
+                        render_template(self, 'list_football_pools_to_pay.html', template_values)
                     else:
                         template_values = {
                             'selected_football_pool_key': self.request.get('selected_football_pool')
@@ -282,6 +283,9 @@ class ViewFootballPool(webapp.RequestHandler):
                             
                     render_template(self, 'edit_step1.html', template_values)
             else:
-                self.redirect('/list')
+                if view or edit:
+                    self.redirect('/list/football-pools/view')
+                elif pay:
+                    self.redirect('/list/football-pools/pay')
         else:
             self.redirect('/')

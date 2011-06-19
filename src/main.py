@@ -9,7 +9,8 @@ from edit_football_pool import EditFootballPoolStepTwo, SaveEditFootbalPool
 from view_football_pools import ListFootballPoolsToView, ListFootballPoolsToPay, ViewFootballPool
 from pay_football_pool import PayFootballPool
 from register import LoadRegistryForm, RegisterCANativeUser
-from view_competition_groups import ListCompetitionGroups, ViewCompetitionGroup, CreateCompetitionGroup, AddMemberToCompetitionGroup, DeleteMemberFromCompetitionGroup
+from login import LoadLoginForm
+from view_competition_groups import ListCompetitionGroupsToView, ListCompetitionGroupsToRanking, ViewCompetitionGroup, CreateCompetitionGroup, AddMemberToCompetitionGroup, DeleteMemberFromCompetitionGroup
 from group_membership_request import AcceptGroupMembershipRequest, RejectGroupMembershipRequest
 
 from session import LoginHandler, LogoutHandler, FacebookLoginHandler, GoogleLoginHandler
@@ -28,23 +29,39 @@ class MainHandler(webapp.RequestHandler):
         
         check_session_status()
             
-        if session.is_active():
-            template_values = {
-                'user': session['active_user'],
-                'top_scorers': get_top_scorers(),
-                'top_users': get_top_users_global_ranking(),
-                'last_jackpot': get_last_jackpot()
-            }
-                        
-            render_template(self, 'home.html', template_values)
-        else:
-            template_values = {
-                'error': ''   
-            }
+#        if session.is_active():
+#            template_values = {
+#                'session_status': True,
+#                'user': session['active_user'],
+#                'top_scorers': get_top_scorers(),
+#                'top_users': get_top_users_global_ranking(),
+#                'last_jackpot': get_last_jackpot()
+#            }
+            
+#            template_values = {
+#                'user': session['active_user'],
+#                'top_scorers': get_top_scorers(),
+#                'top_users': get_top_users_global_ranking(),
+#                'last_jackpot': get_last_jackpot()
+#            }
+#                        
+#            render_template(self, 'home.html', template_values)
+#        else:
+#            template_values = {
+#                'session_status': False,
+#                'top_scorers': get_top_scorers(),
+#                'top_users': get_top_users_global_ranking(),
+#                'last_jackpot': get_last_jackpot()
+#            }
+#            template_values = {
+#                'error': ''   
+#            }
     
-            render_template(self, 'index.html', template_values)
+        #render_template(self, 'index.html', template_values)
+        render_template(self, 'index.html', {})
             
 application = webapp.WSGIApplication([('/', MainHandler),
+                                      ('/login', LoadLoginForm),
                                       ('/register', LoadRegistryForm),
                                       ('/register/save', RegisterCANativeUser),
                                       ('/home', LoginHandler),
@@ -58,9 +75,10 @@ application = webapp.WSGIApplication([('/', MainHandler),
                                       ('/save/edit', SaveEditFootbalPool),
                                       ('/list/football-pools/view', ListFootballPoolsToView),
                                       ('/list/football-pools/pay', ListFootballPoolsToPay),
-                                      ('/view', ViewFootballPool),
+                                      ('/view/football-pool', ViewFootballPool),
                                       ('/pay', PayFootballPool),
-                                      ('/list/groups', ListCompetitionGroups),
+                                      ('/list/groups/view', ListCompetitionGroupsToView),
+                                      ('/list/groups/ranking', ListCompetitionGroupsToRanking),
                                       ('/view/group', ViewCompetitionGroup),
                                       ('/create/group', CreateCompetitionGroup),
                                       ('/add/group', AddMemberToCompetitionGroup),

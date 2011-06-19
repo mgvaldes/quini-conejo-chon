@@ -6,7 +6,7 @@ from gaesessions import get_current_session
 from ca_utils import check_session_status, render_template, get_total_points, update_session_time, get_pending_membership_requests, get_top_scorers, get_top_users_global_ranking, get_last_jackpot
 from models.ca_models import CACompetitonGroup, CAGroupRanking, CAUser, CARequestGroupMembership, CAFootballPool
 
-class ListCompetitionGroups(webapp.RequestHandler):
+class ListCompetitionGroupsToView(webapp.RequestHandler):
     def get(self):
         update_session_time()
         session = get_current_session()
@@ -25,7 +25,30 @@ class ListCompetitionGroups(webapp.RequestHandler):
                 'last_jackpot': get_last_jackpot()
             }
             
-            render_template(self, 'list_competition_groups.html', template_values)
+            render_template(self, 'list_competition_groups_to_view.html', template_values)
+        else:
+            self.redirect('/')
+            
+class ListCompetitionGroupsToRanking(webapp.RequestHandler):
+    def get(self):
+        update_session_time()
+        session = get_current_session()
+        check_session_status()
+            
+        if session.is_active():
+            active_user = session['active_user']
+            
+            competition_groups = CACompetitonGroup.get(active_user.groups)
+            
+            template_values = {
+                'groups': competition_groups,
+                'pending_membership_requests': get_pending_membership_requests(active_user),
+                'top_scorers': get_top_scorers(),
+                'top_users': get_top_users_global_ranking(),
+                'last_jackpot': get_last_jackpot()
+            }
+            
+            render_template(self, 'list_competition_groups_to_ranking.html', template_values)
         else:
             self.redirect('/')
             
@@ -38,11 +61,11 @@ class ViewCompetitionGroup(webapp.RequestHandler):
         if session.is_active():
             selected = self.request.get('selected_competition_group')
             
+            edit = self.request.get('edit')
+            ranking = self.request.get('ranking')
+            
             if selected != "default":
                 selected_competition_group_key = Key(selected)
-                
-                edit = self.request.get('edit')
-                ranking = self.request.get('ranking')
                 
                 if edit:
                     print ''
@@ -85,7 +108,10 @@ class ViewCompetitionGroup(webapp.RequestHandler):
                     
                     render_template(self, 'ranking.html', template_values)
             else:
-                self.redirect('/list/groups')
+                if edit:
+                    self.redirect('/list/groups/view')
+                elif ranking:
+                    self.redirect('/list/groups/ranking')
         else:
             self.redirect('/')
                 
