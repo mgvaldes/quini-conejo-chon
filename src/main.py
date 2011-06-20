@@ -14,6 +14,7 @@ from view_competition_groups import ListCompetitionGroupsToView, ListCompetition
 from group_membership_request import AcceptGroupMembershipRequest, RejectGroupMembershipRequest
 from rules import RulesHandler
 from user_profile import CAUserProfileHandler, SaveCAUserProfile
+from copa_america import ViewCopaAmerica
 
 from session import LoginHandler, LogoutHandler, FacebookLoginHandler, GoogleLoginHandler
 from ca_utils import render_template, check_session_status
@@ -100,7 +101,8 @@ application = webapp.WSGIApplication([('/', MainHandler),
                                       ('/reject/membership', RejectGroupMembershipRequest),
                                       ('/rules', RulesHandler),
                                       ('/view/profile', CAUserProfileHandler),
-                                      ('/save/profile', SaveCAUserProfile)],
+                                      ('/save/profile', SaveCAUserProfile),
+                                      ('/view/copa-america', ViewCopaAmerica)],
                                      debug=True)
 
 def main():
