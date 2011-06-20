@@ -50,19 +50,129 @@ ul {
     font-size: 0.875em;      /* 14px / 16px = 0.875em */
 }
 
+/* ---------- */
+/* top Style */
+/* ----------*/
+
 #top{
 	position: absolute;
 	top:0;
-	height: 113px;
+	height: 132px;
 	width: 100%;
 	left: 0px;
 	top: 0%;
 	opacity: 1;
-	background: url('/sitemedia/img/top-mini-bg.png') repeat-x;
+	background: url('/sitemedia/img/top-mini-bg2.png') repeat-x;
 	-moz-box-shadow: -150px 80px 120px #EEE;
 	-webkit-box-shadow: -40px 80px 120px rgba(255,255,255,0.5);
 	/*box-shadow: 0 80px 40px #000;*/
+}
 
+#top-area{
+	position: relative;
+    top: 2px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 100px;
+    margin-top: auto;
+    padding: 0 1em;
+    width: 925px;
+    height: 108px;
+}
+
+div#logo{
+	position: relative;
+	background: url('/sitemedia/img/logo.png');
+	top: 51px;
+	width: 443px;
+	height: 29px;
+	float: left;
+}
+
+div#pote{
+	float: left;
+	margin-left: 600px;
+	position: relative;
+	top: 20px;
+	left: 10px;
+	width: 340px;
+
+}
+
+div#pote div#logo{
+	background-image: url('/sitemedia/img/pote.png');
+	width: 81px;
+	height: 77px;
+	position: relative;
+	top: -12px;
+}
+
+p#pote-ammount{
+	font-size: 40px;	
+	float: left;
+	color: #FFF;
+	position: relative;
+	left: 10px;
+}
+
+p#pote-slogan{
+	color: #FFF;
+	float: left;
+	position: relative;
+	left: 10px;
+	font-size: 15px;
+}
+
+div#login-div{
+	position: relative;
+	float: right;
+	top: -105px;
+	left: 40px;
+}
+
+ul#login-buttons{
+	display: inline;
+	list-style-type: none;
+}
+
+ul#login-buttons li{
+	position: relative;
+	float: left;
+	margin-left:4px;
+	padding: 3px 10px;
+	background-color: #464646;
+	text-align: center;
+	right: 60px;
+	border: solid 1px #000;
+}
+
+ul#login-buttons li a{
+	font-size: 12px;
+	color: #dbdbdc;
+	text-decoration: none;
+}
+
+
+div#greetings{
+	color: #FFF;
+	font-size: 14px;
+	float:left;
+	position: relative;
+	left: -65px;
+	top: -2px;
+
+}
+
+div#greetings p{
+	text-align: right;
+	font-size: 12px;
+	position: relative;
+	top: 7px;
+}
+
+
+ul.show-user-login{
+	position: relative;
 }
 
 .wrapper {
@@ -71,7 +181,7 @@ ul {
     margin-left: auto;
     margin-right: auto;
     margin-bottom: 100px;
-    margin-top: auto;
+    margin-top: 15px;
     padding: 0 1em;
     width: 960px;
     /*min-width: 60.00em;
@@ -258,7 +368,7 @@ button{
 	position: relative;
 	margin-top: 10px;
 	top: 10px;
-	left: 20px;
+	left: 55px;
 	border: solid 1px #959595;
 	background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#efefef), to(#dfe0e1));
 	background: -moz-linear-gradient(top, #efefef, #dfe0e1);
@@ -284,7 +394,7 @@ background: -moz-linear-gradient(top, #efefef, #dfe0e1);
 -webkit-box-shadow: 0px 5px 30px #555;
 }
 
-#left-block-title{
+.left-block-title{
 	position: relative;
 	top: -10px;
 	left: -10px;
@@ -297,7 +407,7 @@ background: -moz-linear-gradient(top, #efefef, #dfe0e1);
 	background-image: url('/sitemedia/img/mini-box-top.png');
 		
 }
-#left-block-title h3{
+.left-block-title h3{
 	color: #4E4E4E;
 	font-size:15.4px;
 	font-family: 'folks-bold';
@@ -306,16 +416,16 @@ background: -moz-linear-gradient(top, #efefef, #dfe0e1);
 	text-shadow: px 0px 4px #AAA;
 }
 
-div#left-block-content {
+div.left-block-content {
 	font-size: 14px;
 }
 
 /* ----- Left Table ------- */
-div#left-block-content tr{
+div.left-block-content tr{
 	font-size: 14px;
 }
 
-div#left-block-content table{
+div.left-block-content table{
 	width: 245px;
 	margin-bottom: 30px;
 }
@@ -414,7 +524,3 @@ ul#center-buttons li.not-selected{
 .push{
 	background-color: #000;
 }*/
-
-
-
-

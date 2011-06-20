@@ -29,25 +29,34 @@
     {% endblock %}
 
 	<div id="top">
-	  {% block login %}
-	  {% endblock %}
-      
-	  <div id="logo"></div>
-      <div id="pote"></div>
-	  
+      <div id="top-area">
+          <div id="logo"></div>
+          <div id="pote">
+            <div id="logo"></div>
+            <p id="pote-ammount">4000,00 Bs.F</p>
+            <p id="pote-slogan">El pote sigue aumentando cada dia</p>
+          </div> 
+
+		{% block login %}          
+        {% endblock %}
+        
+    	</div>
 	</div>
     <div class = "wrapper">
       
       <div id="content-body">
+      {% block buttons %}
         <div id="buttons-layer">
           <ul id="buttons-ul">
             <li class="not-selected"><a href="/list/football-pools/view"><span>Quinielas</span></a><li>
             <li class="not-selected"><a href="/list/groups/view"><span>Grupos</span></a><li>
-            <li class="not-selected"><a href="#"><span>Reglas</span></a><li>
+            <li class="not-selected"><a href="/rules"><span>Reglas</span></a><li>
             <li class="not-selected"><a href="#"><span>Mi Perfil</span></a><li>
             <li class="not-selected"><a href="#"><span>Copa Am&eacute;rica</span></a><li>          
           </ul>
         </div>
+      {% endblock %}
+        
         <div id="main-content">
           <div id="left-content">
             <div class="left-block">

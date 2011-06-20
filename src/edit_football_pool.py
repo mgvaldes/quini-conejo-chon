@@ -56,6 +56,8 @@ class EditFootballPoolStepTwo(webapp.RequestHandler):
                     counter += 1
                 
                 template_values = {
+                    'session_status': True,
+                    'user': session['active_user'],
                     'football_pool_key': selected_football_pool.key(),
                     'first_round_matches': str(final_matches),
                     'quarter_finals_teams': quarter_finals_teams,
@@ -117,6 +119,8 @@ class EditFootballPoolStepTwo(webapp.RequestHandler):
                 final_match.append(team_list[1].name)
                 
                 template_values = {
+                    'session_status': True,
+                    'user': session['active_user'],
                     'football_pool_key': selected_football_pool.key(),
                     'first_round_matches': str([]),
                     'quarter_finals_matches': quarter_finals_matches,
@@ -177,13 +181,14 @@ class SaveEditFootbalPool(webapp.RequestHandler):
                     selected_match.teams = teams_list
                     selected_match.put()
                 
-                template_values = {
-                    'user': session['active_user'],
-                    'top_scorers': get_top_scorers(),
-                    'top_users': get_top_users_global_ranking(),
-                    'last_jackpot': get_last_jackpot()
-                }
-                        
-                render_template(self, 'home.html', template_values)
+#                template_values = {
+#                    'user': session['active_user'],
+#                    'top_scorers': get_top_scorers(),
+#                    'top_users': get_top_users_global_ranking(),
+#                    'last_jackpot': get_last_jackpot()
+#                }
+#                        
+#                render_template(self, 'home.html', template_values)
+                self.redirect('/list/football-pools/view')
         else:
             self.redirect('/')

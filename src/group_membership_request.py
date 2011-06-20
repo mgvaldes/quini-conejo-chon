@@ -31,14 +31,16 @@ class AcceptGroupMembershipRequest(webapp.RequestHandler):
                     
             CARequestGroupMembership.delete(member_request)
             
-            template_values = {
-                'user': session['active_user'],
-                'top_scorers': get_top_scorers(),
-                'top_users': get_top_users_global_ranking(),
-                'last_jackpot': get_last_jackpot()
-            }
-                        
-            render_template(self, 'home.html', template_values)
+#            template_values = {
+#                'session_status': True,
+#                'user': session['active_user'],
+#                'top_scorers': get_top_scorers(),
+#                'top_users': get_top_users_global_ranking(),
+#                'last_jackpot': get_last_jackpot()
+#            }
+#                        
+#            render_template(self, 'home.html', template_values)
+            self.redirect('/list/groups/view')
         else:
             self.redirect('/')
 
@@ -52,13 +54,15 @@ class RejectGroupMembershipRequest(webapp.RequestHandler):
             member_request = CARequestGroupMembership.get(Key(self.request.get('request')))
             CARequestGroupMembership.delete(member_request)
             
-            template_values = {
-                'user': session['active_user'],
-                'pending_membership_requests': get_pending_membership_requests(session['active_user']),
-                'top_scorers': get_top_scorers(),
-                'top_users': get_top_users_global_ranking()
-            }
-                        
-            render_template(self, 'home.html', template_values)
+#            template_values = {
+#                'session_status': True,
+#                'user': session['active_user'],
+#                'pending_membership_requests': get_pending_membership_requests(session['active_user']),
+#                'top_scorers': get_top_scorers(),
+#                'top_users': get_top_users_global_ranking()
+#            }
+#                        
+#            render_template(self, 'home.html', template_values)
+            self.redirect('/list/groups/view')
         else:
             self.redirect('/')

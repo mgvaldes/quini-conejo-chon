@@ -12,6 +12,7 @@ from register import LoadRegistryForm, RegisterCANativeUser
 from login import LoadLoginForm
 from view_competition_groups import ListCompetitionGroupsToView, ListCompetitionGroupsToRanking, ViewCompetitionGroup, CreateCompetitionGroup, AddMemberToCompetitionGroup, DeleteMemberFromCompetitionGroup
 from group_membership_request import AcceptGroupMembershipRequest, RejectGroupMembershipRequest
+from rules import RulesHandler
 
 from session import LoginHandler, LogoutHandler, FacebookLoginHandler, GoogleLoginHandler
 from ca_utils import render_template, check_session_status, get_pending_membership_requests, get_top_scorers, get_top_users_global_ranking, get_last_jackpot
@@ -29,7 +30,18 @@ class MainHandler(webapp.RequestHandler):
         
         check_session_status()
             
-#        if session.is_active():
+        if session.is_active():
+            template_values = {
+                'session_status': True,
+                'user': session['active_user']
+            }
+        else:
+            template_values = {
+                'session_status': False
+            }
+            
+        render_template(self, 'index.html', template_values)
+        
 #            template_values = {
 #                'session_status': True,
 #                'user': session['active_user'],
@@ -58,7 +70,7 @@ class MainHandler(webapp.RequestHandler):
 #            }
     
         #render_template(self, 'index.html', template_values)
-        render_template(self, 'index.html', {})
+        #render_template(self, 'index.html', {})
             
 application = webapp.WSGIApplication([('/', MainHandler),
                                       ('/login', LoadLoginForm),
@@ -84,7 +96,8 @@ application = webapp.WSGIApplication([('/', MainHandler),
                                       ('/add/group', AddMemberToCompetitionGroup),
                                       ('/delete/group', DeleteMemberFromCompetitionGroup),
                                       ('/accept/membership', AcceptGroupMembershipRequest),
-                                      ('/reject/membership', RejectGroupMembershipRequest)],
+                                      ('/reject/membership', RejectGroupMembershipRequest),
+                                      ('/rules', RulesHandler)],
                                      debug=True)
 
 def main():

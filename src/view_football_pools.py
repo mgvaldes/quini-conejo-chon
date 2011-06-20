@@ -23,6 +23,7 @@ class ListFootballPoolsToView(webapp.RequestHandler):
                 
                 template_values = {
                     'session_status': True,
+                    'user': active_user,
                     'football_pools': active_user_football_pools,
                     'message':'',
                     'top_scorers': get_top_scorers(),
@@ -47,6 +48,8 @@ class ListFootballPoolsToPay(webapp.RequestHandler):
                 active_user_football_pools = CAFootballPool.all().filter("user =", active_user).filter("privacy =", False).fetch(1000)
                 
                 template_values = {
+                    'session_status': True,
+                    'user': active_user,
                     'football_pools': active_user_football_pools,
                     'message':'',
                     'top_scorers': get_top_scorers(),
@@ -184,6 +187,8 @@ class ViewFootballPool(webapp.RequestHandler):
                     final_match.append(team_list[1].name)
                     
                     template_values = {
+                        'session_status': True,
+                        'user': session['active_user'],
                         'name': selected_football_pool.name,
                         'groups': [(ga_results, ga_teams_info, 'A'), (gb_results, gb_teams_info, 'B'), (gc_results, gc_teams_info, 'C')],
                         'quarter_finals_matches': quarter_finals_matches,
@@ -205,14 +210,24 @@ class ViewFootballPool(webapp.RequestHandler):
                         active_user_football_pools = CAFootballPool.all().filter("user =", active_user).filter("privacy =", False).fetch(1000)
                         
                         template_values = {
+                            'session_status': True,
+                            'user': active_user,
                             'football_pools': active_user_football_pools,
-                            'message':'Esta quiniela ya fue pagada'
+                            'message':'Esta quiniela ya fue pagada',
+                            'top_scorers': get_top_scorers(),
+                            'top_users': get_top_users_global_ranking(),
+                            'last_jackpot': get_last_jackpot()
                         } 
                         
                         render_template(self, 'list_football_pools_to_pay.html', template_values)
                     else:
                         template_values = {
-                            'selected_football_pool_key': self.request.get('selected_football_pool')
+                            'session_status': True,
+                            'user': active_user,
+                            'selected_football_pool_key': self.request.get('selected_football_pool'),
+                            'top_scorers': get_top_scorers(),
+                            'top_users': get_top_users_global_ranking(),
+                            'last_jackpot': get_last_jackpot()
                         }
                         
                         render_template(self, 'pay_football_pool.html', template_values)
@@ -276,9 +291,14 @@ class ViewFootballPool(webapp.RequestHandler):
                             gc_results.append(match_info)
                             
                     template_values = {
+                        'session_status': True,
+                        'user': active_user,
                         'name': selected_football_pool.name,
                         'groups': [(ga_results, ga_teams_info, 'A'), (gb_results, gb_teams_info, 'B'), (gc_results, gc_teams_info, 'C')],
-                        'football_pool_key': selected_football_pool.key()
+                        'football_pool_key': selected_football_pool.key(),
+                        'top_scorers': get_top_scorers(),
+                        'top_users': get_top_users_global_ranking(),
+                        'last_jackpot': get_last_jackpot()
                     } 
                             
                     render_template(self, 'edit_step1.html', template_values)

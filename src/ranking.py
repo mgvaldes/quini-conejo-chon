@@ -36,6 +36,8 @@ class ViewGlobalRanking(webapp.RequestHandler):
                     global_rank_list.append((user_name, rank.rank, current_user))
                 
                 template_values = {
+                    'session_status': True,
+                    'user': session['active_user'],
                     'ranking': global_rank_list,
                     'competition_group_name': global_competition_group.name,
                     'top_scorers': get_top_scorers(),

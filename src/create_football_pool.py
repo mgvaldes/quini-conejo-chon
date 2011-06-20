@@ -61,6 +61,8 @@ class CreateFootballPoolStepOne(webapp.RequestHandler):
                     gc_teams.append((c_teams[counter], "pair"))
                 
             template_values = {
+                'session_status': True,
+                'user': session['active_user'],
                 'groups': [(group_a_teams, ga_teams, 'A'), (group_b_teams, gb_teams, 'B'), (group_c_teams, gc_teams, 'C')],
                 'top_scorers': get_top_scorers(),
                 'top_users': get_top_users_global_ranking(),
@@ -113,6 +115,8 @@ class CreateFootballPoolStepTwo(webapp.RequestHandler):
                 counter += 1
                 
             template_values = {
+                'session_status': True,
+                'user': session['active_user'],
                 'football_pool_name': self.request.get('football-pool-name'),
                 'first_round_matches': str(final_matches),
                 'quarter_finals_teams': quarter_finals_teams,
@@ -180,14 +184,16 @@ class SaveCreateFootbalPool(webapp.RequestHandler):
                     active_user_match = CAMatch(date=original_match.date, goals_team1=int(second_round_matches[i][1]), goals_team2=int(second_round_matches[i][3]), teams=teams_list, football_pool=active_user_football_pool)
                     active_user_match.put()
                 
-                template_values = {
-                    'user': session['active_user'],
-                    'top_scorers': get_top_scorers(),
-                    'top_users': get_top_users_global_ranking(),
-                    'last_jackpot': get_last_jackpot()
-                }
-                        
-                render_template(self, 'home.html', template_values)
+#                template_values = {
+#                    'session_status': True,
+#                    'user': session['active_user'],
+#                    'top_scorers': get_top_scorers(),
+#                    'top_users': get_top_users_global_ranking(),
+#                    'last_jackpot': get_last_jackpot()
+#                }
+#                        
+#                render_template(self, 'home.html', template_values)
+                self.redirect('/list/football-pools/view')
         else:
             self.redirect('/')
                 

@@ -1,10 +1,10 @@
 from google.appengine.ext import webapp
 
-from ca_utils import render_template, check_session_status
-
 from gaesessions import get_current_session
 
-class LoadLoginForm(webapp.RequestHandler):
+from ca_utils import check_session_status, render_template
+
+class RulesHandler(webapp.RequestHandler):
     def get(self):
         session = get_current_session()
         
@@ -20,4 +20,4 @@ class LoadLoginForm(webapp.RequestHandler):
                 'session_status': False
             }
             
-        render_template(self, 'login.html', template_values)
+        render_template(self, 'rules.html', template_values)

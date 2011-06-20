@@ -18,6 +18,8 @@ class ListCompetitionGroupsToView(webapp.RequestHandler):
             competition_groups = CACompetitonGroup.get(active_user.groups)
             
             template_values = {
+                'session_status': True,
+                'user': active_user,
                 'groups': competition_groups,
                 'pending_membership_requests': get_pending_membership_requests(active_user),
                 'top_scorers': get_top_scorers(),
@@ -41,6 +43,8 @@ class ListCompetitionGroupsToRanking(webapp.RequestHandler):
             competition_groups = CACompetitonGroup.get(active_user.groups)
             
             template_values = {
+                'session_status': True,
+                'user': active_user,
                 'groups': competition_groups,
                 'pending_membership_requests': get_pending_membership_requests(active_user),
                 'top_scorers': get_top_scorers(),
@@ -99,6 +103,8 @@ class ViewCompetitionGroup(webapp.RequestHandler):
                         group_ranking_list.append((name, rank.football_pool.name, get_total_points(rank.football_pool), selected))
                         
                     template_values = {
+                        'session_status': True,
+                        'user': active_user,
                         'competition_group_name': competition_group.name,
                         'group_ranking': group_ranking_list,
                         'top_scorers': get_top_scorers(),
@@ -123,6 +129,8 @@ class CreateCompetitionGroup(webapp.RequestHandler):
             
         if session.is_active():
             template_values = {
+                'session_status': True,
+                'user': session['active_user'],
                 'searched_users': [],
                 'members': [],
                 'name': '',
@@ -180,6 +188,8 @@ class CreateCompetitionGroup(webapp.RequestHandler):
                             search_result.append((str(username), str(user.key())))
                             
                 template_values = {
+                    'session_status': True,
+                    'user': session['active_user'],
                     'searched_users': search_result,
                     'members': eval(self.request.get('last-members')),
                     'name': self.request.get('name'),
@@ -223,7 +233,7 @@ class CreateCompetitionGroup(webapp.RequestHandler):
                     request_membership = CARequestGroupMembership(users=users, status=False, group=new_group)
                     request_membership.put()
                     
-                self.redirect('/list/groups')
+                self.redirect('/list/groups/ranking')
         else:
             self.redirect('/')
             
@@ -255,6 +265,8 @@ class AddMemberToCompetitionGroup(webapp.RequestHandler):
                 members.append((str(username), str(new_member.key())))
                 
             template_values = {
+                'session_status': True,
+                'user': session['active_user'],
                 'searched_users': searched_users,
                 'members': members,
                 'name': self.request.get('name'),
@@ -296,6 +308,8 @@ class DeleteMemberFromCompetitionGroup(webapp.RequestHandler):
                 members.remove((str(username), str(new_member.key())))
                 
             template_values = {
+                'session_status': True,
+                'user': session['active_user'],
                 'searched_users': searched_users,
                 'members': members,
                 'name': self.request.get('name'),

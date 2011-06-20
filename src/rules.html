@@ -53,7 +53,7 @@
 	    	<ul id="buttons-ul">
 	        	<li class="not-selected"><a href="/list/football-pools/view"><span>Quinielas</span></a><li>
 	        	<li class="not-selected"><a href="/list/groups/view"><span>Grupos</span></a><li>
-	        	<li class="not-selected"><a href="/rules"><span>Reglas</span></a><li>
+	        	<li class="not-selected"><a href="#"><span>Reglas</span></a><li>
 	        	<li class="not-selected"><a href="#"><span>Mi Perfil</span></a><li>
 	        	<li class="not-selected"><a href="#"><span>Copa Am&eacute;rica</span></a><li>          
 	      	</ul>
@@ -63,7 +63,7 @@
 	    	<ul id="buttons-ul">
 	        	<li class="not-selected"><a href="#"><span>Quinielas</span></a><li>
 	        	<li class="not-selected"><a href="#"><span>Grupos</span></a><li>
-	        	<li class="not-selected"><a href="/rules"><span>Reglas</span></a><li>
+	        	<li class="not-selected"><a href="#"><span>Reglas</span></a><li>
 	        	<li class="not-selected"><a href="#"><span>Mi Perfil</span></a><li>
 	        	<li class="not-selected"><a href="#"><span>Copa Am&eacute;rica</span></a><li>          
 	      	</ul>
@@ -71,6 +71,43 @@
 	{% endif %}
 {% endblock %}
 
+{% block content_title %}
+<h4 id="title">Reglas y Condiciones</h4>
+{% endblock %}
+
 {% block contents %}
-	PAGINA DE INICIO ESTILO EMMA
+	<h5 class="group-title">Reglas de Puntuaci&oacute;n</h5>
+	
+	<p>
+		En todos los partidos de la copa, ganar&aacute;s 3 puntos por acertar &uacute;nicamente la tendencia del resultado del partido, es decir, acertar el ganador independientemente de la cantidad de goles, o 5 puntos por acertar el resultado exacto.
+	</p>
+	<br>
+	
+	<p>
+		En la ronda de partidos de cuartos de final ganar&aacute;s 3 puntos por cada equipo adivinado para pasar de la ronda clasificatoria de grupos a esta ronda y 3 puntos m&aacute;s si acertaste el orden de clasificación de este equipo. 
+	</p>
+	<br>
+	
+	<p>
+		En la ronda de semifinal y en los partidos de tercero/cuarto y final ganar&aacute;s 3 puntos por cada equipo acertado en cada uno de estos partidos.
+	</p>
+	<br>
+	
+	<h5 class="group-title">Distribuci&oacute;n del Pote</h5>
+	
+	<p>
+		El pote se distribuir&aacute; en porcentajes distintos entre los 3 primeros usuarios con mejor puntaje acumulado al finalizar la copa am&eacute;rica. El pote comienza con un monto inicial de 4000 bol&iacute;vares.
+	</p>
+	<br>
+	
+	<p>
+		De la compra de cada quiniela, se suma el x% de su valor al pote y al finalizar &eacute;ste se distribuir&aacute; de la siguiente forma entre los 3 ganadores:
+		<br>
+		<br>
+			- x% para el usuario en primer lugar.
+			<br>
+			- x% para el usuario en segundo lugar.
+			<br>
+			- x% para el usuario en tercer lugar.
+	</p>
 {% endblock %}
