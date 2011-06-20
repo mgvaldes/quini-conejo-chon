@@ -4,49 +4,6 @@
 <body>
 {% endblock %}
 
-{% block login %}
-	{% if session_status %}
-		<div id="login-div" class="login-yes">
-			<div id="login-info">
-            	<div id="greetings">
-            		<p>
-            			{% ifequal user.type 0 %}
-							{% if user.google_user %}
-								Hola, {{ user.google_user.nickname }}
-							{% endif %}	
-						{% endifequal %}
-				
-						{% ifequal user.type 1 %}
-							{% if user.facebook_user %}
-								Hola, {{ user.facebook_user.name }}
-							{% endif %}	
-						{% endifequal %}
-				
-						{% ifequal user.type 2 %}
-							{% if user.native_user %}
-								Hola, {{ user.native_user.name }}
-							{% endif %}	
-						{% endifequal %}
-            		</p>
-            	</div>
-
-                <ul id="login-buttons" class="show-user-login">
-					<li><a href="/logout"> Cerrar sesi&oacute;n </a></li>
-				</ul>
-		    </div> 
-		</div>
-	{% else %}
-		<div id="login-div" class="login-not"> 
-	    	<div id="buttons-area"> 
-	        	<ul id="login-buttons" class="show-login-buttons"> 
-	            	<li><a href="/login"> Iniciar Sesi&oacute;n </a></li> 
-	            	<li><a href="/register"> Registrarse </a></li> 
-	          	</ul> 
-	      	</div> 
-		</div>
-	{% endif %}
-{% endblock %}
-
 {% block contents %}
 	<form action="/home" method="post">
 		<label for="email_id">Correo: </label>

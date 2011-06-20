@@ -12,7 +12,7 @@ def check_session_status():
         
     if session.has_key('session_timestamp'):
         session_timestamp = session['session_timestamp']
-        delta = datetime.timedelta(minutes=-10)
+        delta = datetime.timedelta(minutes=-60)
             
         if (datetime.datetime.today() > (session_timestamp - delta)):
             session.terminate()
@@ -231,8 +231,9 @@ def get_top_users_global_ranking():
     football_pools = CAFootballPool.all().filter("privacy =", False).fetch(10000)
     
     for football_pool in football_pools:
-        position_points.append((counter, get_total_points(football_pool)))
-        counter += 1
+        if football_pool.payment:
+            position_points.append((counter, get_total_points(football_pool)))
+            counter += 1
     
     football_pools_sorted_by_total_points = sorted(position_points, key=lambda position_point: position_point[1])
     

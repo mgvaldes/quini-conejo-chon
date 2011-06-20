@@ -45,10 +45,11 @@ class PayFootballPool(webapp.RequestHandler):
                         for group_key in groups:
                             group = CACompetitonGroup.get(group_key)
                             
-                            members = group.members.fetch(10000)
-                        
-                            group_ranking = CAGroupRanking(football_pool=football_pool, group=group, rank=len(members))
-                            group_ranking.put()
+                            if group:
+                                members = group.members.fetch(10000)
+                            
+                                group_ranking = CAGroupRanking(football_pool=football_pool, group=group, rank=len(members))
+                                group_ranking.put()
                 
                 global_competition_group = CACompetitonGroup.all().filter("privacy =", True).fetch(1)[0]
                 
@@ -61,7 +62,20 @@ class PayFootballPool(webapp.RequestHandler):
                     group_ranking = CAGroupRanking(football_pool=selected_football_pool, group=global_competition_group, rank=len(members))
                     group_ranking.put()
                 
+#                template_values = {
+#                    'session_status': True,
+#                    'user': session['active_user'],
+#                    'football_pools': active_user_football_pools,
+#                    'message':'Su pago fue registrado exitosamente',
+#                    'top_scorers': get_top_scorers(),
+#                    'top_users': get_top_users_global_ranking(),
+#                    'last_jackpot': get_last_jackpot()
+#                } 
+#                
+#                render_template(self, 'list_football_pools_to_pay.html', template_values)
                 template_values = {
+                    'session_status': True,
+                    'user': session['active_user'],
                     'football_pools': active_user_football_pools,
                     'message':'Su pago fue registrado exitosamente',
                     'top_scorers': get_top_scorers(),
@@ -69,6 +83,6 @@ class PayFootballPool(webapp.RequestHandler):
                     'last_jackpot': get_last_jackpot()
                 } 
                 
-                render_template(self, 'list_football_pools.html', template_values)
+                render_template(self, 'list_football_pools_to_view.html', template_values)
         else:
             self.redirect('/')

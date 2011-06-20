@@ -211,7 +211,7 @@ class ViewFootballPool(webapp.RequestHandler):
                         
                         template_values = {
                             'session_status': True,
-                            'user': active_user,
+                            'user': session['active_user'],
                             'football_pools': active_user_football_pools,
                             'message':'Esta quiniela ya fue pagada',
                             'top_scorers': get_top_scorers(),
@@ -223,7 +223,7 @@ class ViewFootballPool(webapp.RequestHandler):
                     else:
                         template_values = {
                             'session_status': True,
-                            'user': active_user,
+                            'user': session['active_user'],
                             'selected_football_pool_key': self.request.get('selected_football_pool'),
                             'top_scorers': get_top_scorers(),
                             'top_users': get_top_users_global_ranking(),
@@ -292,7 +292,7 @@ class ViewFootballPool(webapp.RequestHandler):
                             
                     template_values = {
                         'session_status': True,
-                        'user': active_user,
+                        'user': session['active_user'],
                         'name': selected_football_pool.name,
                         'groups': [(ga_results, ga_teams_info, 'A'), (gb_results, gb_teams_info, 'B'), (gc_results, gc_teams_info, 'C')],
                         'football_pool_key': selected_football_pool.key(),

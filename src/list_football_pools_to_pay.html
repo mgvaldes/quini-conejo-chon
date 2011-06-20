@@ -4,157 +4,6 @@
 <body>
 {% endblock %}
 
-{% block left_content %}
-<div class="left-block-title">
-  <h3>Goleadores del Torneo</h3>
-</div>
-
-<div class="left-block-content">
-  <table>
-	<tr>
-	  <th>Nombre</th>
-	  <th>Pa&iacute;s</th>
-	  <th>Goles</th>
-	</tr>
-	
-	{% for scorer in top_scorers %}
-	<tr class={{ scorer.3 }}>
-	  <td>{{ scorer.0 }}</td>
-	  <td>{{ scorer.1 }}</td>
-	  <td>{{ scorer.2 }}</td>
-	</tr>
-	{% endfor %}
-	
-  </table>
-</div>
-
-<div class="left-block-title">
-  <h3>Clasificaci&oacute;n</h3>
-</div>
-
-<div class="left-block-content">
-  <table>
-	<tr>
-	  <th>Usuario</th>
-	  <th>Quiniela</th>
-	  <th>Puntos</th>
-	</tr>
-	
-	{% for user in top_users %}
-	<tr class={{ user.3 }}>
-	  <td>{{ user.0 }}</td>
-	  <td>{{ user.1 }}</td>
-	  <td>{{ user.2 }}</td>
-	</tr>
-	{% endfor %}
-	
-  </table>
-</div>
-
-<div class="left-block-title">
-  <h3>Comparte en Facebook</h3>
-</div>
-
-<div class="left-block-content">
-	<iframe src="http://www.facebook.com/plugins/likebox.php?href=http%3A%2F%2Fwww.facebook.com%2Fpages%2FQuinielaca%2F182059218514094&amp;width=292&amp;colorscheme=light&amp;show_faces=true&amp;border_color&amp;stream=true&amp;header=true&amp;height=327" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:245px; height:327px;" allowTransparency="false"></iframe>
-</div>
-
-<div class="left-block-title">
-  <h3>Comparte en Twitter</h3>
-</div>
-
-<div class="left-block-content">
-	<a href="http://twitter.com/share" class="twitter-share-button" data-text="@Quinielaca te permite crear quinielas y participar para ganar el gran pote al clasificar en los tres primeros lugares. Crea grupos con tus amigos y comparte tus resultados" data-count="none">Tweet</a><script type="text/javascript" src="http://platform.twitter.com/widgets.js"></script>
-	<a href="http://twitter.com/Quinielaca" class="twitter-follow-button" data-show-count="false">Follow @Quinielaca</a><script src="http://platform.twitter.com/widgets.js" type="text/javascript"></script>	
-</div>
-{% endblock %}
-
-{% block login %}
-	{% if session_status %}
-		<div id="login-div" class="login-yes">
-			<div id="login-info">
-            	<div id="greetings">
-            		<p>
-            			{% ifequal user.type 0 %}
-							{% if user.google_user %}
-								Hola, {{ user.google_user.nickname }}
-							{% endif %}	
-						{% endifequal %}
-				
-						{% ifequal user.type 1 %}
-							{% if user.facebook_user %}
-								Hola, {{ user.facebook_user.name }}
-							{% endif %}	
-						{% endifequal %}
-				
-						{% ifequal user.type 2 %}
-							{% if user.native_user %}
-								Hola, {{ user.native_user.name }}
-							{% endif %}	
-						{% endifequal %}
-            		</p>
-            	</div>
-
-                <ul id="login-buttons" class="show-user-login">
-					<li><a href="/logout"> Cerrar sesi&oacute;n </a></li>
-				</ul>
-		    </div> 
-		</div>
-	{% else %}
-		<div id="login-div" class="login-not"> 
-	    	<div id="buttons-area"> 
-	        	<ul id="login-buttons" class="show-login-buttons"> 
-	            	<li><a href="/login"> Iniciar Sesi&oacute;n </a></li> 
-	            	<li><a href="/register"> Registrarse </a></li> 
-	          	</ul> 
-	      	</div> 
-		</div>
-	{% endif %}
-{% endblock %}
-
-{% block login %}
-	{% if session_status %}
-		<div id="login-div" class="login-yes">
-			<div id="login-info">
-            	<div id="greetings">
-            		<p>
-            			{% ifequal user.type 0 %}
-							{% if user.google_user %}
-								Hola, {{ user.google_user.nickname }}
-							{% endif %}	
-						{% endifequal %}
-				
-						{% ifequal user.type 1 %}
-							{% if user.facebook_user %}
-								Hola, {{ user.facebook_user.name }}
-							{% endif %}	
-						{% endifequal %}
-				
-						{% ifequal user.type 2 %}
-							{% if user.native_user %}
-								Hola, {{ user.native_user.name }}
-							{% endif %}	
-						{% endifequal %}
-            		</p>
-            	</div>
-
-                <ul id="login-buttons" class="show-user-login">
-					<li><a href="/logout"> Cerrar sesi&oacute;n </a></li>
-				</ul>
-		    </div> 
-		</div>
-	{% else %}
-		<div id="login-div" class="login-not"> 
-	    	<div id="buttons-area"> 
-	        	<ul id="login-buttons" class="show-login-buttons"> 
-	            	<li><a href="/login"> Iniciar Sesi&oacute;n </a></li> 
-	            	<li><a href="/register"> Registrarse </a></li> 
-	          	</ul> 
-	      	</div> 
-		</div>
-	{% endif %}
-{% endblock %}
-
 {% block content_submenu %}
 <ul id="center-buttons">
   <li class="not-selected"><a href="/list/football-pools/view"><span>Mis Quinielas</span></a></li>
@@ -170,9 +19,6 @@
 {% endblock %}
 
 {% block contents %}
-	
-		{{ message }}
-		
 		<form action="/view/football-pool" method="post">
 		
 			<select name="selected_football_pool">
@@ -183,6 +29,11 @@
 			</select>
 			
 			<input type="submit" name="pay" value="Pagar">
+			
+			<div id="submit-notice" class="notice">
+				{{ message }}
+  			</div>
+  			
 		</form>
 
 {% endblock %}
