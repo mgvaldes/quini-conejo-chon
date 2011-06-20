@@ -13,10 +13,10 @@ from login import LoadLoginForm
 from view_competition_groups import ListCompetitionGroupsToView, ListCompetitionGroupsToRanking, ViewCompetitionGroup, CreateCompetitionGroup, AddMemberToCompetitionGroup, DeleteMemberFromCompetitionGroup
 from group_membership_request import AcceptGroupMembershipRequest, RejectGroupMembershipRequest
 from rules import RulesHandler
-from profile import ProfileHandler
+from user_profile import CAUserProfileHandler, SaveCAUserProfile
 
 from session import LoginHandler, LogoutHandler, FacebookLoginHandler, GoogleLoginHandler
-from ca_utils import render_template, check_session_status, get_pending_membership_requests, get_top_scorers, get_top_users_global_ranking, get_last_jackpot
+from ca_utils import render_template, check_session_status
 
 from gaesessions import get_current_session
 
@@ -99,7 +99,8 @@ application = webapp.WSGIApplication([('/', MainHandler),
                                       ('/accept/membership', AcceptGroupMembershipRequest),
                                       ('/reject/membership', RejectGroupMembershipRequest),
                                       ('/rules', RulesHandler),
-                                      ('/profile', ProfileHandler)],
+                                      ('/view/profile', CAUserProfileHandler),
+                                      ('/save/profile', SaveCAUserProfile)],
                                      debug=True)
 
 def main():

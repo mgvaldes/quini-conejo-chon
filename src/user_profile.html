@@ -1,0 +1,68 @@
+{% extends 'base.html' %}
+
+{% block openbody %}
+<body>
+{% endblock %}
+
+{% block contents %}
+		
+		<form action="/save/profile" method="post">
+			{% ifequal user.type 0 %}
+				{% if user.google_user %}
+					Sesi&oacute;n iniciada con Google
+				{% endif %}	
+			{% endifequal %}
+	
+			{% ifequal user.type 1 %}
+				{% if user.facebook_user %}
+					Sesi&oacute;n iniciada con Facebook
+				{% endif %}	
+			{% endifequal %}
+	
+			{% ifequal user.type 2 %}
+				{% if user.native_user %}
+					Sesi&oacute;n iniciada con Quinielaca.com
+					<br>
+					
+					<label for="name_id">Nombre: </label>
+				    <input name="name" type="text" id="name_id" value={{ user.native_user.name }} />
+				    <br>
+				
+		      		<label for="email_id">Correo: </label>
+				    <input name="email" type="text" id="email_id" value={{ user.native_user.email }} />
+				    <br>
+				
+				    <label for="password_id">Clave: </label>
+				    <input name="password" type="password" id="password_id" value="" />
+				    <br>
+				    
+				    <label for="password_confirm_id">Clave: </label>
+				    <input name="password_confirm" type="password" id="password_confirm_id" value="" />
+				    <br>
+				{% endif %}	
+			{% endifequal %}
+						
+		    <button type="submit" name="save" value="save">Guardar</button>
+		    <button type="submit" name="cancel" value="cancel">Cancelar</button>
+		    <br>
+		    
+		    <h5 class="group-title">Mis Quinielas</h5>
+		    
+		    <table>
+		    	<tr>
+					<th>Quiniela</th>
+					<th>Estado</th>
+					<th>Puntos</th>
+			  	</tr>
+		    
+				{% for football_pool in football_pools_info %}
+					<tr>
+						<td>{{ football_pool.0 }}</td>
+						<td>{{ football_pool.1 }}</td>
+						<td>{{ football_pool.2 }}</td>
+					</tr>
+				{% endfor %}
+			</table>
+		</form>
+		
+{% endblock %}
