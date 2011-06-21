@@ -363,19 +363,6 @@ form.quiniela-form table{
 	left: -20px;
 }
 
-button{
-	padding: 10px 10px;
-	position: relative;
-	margin-top: 10px;
-	top: 10px;
-	left: 55px;
-	border: solid 1px #959595;
-	background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#efefef), to(#dfe0e1));
-	background: -moz-linear-gradient(top, #efefef, #dfe0e1);
-	width: 100px;
-	
-}
-
 /* ------------------------*/
 /* Styling the left column */
 /* ------------------------*/
@@ -571,3 +558,44 @@ ul.classif-info li{
 .push{
 	background-color: #000;
 }*/
+
+/*button{
+	padding: 10px 10px;
+	position: relative;
+	margin-top: 10px;
+	top: 10px;
+	left: 55px;
+	border: solid 1px #959595;
+	background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#efefef), to(#dfe0e1));
+	background: -moz-linear-gradient(top, #efefef, #dfe0e1);
+	width: 100px;
+	
+}*/
+
+select { 
+	font-family: 'folks', Helvetica, Arial;
+	font-weight: 100;
+	font-size: 14px;
+	color: #3c3c3c; 
+}
+
+button{
+	padding: 5px 5px;
+	position: relative;
+	margin-top: 10px;
+	top: 10px;
+	left: 30px;
+	border: solid 1px #959595;
+	background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#efefef), to(#dfe0e1));
+	background: -moz-linear-gradient(top, #efefef, #dfe0e1);
+	width: 80px;
+	font-family: 'folks', Helvetica, Arial;
+	font-weight: 100;
+	font-size: 12px;
+	color: #3c3c3c; 
+}
+
+button.list-button{
+	margin-top: 0px;
+	top: 0px;
+}
