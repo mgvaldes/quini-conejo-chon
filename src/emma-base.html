@@ -84,21 +84,44 @@
     	</div>
 	</div>
   
+	{% if session_status %}
+	
 	<div class="emma-wrapper">
 		<div id="emma-buttons">
 			<ul id="first-line">
-				<li id="quinielas"><a href="list/football-pools/view"></a></li>
-				<li id="grupos"><a href="#"></a></li>
-				<li id="reglas"><a href="#"></a></li>
+				<li id="quinielas"><a href="/list/football-pools/view"></a></li>
+				<li id="grupos"><a href="/list/groups/view"></a></li>
+				<li id="reglas"><a href="/rules"></a></li>
 			</ul>
 			<ul id="second-line">
-				<li id="elpote"><a href="#"></a></li>
-				<li id="copaamerica"><a href="#"></a></li>
-				<li id="comparte"><a href="#"></a></li>				
+				<li id="elpote"><a href="/rules"></a></li>
+				<li id="copaamerica"><a href="/view/copa-america"></a></li>
+				<li id="comparte"><a href="/create/step1"></a></li>				
 			</ul>
 		</div>
 		
 	</div>
+	{% else %}
+	
+	
+	<div class="emma-wrapper">
+		<div id="emma-buttons">
+			<ul id="first-line">
+				<li id="quinielas"><a href="/login"></a></li>
+				<li id="grupos"><a href="/login"></a></li>
+				<li id="reglas"><a href="/rules"></a></li>
+			</ul>
+			<ul id="second-line">
+				<li id="elpote"><a href="/rules"></a></li>
+				<li id="copaamerica"><a href="/view/copa-america"></a></li>
+				<li id="comparte"><a href="/login"></a></li>				
+			</ul>
+		</div>
+		
+	</div>
+
+	{% endif %}
+
 
     <div class="footer">
       <p>Quinielaca.com</p>

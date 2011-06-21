@@ -5,12 +5,12 @@ padding: 0px;
 
 @font-face {
 font-family: 'folks';
-src: url('/sitemedia/fonts/Folks-Normal.ttf');
+src: url('/sitemedia/fonts/Folks-Normal.svg');
 }
 
 @font-face {
 font-family: 'folks-bold';
-src: url('/sitemedia/fonts/Folks-Bold.ttf');
+src: url('/sitemedia/fonts/Folks-Bold.svg');
 }
 
 body {

@@ -927,14 +927,14 @@ function loadQuinEvents(){
     
     $('#create-step1').submit(function(event){
         if(!isPoolFull()){
-            alert("Pooll is not full");
+            alert("Debes rellenar todos los partidos");
             event.preventDefault();
             return false;
         }
 		// must provide pool name
 		else{
 			if($("input[name=football-pool-name]").val()==""){
-				alert("Provide Name");
+				alert("Ingresa un nombre para tu quiniela");
 				event.preventDefault();
 				return false;
 			}
@@ -950,7 +950,7 @@ function loadQuinEditEvents(){
     
     $('#edit-step1').submit(function(event){
         if(!isPoolFull()){
-            alert("Pooll is not full");
+            alert("Debes rellenar todos los partidos");
             event.preventDefault();
             return false;
         }
@@ -964,7 +964,7 @@ function loadFinalRoundEvents(){
     $('#create-step2').submit(function(event){
 
         if(!isFinalPoolFull()){
-            alert("Pooll is not full");
+            alert("Debes rellenar todos los partidos");
             event.preventDefault();
             return false;
         }

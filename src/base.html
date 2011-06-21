@@ -86,6 +86,8 @@
     <div class = "wrapper">
       
       <div id="content-body">
+	
+		<!--
       {% block buttons %}
         <div id="buttons-layer">
           <ul id="buttons-ul">
@@ -96,7 +98,32 @@
             <li class="not-selected"><a href="/view/copa-america"><span>Copa Am&eacute;rica</span></a><li>          
           </ul>
         </div>
-      {% endblock %}
+      {% endblock %}-->
+
+
+		{% if session_status %}
+			<div id="buttons-layer">
+		    	<ul id="buttons-ul">
+		        	<li class="not-selected"><a href="/list/football-pools/view"><span>Quinielas</span></a><li>
+		        	<li class="not-selected"><a href="/list/groups/view"><span>Grupos</span></a><li>
+		        	<li class="not-selected"><a href="/rules"><span>Reglas</span></a><li>
+		        	<li class="not-selected"><a href="/view/profile"><span>Mi Perfil</span></a><li>
+		        	<li class="not-selected"><a href="/view/copa-america"><span>Copa Am&eacute;rica</span></a><li>          
+		      	</ul>
+		    </div>
+		{% else %}
+			<div id="buttons-layer">
+		    	<ul id="buttons-ul">
+		        	<li class="not-selected"><a href="/login"><span>Quinielas</span></a><li>
+		        	<li class="not-selected"><a href="/login"><span>Grupos</span></a><li>
+		        	<li class="not-selected"><a href="/rules"><span>Reglas</span></a><li>
+		        	<li class="not-selected"><a href="/login"><span>Mi Perfil</span></a><li>
+		        	<li class="not-selected"><a href="/view/copa-america"><span>Copa Am&eacute;rica</span></a><li>          
+		      	</ul>
+		    </div>
+		{% endif %}
+
+
         
         <div id="main-content">
           <div id="left-content">

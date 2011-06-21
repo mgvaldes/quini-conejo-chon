@@ -18,6 +18,12 @@ $(document).ready(function(){
 <h4 id="title">Inicio de Sesi&oacute;n</h4>
 {% endblock %}
 
+{% block content_description %}
+<p id="content-description">
+  Ingresa tus credenciales para entrar al sistema.
+</p>
+{% endblock %}
+
 {% block contents %}
 	<form action="/home" method="post" class="other-form">
 		<label for="email_id">Correo: </label>
@@ -39,7 +45,7 @@ $(document).ready(function(){
 	
 	    <ul id="other-login-buttons">
 	    	<li><button class="list-button" type="submit" name="google" value="Google">Google</button></li>
-	        <li><button class="list-button" type="submit" name="facebook" value="Facebook">Facebook</button></li>
+	        <!--<li><button class="list-button" type="submit" name="facebook" value="Facebook">Facebook</button></li>-->
 	    </ul>
 	    
 	    <a href="#">Recuperar clave</a>
