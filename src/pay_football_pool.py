@@ -47,7 +47,7 @@ class PayFootballPool(webapp.RequestHandler):
                     if group:
                         members = group.members.fetch(10000)
                     
-                        group_ranking = CAGroupRanking(football_pool=football_pool, group=group, rank=len(members))
+                        group_ranking = CAGroupRanking(football_pool=selected_football_pool, group=group, rank=len(members))
                         group_ranking.put()
                 
                 global_competition_group = CACompetitonGroup.all().filter("privacy =", True).fetch(1)[0]

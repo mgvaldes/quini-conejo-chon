@@ -135,7 +135,7 @@ ul#login-buttons{
 	list-style-type: none;
 }
 
-ul#login-buttons li{
+ #login-buttons li{
 	position: relative;
 	float: left;
 	margin-left:4px;
@@ -186,15 +186,97 @@ ul.show-user-login{
     width: 960px;
     /*min-width: 60.00em;
     max-width: 60.00em;      /* 960px / 16px = 60.00em */
+}
 
+.emma-wrapper{
+	position: relative;
+	top: 130px; /*top width*/
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 100px;
+    margin-top: 15px;
+    padding: 0 1em;
+    width: 960px;
+}
+
+div#emma-buttons{
+	position: relative;
+	top: 10px;
+	height: 480px;
+	width:730px;
+	margin: auto;
+}
+
+div#emma-buttons ul{
+	list-style-type: none;
+}
+
+
+
+div#emma-buttons li{
+	display: inline-table;
+	width: 222px;
+	height: 221px;
+	background-repeat: no-repeat;
+	text-align: center;
+	margin: 0px 0px;
+	margin-left: 7px;
+	margin-top: 7px;
+}
+
+
+
+div#emma-buttons li#quinielas{
+		background-image: url('/sitemedia/img/emma-block.png');
+}
+
+div#emma-buttons li#grupos{
+		background-image: url('/sitemedia/img/grupos-emma.jpg');
+}
+
+div#emma-buttons li#reglas{
+		background-image: url('/sitemedia/img/reglas-emma.jpg');
+}
+
+div#emma-buttons li#elpote{
+		background-image: url('/sitemedia/img/elpote-emma.jpg');
+}
+
+div#emma-buttons li#copaamerica{
+		background-image: url('/sitemedia/img/copa-emma.jpg');
+}
+
+div#emma-buttons li#comparte{
+		background-image: url('/sitemedia/img/comparte-emma.jpg');
+}
+
+
+div#emma-buttons li#quinielas{
+		background-image: url('/sitemedia/img/quinielas-emma.jpg');
+}
+
+
+div#emma-buttons a{
+	display: block;
+	width:219px;
+	height: 220px;
+	margin: 0px 0px;
+	padding: 0px 0px;
+}
+div#emma-buttons span{
+	position: relative;
+	width: 222px;
+	height: 222px;
+	top: 0px;
+	left: 0px;
 }
 
 .footer{
 	clear: both;
 	position: relative;
 	top: 100px;
-	width: 102%;
-	margin-left: -1.3%;
+	width: 100%;
+	margin-left: 0%;
 	height: 30px;
 	bottom: 0;
 	background-color: #000;
