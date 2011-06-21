@@ -14,7 +14,7 @@
 
 {% block content_description %}
 <p id="content-description">
-  Selecciona la quiniela que deseas ver
+  Selecciona la quiniela que deseas ver o editar
 </p>
 {% endblock %}
 
@@ -28,8 +28,8 @@
 				{% endfor %}
 			</select>
 			
-			<input type="submit" name="view" value="Ver">
-			<input type="submit" name="edit" value="Editar">
+			<button class="list-button" type="submit" name="view" value="Ver">Ver</button>
+			<button class="list-button" type="submit" name="edit" value="Editar">Editar</button>
 			
 			<div id="submit-notice" class="notice">
 				{{ message }}

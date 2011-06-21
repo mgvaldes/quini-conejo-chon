@@ -5,29 +5,30 @@
 {% endblock %}
 
 {% block contents %}
-	<form action="/home" method="post">
+	<form action="/home" method="post" class="other-form">
 		<label for="email_id">Correo: </label>
-	    <input name="email" type="text" id="email_id" value="" />
+	    <input class="email-login" name="email" type="text" id="email_id" value="" />
 	    <br>
 	
 	    <label for="password_id">Clave: </label>
 	    <input name="password" type="password" id="password_id" value="" />
 	    <br>
 	
-	    <input type="submit" name="accept" value="Aceptar">
+	    <button id="accept-login" type="submit" name="accept" value="Aceptar">Aceptar</button>
 	    <br>
 	
 		<div id="submit-notice" class="notice">
 			{{ error }}
   		</div>
+  		
+  		Tambi&eacute;n puedes iniciar sesi&oacute;n con
 	
-	    <ul>
-	    	<li><input type="submit" name="google" value="Google"></li>
-	        <li><input type="submit" name="facebook" value="Facebook"></li>
+	    <ul id="other-login-buttons">
+	    	<li><button class="list-button" type="submit" name="google" value="Google">Google</button></li>
+	        <li><button class="list-button" type="submit" name="facebook" value="Facebook">Facebook</button></li>
 	    </ul>
+	    
+	    <a href="#">Recuperar clave</a>
 	</form>
 	
-	<ul>
-		<li><a href="/recover_password">Recuperar clave</a></li>
-	</ul>
 {% endblock %}

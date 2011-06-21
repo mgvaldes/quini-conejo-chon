@@ -14,10 +14,10 @@
 {% endblock %}
 
 {% block contents %}
-
+<form action="/create/step2" method="post" id="create-step1" class="quiniela-form">
 <h5 class="group-title">Pr&oacute;ximos Partidos</h5>
 
-<table class="group-table">
+<table class="group-table" id="next-matches">
 	<tr>
 		<th>Partido</th>
 		<th>Fecha</th>
@@ -126,5 +126,5 @@
 	<label class="e2" for="f-{{ final_match.0|slice:":3" }}-{{ final_match.3|slice:":3" }}-g2">{{ final_match.3 }}</label>
   </li>
 </ul>
-
+</form>
 {% endblock %}

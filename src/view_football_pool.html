@@ -21,12 +21,6 @@
 <h4 id="title">{{ name }}</h4>
 {% endblock %}
 
-{% block content_description %}
-<p id="content-description">
-  Selecciona la quiniela que deseas ver
-</p>
-{% endblock %}
-
 {% block contents %}
 <form action="/create/step2" method="post" id="create-step1" class="quiniela-form">
 {% for group in groups %}

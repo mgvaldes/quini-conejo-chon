@@ -599,3 +599,62 @@ button.list-button{
 	margin-top: 0px;
 	top: 0px;
 }
+
+button#pay-button {
+	left: 0px;
+}
+
+table#next-matches{
+	float: none;
+	margin-bottom: 0px;
+	top: 0px;
+	left: 0px;
+}
+
+button#accept-login {
+	left: 0px;
+	margin-top: 0px;
+	margin-bottom: 20px;
+}
+
+form.other-form input.email-login {
+	width: 180px;
+}
+
+ul#other-login-buttons {
+	margin-top: 10px;
+	margin-left: -180px;
+	margin-bottom: 20px;
+}
+
+ul#other-login-buttons li{
+	display: inline;
+/*	float: left;
+	text-align: center;
+	width: 210px;
+	height: 20px;*/
+}
+
+button#register-button {
+	left: 0px;
+	margin-top: 0px;
+}
+
+button#create-group-button {
+	left: 0px;
+	margin-top: 0px;
+}
+
+button#save-group-button {
+	left: 0px;
+	margin-top: 10px;
+}
+
+ul#members-list {
+	float: right;
+}
+
+ul#search-list {
+	position: relative;
+	top: 10px;
+}
