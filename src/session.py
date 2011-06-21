@@ -156,6 +156,7 @@ class FacebookLoginHandler(webapp.RequestHandler):
             session.terminate()
         
         verification_code = self.request.get("code")
+        
         args = dict(client_id=FACEBOOK_APP_ID,
                     redirect_uri=self.request.path_url)
         
@@ -164,6 +165,7 @@ class FacebookLoginHandler(webapp.RequestHandler):
             args["code"] = self.request.get("code")
             response = cgi.parse_qs(urllib.urlopen("https://graph.facebook.com/oauth/access_token?" +
                                                    urllib.urlencode(args)).read())
+            
             access_token = response["access_token"][-1]
 
             # Download the user profile and cache a local instance of the
