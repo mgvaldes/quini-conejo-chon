@@ -16,13 +16,13 @@ $(document).ready(function(){
 
 {% block contents %}
 		
-		<form action="/register/save" method="post">
+		<form action="/register/save" method="post" class="other-form">
 			<label for="name_id">Nombre: </label>
 		    <input name="name" type="text" id="name_id" value="" />
 		    <br>
 		
       		<label for="email_id">Correo: </label>
-		    <input name="email" type="text" id="email_id" value="" />
+		    <input class="email-login" name="email" type="text" id="email_id" value="" />
 		    <br>
 		
 		    <label for="password_id">Clave: </label>
@@ -33,7 +33,7 @@ $(document).ready(function(){
 		    <input name="password_confirm" type="password" id="password_confirm_id" value="" />
 		    <br>
 		
-		    <input type="submit" name="register" value="Registrar">
+		    <button id="register-button" class="list-button" type="submit" name="register" value="Registrar">Registrar</button>
 		</form>
 
 {% endblock %}

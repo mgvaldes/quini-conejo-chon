@@ -21,10 +21,10 @@ loadPrevResults();loadHiddenLeft();
 {% endblock %}
 
 {% block contents %}
-
+<form action="/create/step2" method="post" id="create-step1" class="quiniela-form">
 <h5 class="group-title">Pr&oacute;ximos Partidos</h5>
 
-<table class="group-table">
+<table class="group-table" id="next-matches">
 	<tr>
 		<th>Partido</th>
 		<th>Fecha</th>

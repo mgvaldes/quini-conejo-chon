@@ -35,8 +35,8 @@ loadHiddenLeft();
   <input name="name" type="text" id="name" value="{{ name }}" class="title-field"/>
   <br>
 
-  <input type="submit" name="search_user" value="Buscar Amigo">
-  <input name="search" type="text" id="search" value="" class="title-field" />
+  Busca a tus amigos: <input name="search" type="text" id="search" value="" class="title-field" />
+  <button id="create-group-button" class="list-button" type="submit" name="search_user" value="Buscar">Buscar</button>
 
   <br>
   
@@ -52,7 +52,7 @@ loadHiddenLeft();
   <input name="last-search" type="hidden" value="{{ last_search }}">
  
   
-  <ul>
+  <ul id="members-list">
 	{% for member in members %}
 	<li>
 	  <label name="">{{ member.0 }}</label> 
@@ -63,7 +63,7 @@ loadHiddenLeft();
   
   <input name="last-members" type="hidden" value="{{ last_members }}">
   
-  <input type="submit" name="save" value="Guardar">
+  <button id="save-group-button" class="list-button" type="submit" name="save" value="Guardar">Guardar</button>
 </form>
 
 {% endblock %}
