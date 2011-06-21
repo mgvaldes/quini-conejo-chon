@@ -19,9 +19,15 @@
 {% endblock %}
 
 {% block contents %}
-<form action="/create/group" method="post">
+<form action="/create/group" method="post" class="other-form">
+  
+  <label for="name" class="title-label">Nombre del Grupo: </label>
+  <input name="name" type="text" id="name" value="{{ name }}" class="title-field"/>
+  <br>
+
+  <input type="submit" name="search_user" value="Buscar Amigo">
   <input name="search" type="text" id="search" value="" class="title-field" />
-  <input type="submit" name="search_user" value="Buscar">
+
   <br>
   
   <ul>
@@ -34,10 +40,7 @@
   </ul>
   
   <input name="last-search" type="hidden" value="{{ last_search }}">
-  
-  <label for="name" class="title-label">Nombre: </label>
-  <input name="name" type="text" id="name" value="{{ name }}" class="title-field"/>
-  <br>
+ 
   
   <ul>
 	{% for member in members %}

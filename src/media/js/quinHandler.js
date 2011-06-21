@@ -241,8 +241,8 @@ function updateAdvancingTeams(group){
     var stats = getTableStats(group);
     var classifUl = document.getElementById('classif-'+group);
     var childList = classifUl.getElementsByTagName("li");
-    childList[0].innerHTML = stats["1"]["team"];
-    childList[1].innerHTML = stats["2"]["team"];
+    childList[0].innerHTML = team_long[stats["1"]["team"]];
+    childList[1].innerHTML = team_long[stats["2"]["team"]];
 }
 
 function getAndUpdateThirdParty(statsA, statsB, statsC){

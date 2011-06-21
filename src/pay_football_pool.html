@@ -53,14 +53,16 @@
   Todas las cuentas est&aacute;n a nombre de <label class="payment_info">Mar&iacute;a Gabriela Vald&eacute;s</label>, c&eacute;dula: <label class="payment_info">V-18.358.292<label> y correo electr&oacute;nico: <label class="payment_info">mgvaldesgraterol@gmail.com<label>
 </p>
 
-<form action="/pay" method="post" class="quiniela-form">
+<form action="/pay" method="post" class="other-form">
   <label class="title-field">Tipo: </label>
   
-  <input type="radio" name="payment_type" value="deposit" /> Deposito No. 
-  <input type="radio" name="payment_type" value="transfer" checked="checked" /> Transferencia No.
+
+  <input type="radio" name="payment_type" value="deposit" /> Deposito
+  <input type="radio" name="payment_type" value="transfer" checked="checked" /> Transferencia
   <br> 
-  
-  <input name="payment_number" type="text" id="payment_number" value="" />
+
+<label for="payment_number">N&uacute;mero Dep&oacute;sito/Transferencia</label>
+  <input name="payment_number" type="text" id="payment_number" value="" /> 
   <br>
   
   <label class="title-field" for="bank">Banco: </label>

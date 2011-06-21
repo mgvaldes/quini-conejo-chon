@@ -517,6 +517,53 @@ ul#center-buttons li.not-selected{
 	
 }
 
+table#table-payment-info{
+	float: none;
+	margin-bottom: 40px;
+}
+form.other-form{
+	margin-top: 20px;
+	margin-bottom: 20px;
+	color: #444;
+	background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#efefef), to(#dfe0e1));
+	background: -moz-linear-gradient(top, #efefef, #dfe0e1);
+	border: 1px solid #AAA;
+	padding: 17px 18px;
+	width: 440px;
+}
+
+form.other-form input{
+	margin-left: 10px;
+	margin-bottom:10px;
+	font-size:12px;
+	padding:2px 2px;
+	border:solid 1px #929292;
+	height: 20px;
+	background-color: #d4e0eb;
+	margin-bottom: 10px;
+	
+}
+
+form.other-form select{
+	margin-top: 10px;
+}
+
+form.other-form button{
+	position: relative;
+	top: 5px;
+	left: 180px;
+	width: 90px;
+	height: 35px;
+}
+
+ul.classif-info h5{
+	margin-bottom:5px;
+}
+ul.classif-info li{
+	display: inline;
+	margin-left:10px;
+}
+
 /*
 .footer, .push {
 	height: 142px;

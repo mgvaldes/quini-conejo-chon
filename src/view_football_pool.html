@@ -28,6 +28,7 @@
 {% endblock %}
 
 {% block contents %}
+<form action="/create/step2" method="post" id="create-step1" class="quiniela-form">
 {% for group in groups %}
 
 <h5 class="group-title">Grupo {{ group.2 }}</h5>
@@ -68,11 +69,14 @@
   {% endfor %}
 </table>
 
+
 <ul id="classif-{{ group.2 }}" class="classif-info">
-  <li></li>
-  <li></li>
-  <li></li>
-</ul>  		
+<h5>Clasifican </h5>
+	<li></li>
+	<li></li>
+	<li></li>
+</ul>
+	
 
 {% endfor %}
 
@@ -123,5 +127,5 @@
 	<label class="e2" for="f-{{ final_match.0|slice:":3" }}-{{ final_match.3|slice:":3" }}-g2">{{ final_match.3 }}</label>
   </li>
 </ul>
-
+</form>
 {% endblock %}
