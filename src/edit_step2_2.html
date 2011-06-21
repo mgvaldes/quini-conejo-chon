@@ -2,11 +2,17 @@
 
 {% block headers %}
 <script type="text/javascript" src="/sitemedia/js/jquery-1.4.4.js"></script>
-<script type="text/javascript" src="/sitemedia/js/quinHandler.js"></script>		
+<script type="text/javascript" src="/sitemedia/js/quinHandler.js"></script>	
+
+<script type="text/javascript"> 
+$(document).ready(function(){
+loadFinalRoundEvents();loadHiddenLeft();	
+})
+</script>	
 {% endblock %}
 
 {% block openbody %}
-<body onload="loadFinalRoundEvents();">
+<body>
 {% endblock %}
 
 {% block content_submenu %}

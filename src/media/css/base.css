@@ -323,7 +323,24 @@ form label.e1{
 	margin-right: 10px;
 }
 
+
+form label.e1-qf{
+	display:block;
+	text-align:right;
+	width:70px;
+	float:left;
+	margin-right: 10px;
+}
+
+
 form label.e2{
+	margin-left: 10px;
+	position: relative;
+	top: -4px;
+}
+
+
+form label.e2-qf{
 	margin-left: 10px;
 	position: relative;
 	top: -4px;
@@ -376,6 +393,7 @@ button{
 	
 }
 
+
 /* ------------------------*/
 /* Styling the left column */
 /* ------------------------*/
@@ -384,6 +402,7 @@ button{
 	float: left;
 	width: 268px;
 	margin-right: 10px;
+	display:none;
 }
 
 .left-block{
@@ -418,7 +437,9 @@ background: -moz-linear-gradient(top, #efefef, #dfe0e1);
 
 div.left-block-content {
 	font-size: 14px;
+	margin-bottom: 20px;
 }
+
 
 /* ----- Left Table ------- */
 div.left-block-content tr{
@@ -563,6 +584,8 @@ ul.classif-info li{
 	display: inline;
 	margin-left:10px;
 }
+
+
 
 /*
 .footer, .push {

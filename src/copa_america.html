@@ -3,10 +3,17 @@
 {% block headers %}
 <script type="text/javascript" src="/sitemedia/js/jquery-1.4.4.js"></script>
 <script type="text/javascript" src="/sitemedia/js/quinHandler.js"></script>		
+
+<script type="text/javascript"> 
+$(document).ready(function(){
+loadPrevResults();loadHiddenLeft();	
+})
+</script>
+
 {% endblock %}
 
 {% block openbody %}
-<body onload="loadPrevResults();">
+<body>
 {% endblock %}
 
 {% block content_title %}
@@ -31,6 +38,7 @@
 	{% endfor %}
 </table>
 
+<form action="#" method="post" class="quiniela-form"> 
 {% for group in groups %}
 
 <h5 class="group-title">Grupo {{ group.2 }}</h5>
@@ -126,5 +134,5 @@
 	<label class="e2" for="f-{{ final_match.0|slice:":3" }}-{{ final_match.3|slice:":3" }}-g2">{{ final_match.3 }}</label>
   </li>
 </ul>
-
+</form>
 {% endblock %}

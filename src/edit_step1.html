@@ -3,10 +3,15 @@
 {% block headers %}
 <script type="text/javascript" src="/sitemedia/js/jquery-1.4.4.js"></script>
 <script type="text/javascript" src="/sitemedia/js/quinHandler.js"></script>
+<script type="text/javascript"> 
+$(document).ready(function(){
+loadQuinEvents();loadHiddenLeft();	
+})
+</script>
 {% endblock %}
 
 {% block openbody %}
-<body onload="loadQuinEvents();">
+<body>
 {% endblock %}			
 
 {% block content_submenu %}

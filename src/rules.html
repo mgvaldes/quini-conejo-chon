@@ -1,5 +1,15 @@
 {% extends 'base.html' %}
 
+{% block headers %}
+<script type="text/javascript" src="/sitemedia/js/jquery-1.4.4.js"></script>
+
+<script type="text/javascript"> 
+$(document).ready(function(){
+	loadHiddenLeft();	
+})
+</script>
+{% endblock %}
+
 {% block openbody %}
 <body>
 {% endblock %}
@@ -30,6 +40,10 @@
 
 {% block content_title %}
 <h4 id="title">Reglas y Condiciones</h4>
+{% endblock %}
+
+{% block content_description %}
+En esta sección encontrarás las reglas de puntuación de la quiniela, así como información sobre los premios a entregar.
 {% endblock %}
 
 {% block contents %}
