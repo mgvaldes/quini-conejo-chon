@@ -33,10 +33,17 @@ class MainHandler(webapp.RequestHandler):
         check_session_status()
             
         if session.is_active():
-            template_values = {
-                'session_status': True,
-                'user': session['active_user']
-            }
+            if session.has_key('active_user'):
+                template_values = {
+                    'session_status': True,
+                    'user': session['active_user']
+                }
+            else:
+                session.terminate()
+                
+                template_values = {
+                    'session_status': False
+                }
         else:
             template_values = {
                 'session_status': False

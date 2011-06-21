@@ -14,24 +14,31 @@ $(document).ready(function(){
 <body>
 {% endblock %}
 
+{% block content_description %}
+	Revisa tu perfil de usuario y el estado de tus quinielas
+{% endblock %}
+
 {% block contents %}
 		
-		<form action="/save/profile" method="post">
+		<form action="/save/profile" method="post" class="other-form" id="profile-form">
 			{% ifequal user.type 0 %}
 				{% if user.google_user %}
 					Sesi&oacute;n iniciada con Google
+					<br>
 				{% endif %}	
 			{% endifequal %}
 	
 			{% ifequal user.type 1 %}
 				{% if user.facebook_user %}
 					Sesi&oacute;n iniciada con Facebook
+					<br>
 				{% endif %}	
 			{% endifequal %}
 	
 			{% ifequal user.type 2 %}
 				{% if user.native_user %}
 					Sesi&oacute;n iniciada con Quinielaca.com
+					<br>
 					<br>
 					
 					<label for="name_id">Nombre: </label>
@@ -52,13 +59,13 @@ $(document).ready(function(){
 				{% endif %}	
 			{% endifequal %}
 						
-		    <button type="submit" name="save" value="save">Guardar</button>
-		    <button type="submit" name="cancel" value="cancel">Cancelar</button>
+		    <button id="save-profile-button" type="submit" name="save" value="save">Guardar</button>
+		    <button id="cancel-profile-button" type="submit" name="cancel" value="cancel">Cancelar</button>
 		    <br>
 		    
 		    <h5 class="group-title">Mis Quinielas</h5>
 		    
-		    <table>
+		    <table id="profile-football-pool">
 		    	<tr>
 					<th>Quiniela</th>
 					<th>Estado</th>

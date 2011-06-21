@@ -739,7 +739,20 @@ button.list-button{
 	top: 0px;
 }
 
+button#save-profile-button{
+	margin-top: 0px;
+	top: 5px;
+	margin-left: -180px;
+}
+
 button#pay-button {
+	left: 0px;
+}
+
+table#profile-football-pool {
+	float: none;
+	margin-bottom: 0px;
+	top: 0px;
 	left: 0px;
 }
 
@@ -796,6 +809,10 @@ ul#members-list {
 ul#search-list {
 	position: relative;
 	top: 10px;
+}
+
+#profile-football-pool {
+	float: left;
 }
 
 

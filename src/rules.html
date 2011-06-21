@@ -14,36 +14,12 @@ $(document).ready(function(){
 <body>
 {% endblock %}
 
-{% block buttons %}
-	{% if session_status %}
-		<div id="buttons-layer">
-	    	<ul id="buttons-ul">
-	        	<li class="not-selected"><a href="/list/football-pools/view"><span>Quinielas</span></a><li>
-	        	<li class="not-selected"><a href="/list/groups/view"><span>Grupos</span></a><li>
-	        	<li class="not-selected"><a href="/rules"><span>Reglas</span></a><li>
-	        	<li class="not-selected"><a href="/view/profile"><span>Mi Perfil</span></a><li>
-	        	<li class="not-selected"><a href="#"><span>Copa Am&eacute;rica</span></a><li>          
-	      	</ul>
-	    </div>
-	{% else %}
-		<div id="buttons-layer">
-	    	<ul id="buttons-ul">
-	        	<li class="not-selected"><a href="#"><span>Quinielas</span></a><li>
-	        	<li class="not-selected"><a href="#"><span>Grupos</span></a><li>
-	        	<li class="not-selected"><a href="/rules"><span>Reglas</span></a><li>
-	        	<li class="not-selected"><a href="#"><span>Mi Perfil</span></a><li>
-	        	<li class="not-selected"><a href="#"><span>Copa Am&eacute;rica</span></a><li>          
-	      	</ul>
-	    </div>
-	{% endif %}
-{% endblock %}
-
 {% block content_title %}
 <h4 id="title">Reglas y Condiciones</h4>
 {% endblock %}
 
 {% block content_description %}
-En esta sección encontrarás las reglas de puntuación de la quiniela, así como información sobre los premios a entregar.
+En esta secci&oacute;n encontrar&aacute;s las reglas de puntuaci&oacute;n de la quiniela, as&iacute; como informaci&oacute;n sobre los premios a entregar.
 {% endblock %}
 
 {% block contents %}
