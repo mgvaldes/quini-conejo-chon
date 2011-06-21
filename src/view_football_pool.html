@@ -28,6 +28,10 @@ loadPrevResults();loadHiddenLeft();
 <h4 id="title">{{ name }}</h4>
 {% endblock %}
 
+{% block content_description %}
+	Revisa los resultados que registraste en tu quieniela
+{% endblock %}
+
 {% block contents %}
 <form action="/create/step2" method="post" id="create-step1" class="quiniela-form">
 {% for group in groups %}

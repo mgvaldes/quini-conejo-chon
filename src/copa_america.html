@@ -20,6 +20,12 @@ loadPrevResults();loadHiddenLeft();
 <h4 id="title">{{ name }}</h4>
 {% endblock %}
 
+{% block content_description %}
+<p id="content-description">
+	Ent&eacute;rate de los pr&oacute;ximos partidos y consulta los &uacute;ltimos resultados de la Copa Am&eacute;rica 2011
+</p>
+{% endblock %}
+
 {% block contents %}
 <form action="/create/step2" method="post" id="create-step1" class="quiniela-form">
 <h5 class="group-title">Pr&oacute;ximos Partidos</h5>
