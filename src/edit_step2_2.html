@@ -40,11 +40,11 @@ loadFinalRoundEvents();loadHiddenLeft();
     <h5 class="group-title">Cuartos de Final</h5>
 	{% for teams in quarter_finals_matches %}
 	<li class="group-match" id="qf{{ teams.4 }}">
-	  <label class="e1" for="qf{{ teams.4 }}-{{ teams.0|slice:":3" }}-{{ teams.3|slice:":3" }}-g1">{{ teams.0 }}</label> 
-	  <input id="qf{{ teams.4 }}-{{ teams.0|slice:":3" }}-{{ teams.3|slice:":3" }}-g1" name="qf{{ teams.4 }}-{{ teams.0|slice:":3" }}-{{ teams.3|slice:":3" }}-g1" class="goals-field" type="text" value="{{ teams.1 }}" />
+	  <label class="e1-qf" for="{{ teams.0|slice:":3" }}-{{ teams.3|slice:":3" }}-g1">{{ teams.0 }}</label> 
+	  <input id="{{ teams.0|slice:":3" }}-{{ teams.3|slice:":3" }}-g1" name="{{ teams.0|slice:":3" }}-{{ teams.3|slice:":3" }}-g1" class="goals-field" type="text" value="{{ teams.1 }}" />
       <p class="quin-sep">-</p>
-	  <input id="qf{{ teams.4 }}-{{ teams.0|slice:":3" }}-{{ teams.3|slice:":3" }}-g2" name="qf{{ teams.4 }}-{{ teams.0|slice:":3" }}-{{ teams.3|slice:":3" }}-g2" class="goals-field" type="text" value="{{ teams.2 }}" /> 
-	  <label class="e2" for="qf{{ teams.4 }}-{{ teams.0|slice:":3" }}-{{ teams.3|slice:":3" }}-g2">{{ teams.3 }}</label>
+	  <input id="{{ teams.0|slice:":3" }}-{{ teams.3|slice:":3" }}-g2" name="{{ teams.0|slice:":3" }}-{{ teams.3|slice:":3" }}-g2" class="goals-field" type="text" value="{{ teams.2 }}" /> 
+	  <label class="e2-qf" for="{{ teams.0|slice:":3" }}-{{ teams.3|slice:":3" }}-g2">{{ teams.3 }}</label>
 	</li>
 	{% endfor %}
   </ul>
@@ -53,10 +53,10 @@ loadFinalRoundEvents();loadHiddenLeft();
   <ul class="group-matches">
 	{% for teams in semi_final_matches %}
 	<li class="group-match" id="sf{{ teams.4 }}">
-	  <label class="e1" for="sf{{ teams.4 }}-{{ teams.0|slice:":3" }}-{{ teams.3|slice:":3" }}-g1">{{ teams.0 }}</label> 
-	  <input id="sf{{ teams.4 }}-{{ teams.0|slice:":3" }}-{{ teams.3|slice:":3" }}-g1" name="sf{{ teams.4 }}-{{ teams.0|slice:":3" }}-{{ teams.3|slice:":3" }}-g1" class="goals-field" type="text" value="{{ teams.1 }}" /> 
-	  <input id="sf{{ teams.4 }}-{{ teams.0|slice:":3" }}-{{ teams.3|slice:":3" }}-g2" name="sf{{ teams.4 }}-{{ teams.0|slice:":3" }}-{{ teams.3|slice:":3" }}-g2" class="goals-field" type="text" value="{{ teams.2 }}" /> 
-	  <label class="e2" for="sf{{ teams.4 }}-{{ teams.0|slice:":3" }}-{{ teams.3|slice:":3" }}-g2">{{ teams.3 }}</label>
+	  <label class="e1" for="sf{{ teams.4 }}-g1">{{ teams.0 }}</label> 
+	  <input id="sf{{ teams.4 }}-g1" name="sf{{ teams.4 }}-g1" class="goals-field" type="text" value="{{ teams.1 }}" /> 
+	  <input id="sf{{ teams.4 }}-g2" name="sf{{ teams.4 }}-g2" class="goals-field" type="text" value="{{ teams.2 }}" /> 
+	  <label class="e2" for="sf{{ teams.4 }}-g2">{{ teams.3 }}</label>
 	</li>
 	{% endfor %}
   </ul>
@@ -64,22 +64,22 @@ loadFinalRoundEvents();loadHiddenLeft();
   <h5 class="group-title">Tercero y Cuarto</h5>
   <ul class="group-matches">
 	<li class="group-match" id="tf">
-	  <label class="e1" for="tf-{{ third_fourth_match.0|slice:":3" }}-{{ third_fourth_match.3|slice:":3" }}-g1">{{ third_fourth_match.0 }}</label> 
-	  <input name="tf-{{ third_fourth_match.0|slice:":3" }}-{{ third_fourth_match.3|slice:":3" }}-g1" class="goals-field" type="text" value="{{ third_fourth_match.1 }}" />
+	  <label class="e1" for="tf-g1">{{ third_fourth_match.0 }}</label> 
+	  <input name="tf-g1" class="goals-field" type="text" value="{{ third_fourth_match.1 }}" />
       <p class="quin-sep">-</p>
-	  <input name="tf1-{{ third_fourth_match.0|slice:":3" }}-{{ third_fourth_match.3|slice:":3" }}-g2" class="goals-field" type="text" value="{{ third_fourth_match.2 }}" /> 
-	  <label class="e2" for="tf-{{ third_fourth_match.0|slice:":3" }}-{{ third_fourth_match.3|slice:":3" }}-g2">{{ third_fourth_match.3 }}</label>
+	  <input name="tf-g2" class="goals-field" type="text" value="{{ third_fourth_match.2 }}" /> 
+	  <label class="e2" for="tf-g2">{{ third_fourth_match.3 }}</label>
 	</li>
   </ul>
   
   <h5 class="group-title">Final</h5>
   <ul class="group-matches">
 	<li class="group-match" id="f">
-	  <label class="e1" for="f-{{ final_match.0|slice:":3" }}-{{ final_match.3|slice:":3" }}-g1">{{ final_match.0 }}</label> 
-	  <input name="f-{{ final_match.0|slice:":3" }}-{{ final_match.3|slice:":3" }}-g1" class="goals-field" type="text" value="{{ final_match.1 }}" /> 
+	  <label class="e1" for="f-g1">{{ final_match.0 }}</label> 
+	  <input name="f-g1" class="goals-field" type="text" value="{{ final_match.1 }}" /> 
       <p class="quin-sep">-</p>
-	  <input name="f-{{ final_match.0|slice:":3" }}-{{ final_match.3|slice:":3" }}-g2" class="goals-field" type="text" value="{{ final_match.2 }}" /> 
-	  <label class="e2" for="f-{{ final_match.0|slice:":3" }}-{{ final_match.3|slice:":3" }}-g2">{{ final_match.3 }}</label>
+	  <input name="f-g2" class="goals-field" type="text" value="{{ final_match.2 }}" /> 
+	  <label class="e2" for="f-g2">{{ final_match.3 }}</label>
 	</li>
   </ul>
   

@@ -301,9 +301,8 @@ form ul{
 	list-style-type: none;
 }
 
-form input{
-	text-align: center;
-	font-size: #313030;
+form input.goals-field{
+	text-align:center;
 }
 
 
@@ -568,6 +567,10 @@ form.other-form input{
 
 form.other-form select{
 	margin-top: 10px;
+	font-family: 'folks', Helvetica, Arial;
+	font-weight: 100;
+	font-size: 14px;
+	color: #3c3c3c;
 }
 
 form.other-form button{
@@ -584,6 +587,23 @@ ul.classif-info h5{
 ul.classif-info li{
 	display: inline;
 	margin-left:10px;
+}
+
+table#table-global-ranking{
+	font-family: 'folks';
+	position: relative;
+	left: 100px;
+	float:left;
+	width: 400px;
+	margin-bottom: 30px;
+	font-size: 17px;
+	color: #4a4a4a;;
+	
+}
+
+table#table-global-ranking h4{
+	font-size: 17px;
+	font-family: 'folks';
 }
 
 
@@ -695,3 +715,5 @@ ul#search-list {
 	position: relative;
 	top: 10px;
 }
+
+

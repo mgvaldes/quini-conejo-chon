@@ -2,10 +2,19 @@
 
 {% block headers %}
 <script type="text/javascript" src="/sitemedia/js/jquery-1.4.4.js"></script>
+<script type="text/javascript" src="/sitemedia/js/loadHidden.js"></script>
+
 
 <script type="text/javascript"> 
 $(document).ready(function(){
-	loadHiddenLeft();	
+	loadHiddenLeft();
+	$("#pay-form").submit(function(event){
+		event.preventDefault();
+		return false;
+	});	
+	
+	alert($("input[name=payment_number]").value("TODO eso"));
+	
 })
 </script>
 {% endblock %}
@@ -63,7 +72,7 @@ $(document).ready(function(){
   Todas las cuentas est&aacute;n a nombre de <label class="payment_info">Mar&iacute;a Gabriela Vald&eacute;s</label>, c&eacute;dula: <label class="payment_info">V-18.358.292<label> y correo electr&oacute;nico: <label class="payment_info">mgvaldesgraterol@gmail.com<label>
 </p>
 
-<form action="/pay" method="post" class="other-form">
+<form action="/pay" method="post" id="pay-form" class="other-form">
   <label class="title-field">Tipo: </label>
   
 

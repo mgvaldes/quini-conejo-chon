@@ -38,18 +38,17 @@ class PayFootballPool(webapp.RequestHandler):
                 
                 active_user_football_pools = CAFootballPool.all().filter("user =", active_user).filter("privacy =", False).fetch(1000)
                 
-                for football_pool in active_user_football_pools:
-                    if football_pool.payment:
-                        groups = active_user.groups
-                        
-                        for group_key in groups:
-                            group = CACompetitonGroup.get(group_key)
-                            
-                            if group:
-                                members = group.members.fetch(10000)
-                            
-                                group_ranking = CAGroupRanking(football_pool=football_pool, group=group, rank=len(members))
-                                group_ranking.put()
+
+                groups = active_user.groups
+                
+                for group_key in groups:
+                    group = CACompetitonGroup.get(group_key)
+                    
+                    if group:
+                        members = group.members.fetch(10000)
+                    
+                        group_ranking = CAGroupRanking(football_pool=football_pool, group=group, rank=len(members))
+                        group_ranking.put()
                 
                 global_competition_group = CACompetitonGroup.all().filter("privacy =", True).fetch(1)[0]
                 

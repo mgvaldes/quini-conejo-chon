@@ -943,6 +943,21 @@ function loadQuinEvents(){
     });    
 }
 
+function loadQuinEditEvents(){
+	
+    loadPrevResults();
+	fetchAllResults();
+    
+    $('#edit-step1').submit(function(event){
+        if(!isPoolFull()){
+            alert("Pooll is not full");
+            event.preventDefault();
+            return false;
+        }
+        return true;
+    });
+}
+
 function loadFinalRoundEvents(){
     fetchFinalRoundEvents();
             
@@ -956,6 +971,7 @@ function loadFinalRoundEvents(){
 
         //set hidden data
         setAllResultsData();
+		alert($("input[name=second-round-matches]").val());
 
         return true;
     });    
