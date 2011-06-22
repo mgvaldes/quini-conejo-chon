@@ -1,0 +1,29 @@
+
+div#emma-buttons{
+	position: relative;
+	top: 10px;
+	height: 480px;
+	width:730px;
+	margin: auto;
+}
+
+div#emma-buttons ul{
+	list-style-type: none;
+	display:inline;
+
+}
+
+
+div#emma-buttons li{
+	float:left;
+	width: 222px;
+	height: 221px;
+	background-repeat: no-repeat;
+	text-align: center;
+	margin: 0px 0px;
+	margin-left: 7px;
+	margin-top: 7px;
+}
+
+
+

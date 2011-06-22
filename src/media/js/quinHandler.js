@@ -971,7 +971,7 @@ function loadFinalRoundEvents(){
 
         //set hidden data
         setAllResultsData();
-		alert($("input[name=second-round-matches]").val());
+		//alert($("input[name=second-round-matches]").val());
 
         return true;
     });    

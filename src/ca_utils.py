@@ -222,7 +222,13 @@ def add_points_for_match(original_team1, original_team1_goals, original_team2, o
     return points
 
 def get_top_scorers():
-    return CAScorer.all().order('goals').fetch(5)
+    scorers = CAScorer.all().order('goals').fetch(5)
+    scorers_info = []
+
+    for scorer in scorers:
+        scorers_info.append((scorer.name, scorer.team.name, scorer.goals))
+        
+    return scorers_info
 
 def get_top_users_global_ranking():
     counter = 0

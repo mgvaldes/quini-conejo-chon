@@ -30,7 +30,10 @@ class CAUserProfileHandler(webapp.RequestHandler):
             template_values = {
                 'session_status': True,
                 'user': session['active_user'],
-                'football_pools_info': football_pools_info
+                'football_pools_info': football_pools_info,
+                'top_scorers': get_top_scorers(),
+                'top_users': get_top_users_global_ranking(),
+                'last_jackpot': get_last_jackpot()
             }
             
             render_template(self, 'user_profile.html', template_values)

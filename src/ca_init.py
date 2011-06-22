@@ -133,5 +133,20 @@ def create_initial_info():
     
     jackpot = CAJackPot(amount=4000, last_update=datetime.datetime.now())
     jackpot.put()
+
+    scorer1 = CAScorer(name="Miku Fedor", team=venezuela, goals=0)
+    scorer1.put()
+    
+    scorer2 = CAScorer(name="Nilmar", team=brazil, goals=0)
+    scorer2.put()
+    
+    scorer3 = CAScorer(name="Lionel Messi", team=argentina, goals=0)
+    scorer3.put()
+    
+    scorer4 = CAScorer(name="Diego Forl&aacute;n", team=uruguay, goals=0)
+    scorer4.put()
+    
+    scorer5 = CAScorer(name="Carlos T&eacute;vez", team=argentina, goals=0)
+    scorer5.put()
     
 create_initial_info()
