@@ -3,7 +3,7 @@ margin: 0;
 padding: 0px;
 }
 
-@font-face {
+/*@font-face {
 font-family: 'folks';
 src: url('/sitemedia/fonts/Folks-Normal.svg');
 }
@@ -11,6 +11,16 @@ src: url('/sitemedia/fonts/Folks-Normal.svg');
 @font-face {
 font-family: 'folks-bold';
 src: url('/sitemedia/fonts/Folks-Bold.svg');
+}*/
+
+@font-face {
+	font-family: 'folks';
+	src: url('/sitemedia/fonts/Folks-Normal.svg') format('svg'), url('/sitemedia/fonts/Folks-Normal.eot?') format('eot'), url('/sitemedia/fonts/Folks-Normal.woff') format('woff'), url('/sitemedia/fonts/Folks-Normal.ttf') format('truetype');
+}
+
+@font-face {
+	font-family: 'folks-bold';
+	src: url('/sitemedia/fonts/Folks-Bold.svg') format('svg'), url('/sitemedia/fonts/Folks-Bold.eot?') format('eot'), url('/sitemedia/fonts/Folks-Bold.woff') format('woff'), url('/sitemedia/fonts/Folks-Bold.ttf') format('truetype');
 }
 
 body {

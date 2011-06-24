@@ -41,4 +41,4 @@ class RegisterCANativeUser(webapp.RequestHandler):
         ca_user = CAUser(native_user=user, type=2)
         ca_user.put()
         
-        self.redirect('/')
+        self.redirect('/login')

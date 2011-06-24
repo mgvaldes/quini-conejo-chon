@@ -224,9 +224,17 @@ def add_points_for_match(original_team1, original_team1_goals, original_team2, o
 def get_top_scorers():
     scorers = CAScorer.all().order('goals').fetch(5)
     scorers_info = []
+    counter = 0
 
     for scorer in scorers:
-        scorers_info.append((scorer.name, scorer.team.name, scorer.goals))
+        if counter % 2 == 1:
+            row = "odd"
+        else:
+            row = "pair"
+            
+        counter += 1
+        
+        scorers_info.append((scorer.name, scorer.team.name, scorer.goals, row))
         
     return scorers_info
 
@@ -239,7 +247,8 @@ def get_top_users_global_ranking():
     for football_pool in football_pools:
         if football_pool.payment:
             position_points.append((counter, get_total_points(football_pool)))
-            counter += 1
+        
+        counter += 1
     
     football_pools_sorted_by_total_points = sorted(position_points, key=lambda position_point: position_point[1])
     
@@ -265,6 +274,7 @@ def get_top_users_global_ranking():
             row = "pair"
         
         top_users.append((username, football_pool.name, position_point[1], row))
+        counter += 1
         
     return top_users
 

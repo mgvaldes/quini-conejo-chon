@@ -24,11 +24,53 @@ $(document).ready(function(){
 
 {% block content_description %}
 <p id="content-description">
-  Selecciona la quiniela que deseas pagar
+	Puedes registrar el pago de tus quinielas hasta el 1 de Julio de 2011. Cada quiniela tiene un costo de BsF. 100,00. Puedes pagar tus quinielas a trav&eacute;s de un dep&oacute;sito o transferencia a alguna de las siguientes cuentas:
 </p>
 {% endblock %}
 
 {% block contents %}
+		<table id="table-payment-info">
+		  <tr>
+			<th>Banco</th>
+			<th>Cuenta</th>
+			<th>Tipo</th>
+		  </tr>
+		  
+		  <tr>
+			<td>Banco Mercantil</td>
+			<td>0105-0731-680731-02789-2</td>
+			<td>Ahorros</td>
+		  </tr>
+		  
+		  <tr>
+			<td>Banco Provincial</td>
+			<td>0108-0503-10-0100080707</td>
+			<td>Corriente</td>
+		  </tr>
+		  
+		  <tr>
+			<td>Banesco</td>
+			<td>0134-0040-72-0402020601</td>
+			<td>Ahorros</td>
+		  </tr>
+		</table>
+		
+		<p id="content-description">
+		  Todas las cuentas est&aacute;n a nombre de <label class="payment_info">Mar&iacute;a Gabriela Vald&eacute;s</label>, c&eacute;dula: <label class="payment_info">V-18.358.292<label> y correo electr&oacute;nico: <label class="payment_info">mgvaldesgraterol@gmail.com<label>
+		</p>
+		<br>
+		
+		<p id="content-description">
+			Recuerda que una vez creada tu quiniela, podr&aacute;s editarla todas las veces que quieras, incluso si ya registraste tu pago.
+			<br>
+			<br>
+			
+			Selecciona la quiniela que deseas pagar.
+			<br>
+	
+		</p>
+		<br>
+		
 		<form action="/view/football-pool" method="post">
 		
 			<select name="selected_football_pool">
