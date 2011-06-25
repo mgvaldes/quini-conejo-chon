@@ -29,13 +29,12 @@ loadHiddenLeft();
 {% endblock %}
 
 {% block contents %}
-<form action="/create/group" method="post" class="other-form">
+<form action="/create/group" method="post" class="other-form" id="group-form">
   
   <label for="name" class="title-label">Nombre del Grupo: </label>
   <input name="name" type="text" id="name" value="{{ name }}" class="title-field"/>
-  <br>
 
-  Busca a tus amigos: <input name="search" type="text" id="search" value="" class="title-field" />
+  <label for="search" class="title-label">Busca a tus amigos: </label><input name="search" type="text" id="search" value="" class="title-field" />
   <button id="create-group-button" class="list-button" type="submit" name="search_user" value="Buscar">Buscar</button>
 
   <br>

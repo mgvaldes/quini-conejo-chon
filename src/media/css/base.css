@@ -334,10 +334,33 @@ color: #ebe8e8;
 text-shadow: black 0.1em 0.1em 0.2em;
 }
 
+
 ul#buttons-ul span{
 	position: relative;
 	top: 18px;
 	left:-8px;
+}
+
+
+ul#buttons-ul a:hover{
+	background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#f6f6f6), to(#dbdbdc));
+background: -moz-linear-gradient(top, #f6f6f6, #dbdbdc);
+-moz-box-shadow: 0px 4px 12px #AAA;
+-webkit-box-shadow: 0px 4px 12px #AAA;
+box-shadow: 0px 4px 12px #AAA;
+color: #0058c4;
+text-shadow: #888 0.1em 0.1em 0.13em
+
+}
+
+ul#buttons-ul li.selected a{
+		background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#f6f6f6), to(#dbdbdc));
+	background: -moz-linear-gradient(top, #f6f6f6, #dbdbdc);
+	-moz-box-shadow: 0px 4px 12px #AAA;
+	-webkit-box-shadow: 0px 4px 12px #AAA;
+	box-shadow: 0px 4px 12px #AAA;
+	color: #0058c4;
+	text-shadow: #888 0.1em 0.1em 0.13em	
 }
 
 #main-content{
@@ -678,7 +701,32 @@ form.other-form input{
 	height: 20px;
 	background-color: #d4e0eb;
 	margin-bottom: 10px;
+	width:160px;
 	
+}
+
+form.other-form label{
+	width: 60px;
+	position: relative;
+	float: left;
+}
+
+form#group-form label{
+	width: 150px;
+	position: relative;
+	float: left;
+	top:5px;
+}
+
+form#group-form button{
+	position:relative;
+	top:0px;
+	left:2px;
+	height:27px;
+}
+
+form#group-form input{
+	width: 140px;
 }
 
 form.other-form select{

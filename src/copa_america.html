@@ -12,6 +12,31 @@ loadPrevResults();loadHiddenLeft();
 
 {% endblock %}
 
+{% block layer-buttons %}
+{% if session_status %}
+	<div id="buttons-layer">
+    	<ul id="buttons-ul">
+        	<li class="not-selected"><a href="/list/football-pools/view"><span>Quinielas</span></a></li>
+        	<li class="not-selected"><a href="/create/group"><span>Grupos</span></a></li>
+        	<li class="not-selected"><a href="/rules"><span>Reglas</span></a></li>
+        	<li class="not-selected"><a href="/view/profile"><span>Mi Perfil</span></a></li>
+        	<li class="selected"><a href="/view/copa-america"><span>Copa Am&eacute;rica</span></a></li>          
+      	</ul>
+    </div>
+{% else %}
+	<div id="buttons-layer">
+    	<ul id="buttons-ul">
+        	<li class="not-selected"><a href="/login"><span>Quinielas</span></a></li>
+        	<li class="not-selected"><a href="/login"><span>Grupos</span></a></li>
+        	<li class="not-selected"><a href="/rules"><span>Reglas</span></a></li>
+        	<li class="not-selected"><a href="/login"><span>Mi Perfil</span></a></li>
+        	<li class="selected"><a href="/view/copa-america"><span>Copa Am&eacute;rica</span></a></li>          
+      	</ul>
+    </div>
+{% endif %}
+{% endblock %}
+
+
 {% block openbody %}
 <body>
 {% endblock %}
@@ -22,7 +47,8 @@ loadPrevResults();loadHiddenLeft();
 
 {% block content_description %}
 <p id="content-description">
-	Ent&eacute;rate de los pr&oacute;ximos partidos y consulta los &uacute;ltimos resultados de la Copa Am&eacute;rica 2011
+	Ent&eacute;rate de los pr&oacute;ximos partidos y consulta los &uacute;ltimos resultados de la Copa Am&eacute;rica 2011.
+	El torneo comienza el 1ero de Julio a las 8:15 pm.
 </p>
 {% endblock %}
 
