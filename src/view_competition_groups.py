@@ -105,7 +105,7 @@ class ViewCompetitionGroup(webapp.RequestHandler):
                         else:
                             name = rank.football_pool.user.native_user.name
                             
-                        group_ranking_list.append((name, rank.football_pool.name, get_total_points(rank.football_pool), selected))
+                        group_ranking_list.append((name, rank.football_pool.name, get_total_points(rank.football_pool), selected, rank.football_pool.key()))
                         
                     template_values = {
                         'session_status': True,
