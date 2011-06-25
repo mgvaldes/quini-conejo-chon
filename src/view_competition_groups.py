@@ -158,35 +158,35 @@ class CreateCompetitionGroup(webapp.RequestHandler):
                 active_user = session['active_user']
                 
                 search_term = self.request.get('search')
-				search_result = []
+                search_result = []
                 
                 if search_term:
-		            users = CAUser.all().fetch(10000)
-		            
-		            for user in users:
-		                if active_user.key() != user.key():
-		                    username = []
-		                    
-		                    if user.type == 0:
-		                        nickname = user.google_user.nickname()
-		                        email = user.google_user.email()
-		                        
-		                        if (search_term.lower() in str(nickname).lower()) or (search_term.lower() in str(email).lower()):
-		                            username = nickname
-		                    elif user.type == 1:
-		                        name = user.facebook_user.name
-		                        
-		                        if search_term.lower() in str(name).lower():
-		                            username = name
-		                    else:
-		                        name = user.native_user.name
-		                        email = user.native_user.email
-		                        
-		                        if (search_term.lower() in str(name).lower()) or (search_term.lower() in str(email).lower()):
-		                            username = name
-		                
-		                    if username:
-		                        search_result.append((str(username), str(user.key())))
+                    users = CAUser.all().fetch(10000)
+
+                    for user in users:
+                        if active_user.key() != user.key():
+                            username = []
+                            
+                            if user.type == 0:
+                                nickname = user.google_user.nickname()
+                                email = user.google_user.email()
+
+                                if (search_term.lower() in str(nickname).lower()) or (search_term.lower() in str(email).lower()):
+                                    username = nickname
+                            elif user.type == 1:
+                                name = user.facebook_user.name
+
+                                if search_term.lower() in str(name).lower():
+                                    username = name
+                            else:
+                                name = user.native_user.name
+                                email = user.native_user.email
+
+                                if (search_term.lower() in str(name).lower()) or (search_term.lower() in str(email).lower()):
+                                    username = name
+
+                            if username:
+                                search_result.append((str(username), str(user.key())))
                             
                 template_values = {
                     'session_status': True,
