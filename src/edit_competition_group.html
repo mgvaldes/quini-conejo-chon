@@ -10,6 +10,30 @@ loadHiddenLeft();
 </script>
 {% endblock %}
 
+{% block layer-buttons %}
+{% if session_status %}
+	<div id="buttons-layer">
+    	<ul id="buttons-ul">
+        	<li class="not-selected"><a href="/list/football-pools/view"><span>Quinielas</span></a></li>
+        	<li class="selected"><a href="/create/group"><span>Grupos</span></a></li>
+        	<li class="not-selected"><a href="/rules"><span>Reglas</span></a></li>
+        	<li class="not-selected"><a href="/view/profile"><span>Mi Perfil</span></a></li>
+        	<li class="not-selected"><a href="/view/copa-america"><span>Copa Am&eacute;rica</span></a></li>          
+      	</ul>
+    </div>
+{% else %}
+	<div id="buttons-layer">
+    	<ul id="buttons-ul">
+        	<li class="not-selected"><a href="/login"><span>Quinielas</span></a></li>
+        	<li class="not-selected"><a href="/login"><span>Grupos</span></a></li>
+        	<li class="not-selected"><a href="/rules"><span>Reglas</span></a></li>
+        	<li class="not-selected"><a href="/login"><span>Mi Perfil</span></a></li>
+        	<li class="not-selected"><a href="/view/copa-america"><span>Copa Am&eacute;rica</span></a></li>          
+      	</ul>
+    </div>
+{% endif %}
+{% endblock %}
+
 {% block openbody %}
 <body>
 {% endblock %}
@@ -29,13 +53,12 @@ loadHiddenLeft();
 {% endblock %}
 
 {% block contents %}
-<form action="/edit/group" method="post" class="other-form">
+<form action="/edit/group" method="post" class="other-form" id="group-form">
   
   <label for="name" class="title-label">Nombre del Grupo: </label>
   <input name="name" type="text" id="name" value="{{ name }}" class="title-field"/>
-  <br>
 
-  Busca a tus amigos: <input name="search" type="text" id="search" value="" class="title-field" />
+  <label for="search" class="title-label">Busca a tus amigos: </label><input name="search" type="text" id="search" value="" class="title-field" />
   <button id="create-group-button" class="list-button" type="submit" name="search_user" value="Buscar">Buscar</button>
 
   <br>

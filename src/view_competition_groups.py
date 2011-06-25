@@ -72,7 +72,7 @@ class ViewCompetitionGroup(webapp.RequestHandler):
                 selected_competition_group_key = Key(selected)
                 
                 if edit:
-		    self.redirect('/edit/group?id=' + selected)
+                    self.redirect('/edit/group?id=' + selected)
                 elif ranking:
                     competition_group = CACompetitonGroup.get(selected_competition_group_key)
                     
