@@ -928,6 +928,53 @@ ul#search-list {
 	float: left;
 }
 
+form#pay-form div#payment-option label{
+	display: inline;
+	float:none;
+	postion:relative;
+	top: -5px;
+	left: 0px;
+}
+
+form#pay-form div#payment-option input{
+	width: 40px;
+	margin-left: -10px;
+	position: relative;
+	left: 10px;
+}
+
+form#pay-form label#payment-number{
+	width: 250px;
+	margin-right: 0px;
+}
+
+form#pay-form input{
+	margin-bottom: 15px;
+}
+
+form#pay-form select{
+	position: relative;
+	top: -10px;
+	margin-left: 0px;
+	margin-bottom: 10px;
+}
+
+form#pay-form button{
+	position: relative;
+	top: -10px;
+	left: 180px;
+	margin-bottom: -15px;
+}
+
+form#pay-form input#payment_number{
+	width: 150px;
+	margin-left:-20px;
+	position:relative;
+	top: -4px;
+}
+
+
+
 /*-------------------------*/
 /* --- Form flag style  ---*/
 /* ------------------------*/

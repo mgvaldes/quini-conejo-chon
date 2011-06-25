@@ -90,16 +90,14 @@ $(document).ready(function(){
 </p>
 
 <form action="/pay" method="post" id="pay-form" class="other-form">
-  <label class="title-field">Tipo: </label>
-  
 
-  <input type="radio" name="payment_type" value="deposit" /> Deposito
-  <input type="radio" name="payment_type" value="transfer" checked="checked" /> Transferencia
-  <br> 
-
-<label for="payment_number">N&uacute;mero Dep&oacute;sito/Transferencia</label>
-  <input name="payment_number" type="text" id="payment_number" value="" /> 
-  <br>
+<div id="payment-option">
+  <input type="radio" name="payment_type" value="deposit" /> 
+  <label for="payment-type">Dep&oacute;sito</label>
+  <input type="radio" name="payment_type" value="transfer" checked="checked" /> 	   <label for="payment-type">Transferencia</label>
+</div>
+<label for="payment_number" id="payment-number">N&uacute;mero Dep&oacute;sito/Transferencia</label>
+  <input name="payment_number" type="text" id="payment_number" value="" /> <br/>
   
   <label class="title-field" for="bank">Banco: </label>
   <select name="bank">
@@ -107,7 +105,7 @@ $(document).ready(function(){
 	<option value="provincial">Banco Provincial</option>
 	<option value="banesco">Banesco</option>
   </select>
-  <br>
+  <br/>
   
   <button id="pay-button" type="submit" name="register_payment">Registrar</button>
 
