@@ -15,6 +15,7 @@ from group_membership_request import AcceptGroupMembershipRequest, RejectGroupMe
 from rules import RulesHandler
 from user_profile import CAUserProfileHandler, SaveCAUserProfile
 from copa_america import ViewCopaAmerica
+from edit_competition_group import EditCACompetitionGroup, EditAddMemberToCompetitionGroup, EditDeleteMemberFromCompetitionGroup
 
 from session import LoginHandler, LogoutHandler, FacebookLoginHandler, GoogleLoginHandler
 from ca_utils import render_template, check_session_status
@@ -109,7 +110,10 @@ application = webapp.WSGIApplication([('/', MainHandler),
                                       ('/rules', RulesHandler),
                                       ('/view/profile', CAUserProfileHandler),
                                       ('/save/profile', SaveCAUserProfile),
-                                      ('/view/copa-america', ViewCopaAmerica)],
+                                      ('/view/copa-america', ViewCopaAmerica),
+                                      ('/edit/group', EditCACompetitionGroup),
+                                      ('/edit/add/group', EditAddMemberToCompetitionGroup),
+                                      ('/edit/delete/group', EditDeleteMemberFromCompetitionGroup)],
                                      debug=True)
 
 def main():
