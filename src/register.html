@@ -67,6 +67,10 @@ $(document).ready(function(){
 		    <label for="password_confirm_id">Clave: </label>
 		    <input name="password_confirm" type="password" id="password_confirm_id" value="" />
 		    <br>
+		    
+		    <div id="submit-notice" class="notice">
+				{{ error }}
+	  		</div>
 		
 		    <button id="register-button" class="list-button" type="submit" name="register" value="Registrar">Registrar</button>
 		</form>

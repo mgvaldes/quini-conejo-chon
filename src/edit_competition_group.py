@@ -66,14 +66,18 @@ class EditCACompetitionGroup(webapp.RequestHandler):
                 search_result = []
                 selected_competition_group_key = Key(self.request.get('selected-football-pool'))
                 competition_group = CACompetitonGroup.get(selected_competition_group_key)
-                members = competition_group.members.fetch(10000) 
+                members = competition_group.members.fetch(10000)
+                members_keys = []
+                
+                for member in members:
+                    members_keys.append(member.key())
                 
                 if search_term:
                     users = CAUser.all().fetch(10000)
                     
                     for user in users:
                         if active_user.key() != user.key():
-                            if user not in members:
+                            if user.key() not in members_keys:
                                 username = []
                                 
                                 if user.type == 0:

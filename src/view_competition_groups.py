@@ -72,7 +72,12 @@ class ViewCompetitionGroup(webapp.RequestHandler):
                 selected_competition_group_key = Key(selected)
                 
                 if edit:
-		    self.redirect('/edit/group?id=' + selected)
+                    global_group = CACompetitonGroup.all().filter("privacy =", True).fetch(1)[0]
+                    
+                    if (selected_competition_group_key != global_group.key()):
+                        self.redirect('/edit/group?id=' + selected)
+                    else:
+                        self.redirect('/list/groups/view')
                 elif ranking:
                     competition_group = CACompetitonGroup.get(selected_competition_group_key)
                     
