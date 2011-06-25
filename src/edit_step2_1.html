@@ -6,9 +6,16 @@
 
 <script type="text/javascript"> 
 $(document).ready(function(){
-loadFinalRoundEvents();loadHiddenLeft();	
+loadEditFinalRoundEvents();loadHiddenLeft();	
 })
 </script>	
+
+<script type="text/javascript"> 
+$(window).load(function () {
+    updateTeamsFlag();
+});
+</script>
+
 {% endblock %}
 
 {% block layer-buttons %}
@@ -58,7 +65,7 @@ loadFinalRoundEvents();loadHiddenLeft();
 {% endblock %}
 
 {% block contents %}
-<form action="/save/edit" method="post" id="create-step2" class="quiniela-form">
+<form action="/save/edit" method="post" id="edit-step2" class="quiniela-form">
   <ul class="group-matches">
     <h5 class="group-title">Cuartos de Final</h5>
 	{% for teams in quarter_finals_teams %}
