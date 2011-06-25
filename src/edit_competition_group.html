@@ -1,0 +1,72 @@
+{% extends 'base.html' %}
+
+{% block headers %}
+<script type="text/javascript" src="/sitemedia/js/jquery-1.4.4.js"></script>
+
+<script type="text/javascript"> 
+$(document).ready(function(){
+loadHiddenLeft();	
+})
+</script>
+{% endblock %}
+
+{% block openbody %}
+<body>
+{% endblock %}
+
+{% block content_submenu %}
+<ul id="center-buttons">
+  <li class="selected"><a href="/list/groups/view"><span>Mis Grupos</span></a></li>
+  <li class="not-selected"><a href="/create/group"><span>Crear Grupo</span></a></li>
+  <li class="not-selected"><a href="/list/groups/ranking"><span>Ver Ranking</span></a></li>
+</ul>
+{% endblock %}
+
+{% block content_description %}
+<p id="content-description">
+   Aqu&iacute; podr&aacute;s editar tu grupo e invitar a m&aacute;s amigos a unirse a formar parte de tu grupo
+</p>
+{% endblock %}
+
+{% block contents %}
+<form action="/edit/group" method="post" class="other-form">
+  
+  <label for="name" class="title-label">Nombre del Grupo: </label>
+  <input name="name" type="text" id="name" value="{{ name }}" class="title-field"/>
+  <br>
+
+  Busca a tus amigos: <input name="search" type="text" id="search" value="" class="title-field" />
+  <button id="create-group-button" class="list-button" type="submit" name="search_user" value="Buscar">Buscar</button>
+
+  <br>
+  
+  <ul>
+	{% for user in searched_users %}
+	<li>
+	  <label>{{ user.0 }}</label> 
+	  <a href="/edit/add/group?user={{ user.1 }}&last_search={{ last_search }}&last_members={{ last_members }}&name={{ name }}&selected-football-pool={{ selected_football_pool }}">Agregar</a>
+	</li>
+	{% endfor %}
+  </ul>
+  
+  <input name="last-search" type="hidden" value="{{ last_search }}">
+ 
+  
+  <ul id="members-list">
+	{% for member in members %}
+	<li>
+	  <label name="">{{ member.0 }}</label> 
+	  {% if member.2 %}
+	  	<a href="/edit/delete/group?user={{ member.1 }}&last_search={{ last_search }}&last_members={{ last_members }}&name={{ name }}&selected-football-pool={{ selected_football_pool }}">Eliminar</a>
+	  {% endif %}
+	</li>
+	{% endfor %}
+  </ul>
+  
+  <input name="last-members" type="hidden" value="{{ last_members }}">
+  <input name="selected-football-pool" type="hidden" value="{{ selected_football_pool }}">
+  
+  <button id="save-group-button" class="list-button" type="submit" name="save" value="Guardar">Guardar</button>
+</form>
+
+{% endblock %}
