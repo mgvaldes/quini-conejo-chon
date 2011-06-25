@@ -92,11 +92,19 @@ ul {
 
 div#logo{
 	position: relative;
-	background: url('/sitemedia/img/logo.png');
+	/*background: url('/sitemedia/img/logo.png');*/
 	top: 51px;
 	width: 443px;
 	height: 29px;
 	float: left;
+}
+
+div#logo a{
+	position:relative;
+	float:left;
+	background: url('/sitemedia/img/logo.png');
+	width: 443px;
+	height: 29px;
 }
 
 div#pote{
@@ -287,9 +295,9 @@ div#emma-buttons span{
 	top: 100px;
 	width: 100%;
 	margin-left: 0%;
-	height: 30px;
+	height: 10px;
 	bottom: 0;
-	background-color: #000;
+	/*background-color: #000;*/
 }
 
 div#buttons-layer{
@@ -367,9 +375,8 @@ ul#buttons-ul li.selected a{
 	overflow: hidden;
 	background-color: #c4c4c4;
 	padding: 10px 10px;
-	
+	/*margin-bottom: 20px;*/
 }
-
 
 /* ------------------------*/
 /* General Table Styling --*/
@@ -596,6 +603,7 @@ div.left-block-content table{
 	float: right;
 	width: 660px;
 	background-color: #eeeeee;
+	margin-bottom:15px;
 	-moz-box-shadow: 0px 5px 30px #555;
     -webkit-box-shadow: 0px 5px 30px #555;
 }
@@ -900,4 +908,25 @@ ul#search-list {
 	float: left;
 }
 
+/*-------------------------*/
+/* --- Form flag style  ---*/
+/* ------------------------*/
+
+
+form.quiniela-form label.e2{
+	
+	background-repeat: no-repeat;
+	background-position: right;
+	
+}
+
+form.quiniela-form label.e1{
+	background-repeat: no-repeat;
+	padding-left: 25px;
+}
+
+/* PONER ID de LABEL igual que el FOR */
+form.quiniela-form label#Arg-Bol-g1{
+	background-image: url('/sitemedia/img/small-flags/argentina.png');
+}
 

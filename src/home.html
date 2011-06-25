@@ -10,6 +10,30 @@ $(document).ready(function(){
 </script>
 {% endblock %}
 
+{% block layer-buttons %}
+{% if session_status %}
+	<div id="buttons-layer">
+    	<ul id="buttons-ul">
+        	<li class="not-selected"><a href="/list/football-pools/view"><span>Quinielas</span></a></li>
+        	<li class="not-selected"><a href="/create/group"><span>Grupos</span></a></li>
+        	<li class="not-selected"><a href="/rules"><span>Reglas</span></a></li>
+        	<li class="not-selected"><a href="/view/profile"><span>Mi Perfil</span></a></li>
+        	<li class="not-selected"><a href="/view/copa-america"><span>Copa Am&eacute;rica</span></a></li>          
+      	</ul>
+    </div>
+{% else %}
+	<div id="buttons-layer">
+    	<ul id="buttons-ul">
+        	<li class="not-selected"><a href="/login"><span>Quinielas</span></a></li>
+        	<li class="not-selected"><a href="/login"><span>Grupos</span></a></li>
+        	<li class="not-selected"><a href="/rules"><span>Reglas</span></a></li>
+        	<li class="not-selected"><a href="/login"><span>Mi Perfil</span></a></li>
+        	<li class="not-selected"><a href="/view/copa-america"><span>Copa Am&eacute;rica</span></a></li>          
+      	</ul>
+    </div>
+{% endif %}
+{% endblock %}
+
 {% block openbody %}
 <body>
 {% endblock %}
