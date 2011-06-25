@@ -8,7 +8,15 @@ $(document).ready(function(){
 loadFinalRoundEvents();loadHiddenLeft();	
 })
 </script>	
+
+<script type="text/javascript"> 
+$(window).load(function () {
+    updateTeamsFlag();
+});
+</script>
+
 {% endblock %}
+
 
 
 {% block layer-buttons %}
@@ -54,6 +62,8 @@ loadFinalRoundEvents();loadHiddenLeft();
 {% block content_description %}
 <p id="content-description">
   Ingresa tu pron&oacute;tico para cada partido de los cuartos de final, semifinal, tercero y cuarto y final.
+  En caso de que pienses que el partido quedará empatado, y que por tanto se definirá por tanda de penaltis, 
+deberás agregar un gol adicional al equipo que crees que ganará los penaltis. 
 </p>
 {% endblock %}
 

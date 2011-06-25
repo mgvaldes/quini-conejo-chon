@@ -136,7 +136,10 @@ function resetTeamGoals(inputName){
 
 function cleanNextMatch(match_label){
     var next = next_game_id_pos[match_label];
-    $("label[for="+next[0]+"-g"+next[1]+"]").html("?");
+	var labelOb = $("label[for="+next[0]+"-g"+next[1]+"]");
+    labelOb.html("?");
+	labelOb.css('background-image',"none");
+
 }
 
 // from matches of the form 'team-team' get
@@ -234,7 +237,6 @@ function fetchAndUpdate(id) {
 	updateClassifTable(group, classif1, classif2);
  	updateAdvancingTeams(group);     
 
-
 }
 
 function updateAdvancingTeams(group){
@@ -243,6 +245,23 @@ function updateAdvancingTeams(group){
     var childList = classifUl.getElementsByTagName("li");
     childList[0].innerHTML = team_long[stats["1"]["team"]];
     childList[1].innerHTML = team_long[stats["2"]["team"]];
+}
+
+function updateTeamsFlag(){
+	var matches = $("ul.group-matches");
+	matches.each(function(){
+		$(this).find("label").each(function(){
+			setTeamFlag($(this));		
+		})
+	});
+}
+
+function setTeamFlag(label){
+	
+	if(team_acronym[label.html()]){
+		var team_name = label.html().replace(/ /g,'');
+		label.css('background-image',"url('/sitemedia/img/small-flags/"+team_name+".png')")
+	}
 }
 
 function getAndUpdateThirdParty(statsA, statsB, statsC){
@@ -979,6 +998,57 @@ function loadFinalRoundEvents(){
 	
 }
 
+function loadEditFinalRoundEvents(){
+    fetchFinalRoundEvents();
+            
+    $('#edit-step2').submit(function(event){
+
+        if(!isFinalPoolFull()){
+            alert("Debes rellenar todos los partidos");
+            event.preventDefault();
+            return false;
+        }
+
+        //set hidden data
+        setAllResultsData();
+		//alert($("input[name=second-round-matches]").val());
+
+        return true;
+    });    
+}
+
+function loadEditFullFinalRoundEvents(){
+    fetchFinalRoundEvents();
+	
+	/* last round fetch*/
+	var gl = ['sf1','sf2','tf','f'];
+	for(var game in gl){
+		
+		$("input[name="+gl[game]+"-g1]").change(function(){
+			fetchFRGame($(this));	
+		});
+		$("input[name="+gl[game]+"-g2]").change(function(){
+			fetchFRGame($(this));	
+		});
+	}
+
+            
+    $('#edit-step2').submit(function(event){
+
+        if(!isFinalPoolFull()){
+            alert("Debes rellenar todos los partidos");
+            event.preventDefault();
+            return false;
+        }
+
+        //set hidden data
+        setAllResultsData();
+		//alert($("input[name=second-round-matches]").val());
+
+        return true;
+    });    
+}
+
 function fetchFinalRoundEvents(){
 
     var qf_games = getFinalRoundMatches("e1-qf");
@@ -1034,6 +1104,7 @@ function fetchQfGame(qfmatch, input_element){
             cleanNextMatch(parent.attr("id"));          
         }
     }
+	updateTeamsFlag();
 }
 
 function setNextGameTeam(prev_game_id, team_name){
@@ -1061,7 +1132,6 @@ function fetchFRGame(input_element){
 	var calling_team_g = split_name[1];
 	var t1_goals = getTeamGoals(round+"-g1");
 	var t2_goals = getTeamGoals(round+"-g2");
-	
 	if (isPosInt(t1_goals) && isPosInt(t2_goals)) {
         var t1_goals_int = parseInt(t1_goals);
         var t2_goals_int = parseInt(t2_goals);
@@ -1092,6 +1162,7 @@ function fetchFRGame(input_element){
                 cleanNextMatch(parent.attr("id")); 
             }
         }
+	updateTeamsFlag();
 }
 
 function getFinalRoundMatches(className){
@@ -1102,10 +1173,6 @@ function getFinalRoundMatches(className){
 	  });
 	return games_id;
 }
-
-
-
-
 
 
 

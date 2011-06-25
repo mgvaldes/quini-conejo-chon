@@ -6,8 +6,14 @@
 <script type="text/javascript"> 
 $(document).ready(function(){
 	
-loadQuinEvents();loadHiddenLeft();	
+loadQuinEvents();loadHiddenLeft();
 })
+</script>
+
+<script type="text/javascript"> 
+$(window).load(function () {
+    updateTeamsFlag();
+});
 </script>
 {% endblock %}
 
@@ -120,4 +126,5 @@ loadQuinEvents();loadHiddenLeft();
   
   <input name="first-round-winners" type="hidden" value="" />
 </form>
+
 {% endblock %}

@@ -6,9 +6,16 @@
 
 <script type="text/javascript"> 
 $(document).ready(function(){
-loadFinalRoundEvents();loadHiddenLeft();	
+loadEditFullFinalRoundEvents();loadHiddenLeft();	
 })
 </script>	
+
+<script type="text/javascript"> 
+$(window).load(function () {
+    updateTeamsFlag();
+});
+</script>
+
 {% endblock %}
 
 {% block layer-buttons %}
@@ -41,9 +48,9 @@ loadFinalRoundEvents();loadHiddenLeft();
 
 {% block content_submenu %}
 <ul id="center-buttons">
-  <li class="selected"><a href="#"><span>Mis Quinielas</span></a></li>
-  <li class="not-selected"><a href="#"><span>Crear Quiniela</span></a></li>
-  <li class="not-selected"><a href="#"><span>Pagar Quiniela</span></a></li>
+  <li class="selected"><a href="/list/football-pools/view"><span>Mis Quinielas</span></a></li>
+  <li class="not-selected"><a href="/create/step1"><span>Crear Quiniela</span></a></li>
+  <li class="not-selected"><a href="/list/football-pools/pay"><span>Pagar Quiniela</span></a></li>
 </ul>
 {% endblock %}
 
@@ -58,7 +65,7 @@ loadFinalRoundEvents();loadHiddenLeft();
 {% endblock %}
 
 {% block contents %}
-<form action="/save/edit" method="post" id="create-step2" class="quiniela-form">
+<form action="/save/edit" method="post" id="edit-step2" class="quiniela-form">
   
   <ul class="group-matches">
     <h5 class="group-title">Cuartos de Final</h5>
@@ -79,6 +86,7 @@ loadFinalRoundEvents();loadHiddenLeft();
 	<li class="group-match" id="sf{{ teams.4 }}">
 	  <label class="e1" for="sf{{ teams.4 }}-g1">{{ teams.0 }}</label> 
 	  <input id="sf{{ teams.4 }}-g1" name="sf{{ teams.4 }}-g1" class="goals-field" type="text" value="{{ teams.1 }}" /> 
+	      <p class="quin-sep">-</p>
 	  <input id="sf{{ teams.4 }}-g2" name="sf{{ teams.4 }}-g2" class="goals-field" type="text" value="{{ teams.2 }}" /> 
 	  <label class="e2" for="sf{{ teams.4 }}-g2">{{ teams.3 }}</label>
 	</li>

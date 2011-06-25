@@ -8,6 +8,13 @@ $(document).ready(function(){
 loadQuinEditEvents();loadHiddenLeft();	
 })
 </script>
+
+<script type="text/javascript"> 
+$(window).load(function () {
+    updateTeamsFlag();
+});
+</script>
+
 {% endblock %}
 
 
@@ -97,11 +104,13 @@ loadQuinEditEvents();loadHiddenLeft();
 	{% endfor %}
   </table>
   
-  <ul id="classif-{{ group.2 }}" class="classif-info">
+<ul id="classif-{{ group.2 }}" class="classif-info">
+<h5>Clasifican </h5>
 	<li></li>
 	<li></li>
 	<li></li>
-  </ul>
+</ul>
+
   
   {% endfor %}
   
