@@ -915,10 +915,6 @@ button#save-group-button {
 	margin-top: 10px;
 }
 
-ul#members-list {
-	float: right;
-}
-
 ul#search-list {
 	position: relative;
 	top: 10px;
@@ -973,6 +969,35 @@ form#pay-form input#payment_number{
 	top: -4px;
 }
 
+form.other-form h3{
+    /*font-size: 1.0em;        /* 24px / 16px = 1.5em */
+	font-family: 'folks-bold';
+	font-size: 15px;
+	color: #238ef2;
+	text-shadow: #C3C3C3 1px 2px 2px;
+	font-weight: 10;
+	margin-bottom: 10px;
+}
+
+div#group-list{
+	margin-top: 10px;
+	background-color: #000;
+	margin-bottom: 70px;
+}
+
+div#group-list ul#found-user{
+	float: left;
+}
+
+div#group-list ul label{
+	width: 100px;
+	position: relative;
+	top: 0px;
+}
+
+div#group-list ul#members-list{
+	float:right;	
+}
 
 
 /*-------------------------*/
