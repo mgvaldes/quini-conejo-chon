@@ -356,6 +356,9 @@ background: -moz-linear-gradient(top, #f6f6f6, #dbdbdc);
 -moz-box-shadow: 0px 4px 12px #AAA;
 -webkit-box-shadow: 0px 4px 12px #AAA;
 box-shadow: 0px 4px 12px #AAA;
+background: -o-linear-gradient(#f6f6f6, #dbdbdc);
+        filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#f6f6f6', endColorstr='#dbdbdc');
+        zoom:1;
 color: #0058c4;
 text-shadow: #888 0.1em 0.1em 0.13em
 
@@ -367,6 +370,9 @@ ul#buttons-ul li.selected a{
 	-moz-box-shadow: 0px 4px 12px #AAA;
 	-webkit-box-shadow: 0px 4px 12px #AAA;
 	box-shadow: 0px 4px 12px #AAA;
+	background: -o-linear-gradient(#f6f6f6, #dbdbdc);
+	        filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#f6f6f6', endColorstr='#dbdbdc');
+	        zoom:1;
 	color: #0058c4;
 	text-shadow: #888 0.1em 0.1em 0.13em	
 }
