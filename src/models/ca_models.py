@@ -127,3 +127,12 @@ class CAScorer(db.Model):
 class CAJackPot(db.Model):
     amount = db.IntegerProperty()
     last_update = db.DateTimeProperty()
+    
+class CAGroupComment(db.Model):
+    group = db.ReferenceProperty(CACompetitonGroup)
+    user = db.ReferenceProperty(CAUser)
+    comment = db.StringProperty()
+    date = db.DateTimeProperty()
+
+class CARecommendation(db.Model):
+    users = db.ListProperty(db.Key) #Position 0: usuario que recomendo, posision 1: usuario recomendado

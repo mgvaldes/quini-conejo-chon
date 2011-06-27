@@ -1,10 +1,12 @@
+import logging
+
 from google.appengine.ext import webapp
 from google.appengine.ext.db import Key
 
 from gaesessions import get_current_session
 
 from ca_utils import check_session_status, render_template, get_total_points, update_session_time, get_pending_membership_requests, get_top_scorers, get_top_users_global_ranking, get_last_jackpot
-from models.ca_models import CACompetitonGroup, CAGroupRanking, CAUser, CARequestGroupMembership, CAFootballPool
+from models.ca_models import CACompetitonGroup, CAGroupRanking, CAUser, CARequestGroupMembership, CAFootballPool, CAGroupComment
 
 class ListCompetitionGroupsToView(webapp.RequestHandler):
     def get(self):
@@ -107,6 +109,19 @@ class ViewCompetitionGroup(webapp.RequestHandler):
                             
                         group_ranking_list.append((name, rank.football_pool.name, get_total_points(rank.football_pool), selected, rank.football_pool.key()))
                         
+                    comments = CAGroupComment.all().filter("group =", competition_group).fetch(10000)
+                    comments_info = []
+                    
+                    for comment in comments:
+                        if comment.user.type == 0:
+                            name = comment.user.google_user.nickname()
+                        elif comment.user.type == 1:
+                            name = comment.user.facebook_user.name
+                        else:
+                            name = comment.user.native_user.name
+                            
+                        comments_info.append((name, str(comment.date.day) + '/' + str(comment.date.month) + '/' + str(comment.date.year) + ' ' + str(comment.date.hour) + ':' + str(comment.date.minute), comment.comment))
+                        
                     template_values = {
                         'session_status': True,
                         'user': active_user,
@@ -114,7 +129,9 @@ class ViewCompetitionGroup(webapp.RequestHandler):
                         'group_ranking': group_ranking_list,
                         'top_scorers': get_top_scorers(),
                         'top_users': get_top_users_global_ranking(),
-                        'last_jackpot': get_last_jackpot()
+                        'last_jackpot': get_last_jackpot(),
+                        'comments': comments_info,
+                        'selected_group_key': self.request.get('selected_competition_group'),
                     }
                     
                     render_template(self, 'ranking.html', template_values)
@@ -167,28 +184,34 @@ class CreateCompetitionGroup(webapp.RequestHandler):
                 
                 if search_term:
                     users = CAUser.all().fetch(10000)
+                    logging.debug('Iterando por usuarios')
 
                     for user in users:
                         if active_user.key() != user.key():
                             username = []
+                            
+                            logging.debug('tipo de usuario: ' + str(user.type))
                             
                             if user.type == 0:
                                 nickname = user.google_user.nickname()
                                 email = user.google_user.email()
 
                                 if (search_term.lower() in str(nickname).lower()) or (search_term.lower() in str(email).lower()):
-                                    username = nickname
+                                    username = nickname + ' ' + email
                             elif user.type == 1:
                                 name = user.facebook_user.name
 
                                 if search_term.lower() in str(name).lower():
                                     username = name
                             else:
+                                logging.debug('Usuario nativo!')
+                                logging.debug('key de usuario: ' + str(user.key()))
+                                
                                 name = user.native_user.name
                                 email = user.native_user.email
 
                                 if (search_term.lower() in str(name).lower()) or (search_term.lower() in str(email).lower()):
-                                    username = name
+                                    username = name + ' ' + email
 
                             if username:
                                 search_result.append((str(username), str(user.key())))

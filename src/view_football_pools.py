@@ -227,7 +227,9 @@ class ViewFootballPool(webapp.RequestHandler):
                             'selected_football_pool_key': self.request.get('selected_football_pool'),
                             'top_scorers': get_top_scorers(),
                             'top_users': get_top_users_global_ranking(),
-                            'last_jackpot': get_last_jackpot()
+                            'last_jackpot': get_last_jackpot(),
+                            'selected_user': '',
+                            'searched_users': []
                         }
                         
                         render_template(self, 'pay_football_pool.html', template_values)
