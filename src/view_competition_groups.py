@@ -2,6 +2,7 @@ import logging
 
 from google.appengine.ext import webapp
 from google.appengine.ext.db import Key
+import logging
 
 from gaesessions import get_current_session
 
@@ -184,14 +185,11 @@ class CreateCompetitionGroup(webapp.RequestHandler):
                 
                 if search_term:
                     users = CAUser.all().fetch(10000)
-                    logging.debug('Iterando por usuarios')
 
                     for user in users:
                         if active_user.key() != user.key():
                             username = []
-                            
-                            logging.debug('tipo de usuario: ' + str(user.type))
-                            
+
                             if user.type == 0:
                                 nickname = user.google_user.nickname()
                                 email = user.google_user.email()
@@ -204,9 +202,6 @@ class CreateCompetitionGroup(webapp.RequestHandler):
                                 if search_term.lower() in str(name).lower():
                                     username = name
                             else:
-                                logging.debug('Usuario nativo!')
-                                logging.debug('key de usuario: ' + str(user.key()))
-                                
                                 name = user.native_user.name
                                 email = user.native_user.email
 
