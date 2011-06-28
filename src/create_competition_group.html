@@ -62,7 +62,9 @@ loadHiddenLeft();
   <button id="create-group-button" class="list-button" type="submit" name="search_user" value="Buscar">Buscar</button>
 
   <br>
+
   <div id="group-list">
+   {% if searched_users %}
   <ul id="found-user">
 	<h3>Usuarios Encontrados</h3>
 	
@@ -73,10 +75,10 @@ loadHiddenLeft();
 	</li>
 	{% endfor %}
   </ul>
-  
+  {% endif %}
   <input name="last-search" type="hidden" value="{{ last_search }}">
  
-
+  {% if members %}
   <ul id="members-list">
   <h3>Miembros del Grupo</h3>
 	{% for member in members %}
@@ -86,6 +88,7 @@ loadHiddenLeft();
 	</li>
 	{% endfor %}
   </ul>
+   {% endif %}
   </div>
 
   <input name="last-members" type="hidden" value="{{ last_members }}">

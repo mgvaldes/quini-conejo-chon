@@ -278,11 +278,11 @@ class AddMemberToCompetitionGroup(webapp.RequestHandler):
             searched_users = eval(self.request.get('last_search')) 
                             
             if new_member.type == 0:
-                username = new_member.google_user.nickname()
+                username = new_member.google_user.nickname() + " " + new_member.google_user.email()
             elif new_member.type == 1:
                 username = new_member.facebook_user.name
             else:
-                username = new_member.native_user.name
+                username = new_member.native_user.name + " " + new_member.native_user.email
                         
             if username:
                 searched_users.remove((str(username), str(new_member.key())))
@@ -322,11 +322,11 @@ class DeleteMemberFromCompetitionGroup(webapp.RequestHandler):
             searched_users = eval(self.request.get('last_search')) 
                             
             if new_member.type == 0:
-                username = new_member.google_user.nickname()
+                username = new_member.google_user.nickname() + " " + new_member.google_user.email()
             elif new_member.type == 1:
                 username = new_member.facebook_user.name
             else:
-                username = new_member.native_user.name
+                username = new_member.native_user.name + " " + new_member.native_user.email
                         
             if username:
                 members.remove((str(username), str(new_member.key())))
