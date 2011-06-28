@@ -63,6 +63,7 @@ $(document).ready(function(){
 	<th>Nombre</th>
 	<th>Quiniela</th>
 	<th>Puntos</th>
+	<th></th>
   </tr>
   
   {% for rank in group_ranking %}
@@ -71,12 +72,37 @@ $(document).ready(function(){
 	<td class="active-user"><h4>{{ rank.0 }}</h4></td>
 	<td class="active-user"><h4>{{ rank.1 }}</h4></td>
 	<td class="active-user"><h4>{{ rank.2 }}</h4></td>
+	<td></td>
 	{% else %}
 	<td class="regular-user">{{ rank.0 }}</td>
 	<td class="regular-user">{{ rank.1 }}</td>
 	<td class="regular-user">{{ rank.2 }}</td>
+	<td><a href="/view/user/football-pool?id={{ rank.4 }}">Ver Quiniela</a></td>
 	{% endif %}
   </tr>
   {% endfor %}
 </table>
+
+<ul>
+{% for comment in comments %}
+	<li>
+		<div class="comment-info">
+			<p id="name">{{ comment.0 }}</p> <p id="date">{{ comment.1 }}</p>
+		</div>
+		
+		<div id="comment-text">
+			<p>{{ comment.2 }}</p>
+		</div>
+	</li>
+{% endfor %}
+</ul>
+
+<form action="/view/group/comment" method="post" id="comment-form">
+	<textarea rows="2" cols="30" name="comment-text"></textarea>
+
+	<button id="comment-button" type="submit" name="comment">Comentar</button>
+	
+	<input name="selected_group_key" type="hidden" value="{{ selected_group_key }}" />
+</form>
+
 {% endblock %}
