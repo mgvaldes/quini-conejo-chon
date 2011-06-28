@@ -739,6 +739,7 @@ form.other-form label{
 	float: left;
 }
 
+
 form#group-form label{
 	width: 150px;
 	position: relative;
@@ -753,9 +754,32 @@ form#group-form button{
 	height:27px;
 }
 
+form#pay-form button#create-group-button{
+	position:relative;
+	top:0px;
+	left:2px;
+	height:27px;
+}
+
+form#pay-form input#search{
+	margin-top:15px;
+}
+
+form#pay-form input#pay-radio{
+	float:left;
+	width:30px;
+}
+
+form#pay-form label#pay-radio-label{
+	float:left;
+	margin-bottom:20px;
+}
+
+
 form#group-form input{
 	width: 140px;
 }
+
 
 form.other-form select{
 	margin-top: 10px;
@@ -973,7 +997,48 @@ form#pay-form input#payment_number{
 	top: -4px;
 }
 
+form.other-form h3{
+    /*font-size: 1.0em;        /* 24px / 16px = 1.5em */
+	font-family: 'folks-bold';
+	font-size: 15px;
+	color: #238ef2;
+	text-shadow: #C3C3C3 1px 2px 2px;
+	font-weight: 10;
+	margin-bottom: 10px;
+}
 
+div#group-list{
+	margin-top: 10px;
+	margin-bottom: 50px;
+}
+
+div#group-list ul#found-user{
+
+}
+
+div#group-list ul label{
+	width: 100px;
+	position: relative;
+	top: 0px;
+}
+
+div#group-list ul#members-list{
+	position: relative;
+	top: 20px;
+}
+
+form#group-form button#save-group-button{
+	position: relative;
+	margin-top: -10px;
+}
+
+div#group-list label{
+	width: 150px;
+	position: relative;
+	float: none;
+	top:5px;
+	margin-right: 10px;
+}
 
 /*-------------------------*/
 /* --- Form flag style  ---*/
@@ -997,5 +1062,13 @@ form.quiniela-form label.e2{
 form.quiniela-form label.e1{
 	background-repeat: no-repeat;
 	padding-left: 25px;
+}
+
+
+
+div#comments-div{
+	position:relative;
+	background-color:#000;
+	
 }
 

@@ -107,14 +107,14 @@ $(document).ready(function(){
   </select>
   <br/>
   
-  <p>Si entraste en p&aacute;gina por la recomendaci&pacute;n de un amigo, b&uacute;scalo aqu&iacute;: </p>
+  <p>Si entraste en p&aacute;gina por la recomendaci&oacute;n de un amigo, b&uacute;scalo aqu&iacute;: </p>
   <input name="search" type="text" id="search" value="" class="title-field" />
   <button id="create-group-button" class="list-button" type="submit" name="search_user" value="Buscar">Buscar</button>
   
   <ul>
 	{% for user in searched_users %}
 	<li>
-	  <input type="radio" name="user_key" value={{ user.1 }} /><label>{{ user.0 }}</label>
+	  <input type="radio" id="pay-radio" name="user_key" value={{ user.1 }} /><label id="pay-radio-label">{{ user.0 }}</label>
 	</li>
 	{% endfor %}
   </ul>

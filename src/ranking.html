@@ -82,8 +82,9 @@ $(document).ready(function(){
   </tr>
   {% endfor %}
 </table>
-
-<ul>
+<!--
+<div id="comments-div">
+<ul id="comments">
 {% for comment in comments %}
 	<li>
 		<div class="comment-info">
@@ -96,6 +97,7 @@ $(document).ready(function(){
 	</li>
 {% endfor %}
 </ul>
+</div>
 
 <form action="/view/group/comment" method="post" id="comment-form">
 	<textarea rows="2" cols="30" name="comment-text"></textarea>
@@ -104,5 +106,5 @@ $(document).ready(function(){
 	
 	<input name="selected_group_key" type="hidden" value="{{ selected_group_key }}" />
 </form>
-
+-->
 {% endblock %}
