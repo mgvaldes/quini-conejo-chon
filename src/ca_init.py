@@ -1,6 +1,8 @@
 #sys.path.append(os.path.join(os.path.dirname(__file__), "models"))
 from models.ca_models import *
 import datetime
+from google.appengine.api.mail import EmailMessage
+from google.appengine.api import mail
 
 def add_match(key1, key2, month, day, hours, minutes, copa_america):
     match_teams = []
@@ -149,4 +151,17 @@ def create_initial_info():
     scorer5 = CAScorer(name="Carlos T&eacute;vez", team=argentina, goals=0)
     scorer5.put()
     
-create_initial_info()
+def send_reminder_email():
+    users = CAUser.all().fetch(10000)
+    
+    for user in users:
+        if user.type == 0:
+            email = user.google_user.email()
+        elif user.type == 2:
+            email = user.native_user.email
+            
+    
+        mail = EmailMessage(sender="info@quinielaca.com", to=email, subject="Recordatorio de Quinielaca.com", html="<html><body><img src=\"http://img84.imageshack.us/img84/210/emailxy.png\"/></body></html>")
+        mail.send()
+    
+#create_initial_info()

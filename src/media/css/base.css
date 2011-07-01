@@ -766,12 +766,12 @@ form#pay-form input#search{
 }
 
 form#pay-form input#pay-radio{
-	float:left;
+	float:none;
 	width:30px;
 }
 
 form#pay-form label#pay-radio-label{
-	float:left;
+	float:none;
 	margin-bottom:20px;
 }
 
@@ -955,9 +955,10 @@ ul#search-list {
 form#pay-form div#payment-option label{
 	display: inline;
 	float:none;
-	postion:relative;
-	top: -5px;
-	left: 0px;
+	margin-left: 8px;
+	margin-right: 20px;
+	top: -2px;
+	left: 10px;
 }
 
 form#pay-form div#payment-option input{
@@ -1025,6 +1026,7 @@ div#group-list ul label{
 div#group-list ul#members-list{
 	position: relative;
 	top: 20px;
+	float:none;
 }
 
 form#group-form button#save-group-button{
