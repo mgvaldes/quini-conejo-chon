@@ -256,6 +256,22 @@ function updateTeamsFlag(){
 	});
 }
 
+function updatedAdvancingTeamsFlag(){
+	var matches = $("ul.final-matches");
+	
+	for(var i=0;i<matches.length; i++){
+		$(matches[i]).find("label").each(function(){
+			setTeamFlag($(this));		
+		})
+	}
+	
+	/*matches.each(function(){
+		$(this).find("label").each(function(){
+			setTeamFlag($(this));		
+		})
+	});*/
+}
+
 function setTeamFlag(label){
 	
 	if(team_acronym[label.html()]){

@@ -3,17 +3,14 @@
 {% block headers %}
 <script type="text/javascript" src="/sitemedia/js/jquery-1.4.4.js"></script>
 <script type="text/javascript" src="/sitemedia/js/quinHandler.js"></script>
+<link rel="stylesheet" type="text/css" href="/sitemedia/css/flag-opt.css" media="screen" />	
+
 <script type="text/javascript"> 
 $(document).ready(function(){
 loadQuinEditEvents();loadHiddenLeft();	
 })
 </script>
 
-<script type="text/javascript"> 
-$(window).load(function () {
-    updateTeamsFlag();
-});
-</script>
 
 {% endblock %}
 
@@ -71,11 +68,11 @@ $(window).load(function () {
   <ul class="group-matches">
 	{% for team in group.0 %}
 	<li class="group-match">
-	  <label class="e1" for="{{ team.0|slice:":3" }}-{{ team.3|slice:":3" }}-g1">{{ team.0 }}</label> 
+	  <label class="e1" id="{{ team.0|slice:":3" }}-{{ team.3|slice:":3" }}-g1" for="{{ team.0|slice:":3" }}-{{ team.3|slice:":3" }}-g1">{{ team.0 }}</label> 
 	  <input id="{{ team.0|slice:":3" }}-{{ team.3|slice:":3" }}-g1" name="{{ team.0|slice:":3" }}-{{ team.3|slice:":3" }}-g1" class="goals-field" type="text" value="{{ team.1 }}" />
       <p class="quin-sep">-</p>
 	  <input id="{{ team.0|slice:":3" }}-{{ team.3|slice:":3" }}-g2" name="{{ team.0|slice:":3" }}-{{ team.3|slice:":3" }}-g2" class="goals-field" type="text" value="{{ team.2 }}" /> 
-	  <label class="e2" for="{{ team.0|slice:":3" }}-{{ team.3|slice:":3" }}-g2">{{ team.3 }}</label>
+	  <label class="e2" id="{{ team.0|slice:":3" }}-{{ team.3|slice:":3" }}-g2" for="{{ team.0|slice:":3" }}-{{ team.3|slice:":3" }}-g2">{{ team.3 }}</label>
 	</li>
 	{% endfor %}
   </ul>
