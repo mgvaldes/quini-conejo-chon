@@ -49,7 +49,7 @@ class CAFootballPool(db.Model):
     
     @property
     def second_round_matches(self):
-        return CAMatch.gql("WHERE football_pool = :1 AND date > :2 ORDER BY date", self.key(), datetime.datetime(2011, 7, 13, 17, 45, 0))
+        return CAMatch.gql("WHERE football_pool = :1 AND date > :2 ORDER BY date", self.key(), datetime.datetime(2011, 7, 13, 20, 15, 0))
 
 class CAMatch(db.Model):
     date = db.DateTimeProperty()
