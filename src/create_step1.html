@@ -67,7 +67,9 @@ loadQuinEvents();loadHiddenLeft();
 <form action="/create/step2" method="post" id="create-step1" class="quiniela-form">
   <label class="title-label" for="football_pool_name">Nombre</label>
   <input name="football-pool-name" class="title-field" type="text" value="" />
-  
+  <br/>
+  <a id="randomFirst" href="#" onclick ="assignRandomFirstRound();"><span>Llenar Aleatoriamente</span></a>
+
   {% for group in groups %}
   <h5 class="group-title">Grupo {{ group.2 }}</h5>
   <ul class="group-matches">

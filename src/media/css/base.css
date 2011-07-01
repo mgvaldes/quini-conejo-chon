@@ -809,7 +809,7 @@ table#table-global-ranking{
 	font-family: 'folks';
 	position: relative;
 	left: 100px;
-	float:left;
+	float:none;
 	width: 400px;
 	margin-bottom: 30px;
 	font-size: 17px;
@@ -1070,11 +1070,108 @@ form.quiniela-form label.e1{
 
 div#comments-div{
 	position:relative;
-	background-color:#000;
-	
+        float:none;
+        width:500px;
+        margin-left:50px;
+        background-color:#aaa;
+        padding:2px 2px;
+}
+
+div#comments-div ul{
+    list-style-type:none;
+}
+
+div#comments-div li{
+    margin-top:5px;
+    margin-bottom:5px;
+    margin-left:5px;
+    margin-right:5px;
+    background-color:#FFF;
+    align:left;
+}
+
+div#comments-div li div.comment-info{
+    background-color: #ddd;
+    padding: 5px 5px;
+}
+
+div.comment-info p.name{
+    color:#238ef2;
+}
+
+div.comment-info p.date{
+    color:#777;
+    position:relative;
+    top:-15px;
+    left:370px;
+    float:none;
+    height:0px;
+}
+
+div#comments-div li div.comment-text{
+    background-color: #f8f8f8;
+    padding: 10px 10px;
+    text-align:left;
+    float:none;
+}
+
+form#comment-form{
+    position:relative;
+    left:50px;
+    margin-top: 20px;
+}
+
+form#comment-form button{
+    position:relative;
+    top:-8px;
+    left:2px;
+}
+
+form#comment-form textarea{
+   background-color:#f1f1f1;
+   border: solid 1px #aaa;
+   font-family:'folks';
+   font-size:14px;
+   padding:5px 10px;
 }
 
 div.left-block-content img#promotion {
 	width: 250px;
+}
+
+a#randomFirst{
+    text-decoration:none;
+    color:#080808;
+    font-family: 'folks';
+    font-size:13px;
+	padding: 10px 15px;
+	position: relative;
+        top: 5px;
+	left: 70px;
+	border: solid 1px #959595;
+	background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#efefef), to(#dfe0e1));
+	background: -moz-linear-gradient(top, #efefef, #dfe0e1);
+	background: -o-linear-gradient(#efefef, #dfe0e1);
+            filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#efefef', endColorstr='#dfe0e1');
+            zoom:1;
+	width: 100px;
+}
+
+a#randomSecond{
+    text-decoration:none;
+    color:#080808;
+    font-family: 'folks';
+    font-size:13px;
+	padding: 10px 15px;
+	position: relative;
+        top: 5px;
+	left: 10px;
+	border: solid 1px #959595;
+	background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#efefef), to(#dfe0e1));
+	background: -moz-linear-gradient(top, #efefef, #dfe0e1);
+	background: -o-linear-gradient(#efefef, #dfe0e1);
+            filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#efefef', endColorstr='#dfe0e1');
+            zoom:1;
+	width: 100px;
 }
 

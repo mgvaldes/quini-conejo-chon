@@ -82,29 +82,31 @@ $(document).ready(function(){
   </tr>
   {% endfor %}
 </table>
-<!--
-<div id="comments-div">
-<ul id="comments">
-{% for comment in comments %}
-	<li>
-		<div class="comment-info">
-			<p id="name">{{ comment.0 }}</p> <p id="date">{{ comment.1 }}</p>
-		</div>
-		
-		<div id="comment-text">
-			<p>{{ comment.2 }}</p>
-		</div>
-	</li>
-{% endfor %}
-</ul>
-</div>
 
 <form action="/view/group/comment" method="post" id="comment-form">
-	<textarea rows="2" cols="30" name="comment-text"></textarea>
+	<textarea rows="1" cols="50" name="comment-text"></textarea>
 
 	<button id="comment-button" type="submit" name="comment">Comentar</button>
 	
 	<input name="selected_group_key" type="hidden" value="{{ selected_group_key }}" />
 </form>
--->
+
+<div id="comments-div">
+<ul id="comments">
+{% for comment in comments %}
+	<li>
+		<div class="comment-info">
+			<p class="name">{{ comment.0 }}</p> <p class="date">{{ comment.1 }}</p>
+		</div>
+		<div class="comment-text">
+			{{ comment.2 }}
+		</div>		
+
+	</li>
+{% endfor %}
+</ul>
+</div>
+
+
+
 {% endblock %}

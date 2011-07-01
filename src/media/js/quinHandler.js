@@ -135,11 +135,12 @@ function resetTeamGoals(inputName){
 }
 
 function cleanNextMatch(match_label){
-    var next = next_game_id_pos[match_label];
+    try{
+	var next = next_game_id_pos[match_label];
 	var labelOb = $("label[for="+next[0]+"-g"+next[1]+"]");
     labelOb.html("?");
 	labelOb.css('background-image',"none");
-
+	}catch(err){}
 }
 
 // from matches of the form 'team-team' get
@@ -1105,6 +1106,7 @@ function fetchQfGame(qfmatch, input_element){
 		}
 		else if(winner==0){
 			alert("El partido no puede quedar empatado");
+			parent = input_element.parent();
 			resetTeamGoals(match[0]+"-"+match[1]+"-g1");
 			resetTeamGoals(match[0]+"-"+match[1]+"-g2");
 			cleanNextMatch(parent.attr("id"));
@@ -1124,6 +1126,7 @@ function fetchQfGame(qfmatch, input_element){
 }
 
 function setNextGameTeam(prev_game_id, team_name){
+	try{
 	var next_game = next_game_id_pos[prev_game_id];
 	var game_level= next_game[0];
 	var team_pos = next_game[1];
@@ -1140,6 +1143,7 @@ function setNextGameTeam(prev_game_id, team_name){
 			fetchFRGame($(this));	
 		});
 	}
+  }catch(err){}
 }
 
 function fetchFRGame(input_element){
@@ -1167,7 +1171,8 @@ function fetchFRGame(input_element){
 			resetTeamGoals(round+"-g2");
 			alert("El partido no puede quedar empatado");
 		}
-    }else{parent = input_element.parent();
+    }else{
+			parent = input_element.parent();
             if(!isPosInt(t1_goals)){
                 resetTeamGoals(round+"-g1");
                 cleanNextMatch(parent.attr("id")); 
@@ -1188,6 +1193,59 @@ function getFinalRoundMatches(className){
 	    games_id.push($(this).attr('for'));
 	  });
 	return games_id;
+}
+
+function getRandomInt(min, max)
+{
+return Math.floor(Math.random() * (max - min + 1)) + min;
+}
+
+function getNiceResult(){
+    var r = getRandomInt(0, 10);
+    if(r>=0 && r<2){
+        return 0;
+    }
+    if(r>=2 && r<=4){
+        return 1;
+    }
+    if(r>=5 && r<=7){
+        return 2;
+    }
+    if(r>=8 && r<=9){
+        return 3;
+    }
+    if(r==10){
+        return 4;
+    }
+}
+
+function assignRandom(input){
+    input.val(getNiceResult()+"");
+}
+
+function assignRandomFirstRound(){
+    var goals_field = $(".goals-field");
+    goals_field.each(function(){
+        $(this).val(getNiceResult()+"");
+    });  
+ 	loadPrevResults();
+}
+
+
+function assignRandomFinalRound(){
+    var goals_field = $(".goals-field");
+    for(var i=0; i< goals_field.length; i+=2){
+        var res1= getNiceResult();
+        var res2= getNiceResult();
+        if(res1==res2){
+            res1+=1;
+        }
+        $(goals_field[i]).val(res1);
+		$(goals_field[i]).trigger('change');
+        $(goals_field[i+1]).val(res2);
+		$(goals_field[i+1]).trigger('change');
+    }
+	loadAsPrevFinalRound();
 }
 
 

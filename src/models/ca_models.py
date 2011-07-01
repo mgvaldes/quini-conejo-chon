@@ -131,7 +131,7 @@ class CAJackPot(db.Model):
 class CAGroupComment(db.Model):
     group = db.ReferenceProperty(CACompetitonGroup)
     user = db.ReferenceProperty(CAUser)
-    comment = db.StringProperty()
+    comment = db.TextProperty()
     date = db.DateTimeProperty()
 
 class CARecommendation(db.Model):

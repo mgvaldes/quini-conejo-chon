@@ -68,6 +68,10 @@ deberás agregar un gol adicional al equipo que crees que ganará los penaltis.
 {% endblock %}
 
 {% block contents %}
+
+<a id="randomSecond" href="#" onclick ="assignRandomFinalRound();"><span>Llenar Aleatoriamente</span></a>
+<br/>
+
 <form action="/save/create" method="post" id="create-step2" class="quiniela-form">
   <ul class="group-matches">
     <h5 class="group-title">Cuartos de Final</h5>
