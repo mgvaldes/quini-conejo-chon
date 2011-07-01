@@ -356,9 +356,6 @@ background: -moz-linear-gradient(top, #f6f6f6, #dbdbdc);
 -moz-box-shadow: 0px 4px 12px #AAA;
 -webkit-box-shadow: 0px 4px 12px #AAA;
 box-shadow: 0px 4px 12px #AAA;
-background: -o-linear-gradient(#f6f6f6, #dbdbdc);
-        filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#f6f6f6', endColorstr='#dbdbdc');
-        zoom:1;
 color: #0058c4;
 text-shadow: #888 0.1em 0.1em 0.13em
 
@@ -370,9 +367,6 @@ ul#buttons-ul li.selected a{
 	-moz-box-shadow: 0px 4px 12px #AAA;
 	-webkit-box-shadow: 0px 4px 12px #AAA;
 	box-shadow: 0px 4px 12px #AAA;
-	background: -o-linear-gradient(#f6f6f6, #dbdbdc);
-	        filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#f6f6f6', endColorstr='#dbdbdc');
-	        zoom:1;
 	color: #0058c4;
 	text-shadow: #888 0.1em 0.1em 0.13em	
 }
@@ -772,12 +766,12 @@ form#pay-form input#search{
 }
 
 form#pay-form input#pay-radio{
-	float:left;
+	float:none;
 	width:30px;
 }
 
 form#pay-form label#pay-radio-label{
-	float:left;
+	float:none;
 	margin-bottom:20px;
 }
 
@@ -945,6 +939,10 @@ button#save-group-button {
 	margin-top: 10px;
 }
 
+ul#members-list {
+	float: right;
+}
+
 ul#search-list {
 	position: relative;
 	top: 10px;
@@ -957,9 +955,10 @@ ul#search-list {
 form#pay-form div#payment-option label{
 	display: inline;
 	float:none;
-	postion:relative;
-	top: -5px;
-	left: 0px;
+	margin-left: 8px;
+	margin-right: 20px;
+	top: -2px;
+	left: 10px;
 }
 
 form#pay-form div#payment-option input{
@@ -1027,13 +1026,13 @@ div#group-list ul label{
 div#group-list ul#members-list{
 	position: relative;
 	top: 20px;
+	float:none;
 }
 
 form#group-form button#save-group-button{
 	position: relative;
 	margin-top: -10px;
 }
-
 
 div#group-list label{
 	width: 150px;
@@ -1073,5 +1072,9 @@ div#comments-div{
 	position:relative;
 	background-color:#000;
 	
+}
+
+div.left-block-content img#promotion {
+	width: 250px;
 }
 

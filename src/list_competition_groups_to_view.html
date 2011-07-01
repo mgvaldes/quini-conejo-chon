@@ -48,7 +48,7 @@ $(document).ready(function(){
 
 {% block content_description %}
 <p id="content-description">
-	Puedes editar tus grupos cuando quieras, invitar a nuevos amigos y seguir el puntaje de sus quinielas.
+	Puedes editar tus grupos cuando quieras, invitar a nuevos amigos y seguir el puntaje de sus quinielas. La edici&oacute;n de grupos s&oacute;lo te permite agregar nuevos usuarios al grupo.
 	<br>
 	<br>
 
@@ -57,6 +57,12 @@ $(document).ready(function(){
 {% endblock %}
 
 {% block contents %}
+
+		{% if pending_membership_requests %}
+			<p id="content-description">
+				Te han invitado a formar parte de un grupo!. A continuaci&oacute;n se listan las solicitudes que te han hecho tus amigos para formar parte de un grupo. Al aceptar la solicitud, pasas a formar parte del grupo autom&aacute;ticamente y puedes editar el grupo o ver la posici&oacute;n y puntaje de las quinielas de todos los miembros del grupo.
+			</p>
+		{% endif %}
 	
 		<ul>
 			{% for membership_request in pending_membership_requests %}

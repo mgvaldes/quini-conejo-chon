@@ -61,6 +61,11 @@ $(document).ready(function(){
 {% endblock %}
 
 {% block contents %}
+
+		<div id="submit-notice" class="notice">
+			{{ message }}
+		</div>
+		<br/>
 	
 		<ul>
 			{% for membership_request in pending_membership_requests %}

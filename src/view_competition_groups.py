@@ -2,7 +2,6 @@ import logging
 
 from google.appengine.ext import webapp
 from google.appengine.ext.db import Key
-import logging
 
 from gaesessions import get_current_session
 
@@ -52,7 +51,8 @@ class ListCompetitionGroupsToRanking(webapp.RequestHandler):
                 'pending_membership_requests': get_pending_membership_requests(active_user),
                 'top_scorers': get_top_scorers(),
                 'top_users': get_top_users_global_ranking(),
-                'last_jackpot': get_last_jackpot()
+                'last_jackpot': get_last_jackpot(),
+                'message': ''
             }
             
             render_template(self, 'list_competition_groups_to_ranking.html', template_values)
@@ -185,11 +185,14 @@ class CreateCompetitionGroup(webapp.RequestHandler):
                 
                 if search_term:
                     users = CAUser.all().fetch(10000)
+                    logging.debug('Iterando por usuarios')
 
                     for user in users:
                         if active_user.key() != user.key():
                             username = []
-
+                            
+                            logging.debug('tipo de usuario: ' + str(user.type))
+                            
                             if user.type == 0:
                                 nickname = user.google_user.nickname()
                                 email = user.google_user.email()
@@ -202,6 +205,9 @@ class CreateCompetitionGroup(webapp.RequestHandler):
                                 if search_term.lower() in str(name).lower():
                                     username = name
                             else:
+                                logging.debug('Usuario nativo!')
+                                logging.debug('key de usuario: ' + str(user.key()))
+                                
                                 name = user.native_user.name
                                 email = user.native_user.email
 
@@ -257,7 +263,21 @@ class CreateCompetitionGroup(webapp.RequestHandler):
                     request_membership = CARequestGroupMembership(users=users, status=False, group=new_group)
                     request_membership.put()
                     
-                self.redirect('/list/groups/ranking')
+                #self.redirect('/list/groups/ranking')
+                competition_groups = CACompetitonGroup.get(active_user.groups)
+                
+                template_values = {
+                    'session_status': True,
+                    'user': session['active_user'],
+                    'groups': competition_groups,
+                    'pending_membership_requests': get_pending_membership_requests(active_user),
+                    'top_scorers': get_top_scorers(),
+                    'top_users': get_top_users_global_ranking(),
+                    'last_jackpot': get_last_jackpot(),
+                    'message': 'Se han enviado con &eacute;xito las invitaciones a los usuarios para formar parte del grupo.'
+                }
+                
+                render_template(self, 'list_competition_groups_to_ranking.html', template_values)
         else:
             self.redirect('/')
             

@@ -64,31 +64,32 @@ loadHiddenLeft();
   <br>
 
   <div id="group-list">
-   {% if searched_users %}
-  <ul id="found-user">
-	<h3>Usuarios Encontrados</h3>
+	  {% if searched_users %}
+		  <ul id="found-user">
+			<h3>Usuarios Encontrados</h3>
+			
+			{% for user in searched_users %}
+				<li>
+				  <label>{{ user.0 }}</label> 
+				  <a href="/add/group?user={{ user.1 }}&last_search={{ last_search }}&last_members={{ last_members }}&name={{ name }}">Agregar</a>
+				</li>
+			{% endfor %}
+		  </ul>
+	  {% endif %}
+	  <input name="last-search" type="hidden" value="{{ last_search }}">
+	 
 	
-	{% for user in searched_users %}
-	<li>
-	  <label>{{ user.0 }}</label> 
-	  <a href="/add/group?user={{ user.1 }}&last_search={{ last_search }}&last_members={{ last_members }}&name={{ name }}">Agregar</a>
-	</li>
-	{% endfor %}
-  </ul>
-  {% endif %}
-  <input name="last-search" type="hidden" value="{{ last_search }}">
- 
-  {% if members %}
-  <ul id="members-list">
-  <h3>Miembros del Grupo</h3>
-	{% for member in members %}
-	<li>
-	  <label name="">{{ member.0 }}</label> 
-	  <a href="/delete/group?user={{ member.1 }}&last_search={{ last_search }}&last_members={{ last_members }}&name={{ name }}">Eliminar</a>
-	</li>
-	{% endfor %}
-  </ul>
-   {% endif %}
+	  {% if members %}
+		  <ul id="members-list">
+		  	<h3>Miembros del Grupo</h3>
+			{% for member in members %}
+			<li>
+			  <label name="">{{ member.0 }}</label> 
+			  <a href="/delete/group?user={{ member.1 }}&last_search={{ last_search }}&last_members={{ last_members }}&name={{ name }}">Eliminar</a>
+			</li>
+			{% endfor %}
+		  </ul>
+	   {% endif %}
   </div>
 
   <input name="last-members" type="hidden" value="{{ last_members }}">
