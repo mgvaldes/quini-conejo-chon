@@ -163,5 +163,82 @@ def send_reminder_email():
     
         mail = EmailMessage(sender="info@quinielaca.com", to=email, subject="Recordatorio de Quinielaca.com", html="<html><body><img src=\"http://img84.imageshack.us/img84/210/emailxy.png\"/></body></html>")
         mail.send()
+
+def update_dates():
+#    #Argentiina-Bolivia
+#    matches1 = CAMatch.all().filter("date =", datetime.datetime(2011, 6, 30, 20, 15, 0)).fetch(10000)
+#    
+#    for match1 in matches1:
+#        match1.date = datetime.datetime(2011, 7, 1, 20, 15, 0)
+#        match1.put()
+#    
+#    #Argentiina-Colombia
+#    matches2 = CAMatch.all().filter("date =", datetime.datetime(2011, 7, 5, 20, 15, 0)).fetch(10000)
+#    
+#    for match2 in matches2:
+#        match2.date = datetime.datetime(2011, 7, 6, 20, 15, 0)
+#        match2.put()
+#    
+#    #Uruguay-Mexico
+#    matches8 = CAMatch.all().filter("date =", datetime.datetime(2011, 7, 11, 20, 15, 0)).fetch(10000)
+#    
+#    for match8 in matches8:
+#        match8.date = datetime.datetime(2011, 7, 12, 20, 15, 0)
+#        match8.put()
+#    
+#    #Argentiina-CostaRica    
+#    matches3 = CAMatch.all().filter("date =", datetime.datetime(2011, 7, 10, 20, 15, 0)).fetch(10000)
+#    
+#    for match3 in matches3:
+#        match3.date = datetime.datetime(2011, 7, 11, 20, 15, 0)
+#        match3.put()
+#        
+#    #Brasil-Ecuador
+#    matches4 = CAMatch.all().filter("date =", datetime.datetime(2011, 7, 12, 20, 45, 0)).fetch(10000)
+#    
+#    for match4 in matches4:
+#        match4.date = datetime.datetime(2011, 7, 13, 20, 15, 0)
+#        match4.put()
+        
+    #Chile-Mexico
+    matches5 = CAMatch.all().filter("date =", datetime.datetime(2011, 7, 8, 17, 45, 0)).fetch(10000)
     
+    for match5 in matches5:
+        teams = CATeam.get(match5.teams)
+        
+        if teams[0].name == "Chile" and teams[1].name == "Mexico":
+            match5.date = datetime.datetime(2011, 7, 4, 20, 15, 0)
+            match5.put()
+        
+#    #Peru-Mexico
+#    matches7 = CAMatch.all().filter("date =", datetime.datetime(2011, 7, 8, 17, 45, 0)).fetch(10000)
+#    
+#    for match7 in matches7:
+#        match7.date = datetime.datetime(2011, 7, 8, 20, 15, 0)
+#        match7.put()
+    
+    #Uruguay-Chile
+    matches6 = CAMatch.all().filter("date =", datetime.datetime(2011, 7, 7, 20, 15, 0)).fetch(10000)
+    
+    for match6 in matches6:
+        teams = CATeam.get(match6.teams)
+        
+        if teams[0].name == "Uruguay" and teams[1].name == "Chile":
+            match6.date = datetime.datetime(2011, 7, 8, 17, 45, 0)
+            match6.put()
+    
+    #Semi-Final2
+    matches10 = CAMatch.all().filter("date =", datetime.datetime(2011, 7, 19, 20, 15, 0)).fetch(10000)
+    
+    for match10 in matches10:
+        match10.date = datetime.datetime(2011, 7, 20, 20, 15, 0)
+        match10.put()
+    
+    #Semi-Final1
+    matches9 = CAMatch.all().filter("date =", datetime.datetime(2011, 7, 18, 20, 15, 0)).fetch(10000)
+    
+    for match9 in matches9:
+        match9.date = datetime.datetime(2011, 7, 19, 20, 15, 0)
+        match9.put()    
+        
 #create_initial_info()
