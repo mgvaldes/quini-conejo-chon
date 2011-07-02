@@ -42,7 +42,7 @@ $(document).ready(function(){
 {% block content_submenu %}
 <ul id="center-buttons">
   <li class="selected"><a href="/list/football-pools/view"><span>Mis Quinielas</span></a></li>
-  <li class="not-selected"><a href="/create/step1"><span>Crear Quiniela</span></a></li>
+  <li class="not-selected"><a href="#"><span>Crear Quiniela</span></a></li>
   <li class="not-selected"><a href="/list/football-pools/pay"><span>Pagar Quiniela</span></a></li>
 </ul>
 {% endblock %}
@@ -69,7 +69,7 @@ $(document).ready(function(){
 			</select>
 			
 			<button class="list-button" type="submit" name="view" value="Ver">Ver</button>
-			<button class="list-button" type="submit" name="edit" value="Editar">Editar</button>
+			<!--<button class="list-button" type="submit" name="edit" value="Editar">Editar</button>-->
 			
 			<div id="submit-notice" class="notice">
 				{{ message }}

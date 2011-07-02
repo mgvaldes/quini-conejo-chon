@@ -222,7 +222,7 @@ def add_points_for_match(original_team1, original_team1_goals, original_team2, o
     return points
 
 def get_top_scorers():
-    scorers = CAScorer.all().order('goals').fetch(5)
+    scorers = CAScorer.all().order('-goals').fetch(5)
     scorers_info = []
     counter = 0
 
@@ -250,7 +250,7 @@ def get_top_users_global_ranking():
         
         counter += 1
     
-    football_pools_sorted_by_total_points = sorted(position_points, key=lambda position_point: position_point[1])
+    football_pools_sorted_by_total_points = sorted(position_points, key=lambda position_point: position_point[1], reverse=True)
     
     top_football_pools_sorted_by_total_points = football_pools_sorted_by_total_points[:5]
     

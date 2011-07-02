@@ -44,7 +44,7 @@ loadQuinEvents();loadHiddenLeft();
 {% block content_submenu %}
 <ul id="center-buttons">
   <li class="not-selected"><a href="/list/football-pools/view"><span>Mis Quinielas</span></a></li>
-  <li class="selected"><a href="/create/step1"><span>Crear Quiniela</span></a></li>
+  <li class="selected"><a href="#"><span>Crear Quiniela</span></a></li>
   <li class="not-selected"><a href="/list/football-pools/pay"><span>Pagar Quiniela</span></a></li>
 </ul>
 {% endblock %}
@@ -75,11 +75,11 @@ loadQuinEvents();loadHiddenLeft();
   <ul class="group-matches">
 	{% for team in group.0 %}
 	<li class="group-match">
-	  <label class="e1" id="{{ team.0|slice:":3" }}-{{ team.1|slice:":3" }}-g1" for="{{ team.0|slice:":3" }}-{{ team.1|slice:":3" }}-g1">{{ team.0 }}</label> 
+	  <label class="e1" id="{{ team.0|slice:":3" }}-{{ team.1|slice:":3" }}-fl1" for="{{ team.0|slice:":3" }}-{{ team.1|slice:":3" }}-g1">{{ team.0 }}</label> 
 	  <input id="{{ team.0|slice:":3" }}-{{ team.1|slice:":3" }}-g1" name="{{ team.0|slice:":3" }}-{{ team.1|slice:":3" }}-g1" class="goals-field" type="text" value="" />
       <p class="quin-sep">-</p>
 	  <input id="{{ team.0|slice:":3" }}-{{ team.1|slice:":3" }}-g2" name="{{ team.0|slice:":3" }}-{{ team.1|slice:":3" }}-g2" class="goals-field" type="text" value="" /> 
-	  <label class="e2" id="{{ team.0|slice:":3" }}-{{ team.1|slice:":3" }}-g2" for="{{ team.0|slice:":3" }}-{{ team.1|slice:":3" }}-g2">{{ team.1 }}</label>
+	  <label class="e2" id="{{ team.0|slice:":3" }}-{{ team.1|slice:":3" }}-fl2" for="{{ team.0|slice:":3" }}-{{ team.1|slice:":3" }}-g2">{{ team.1 }}</label>
 	</li>
 	{% endfor %}
   </ul>
@@ -88,8 +88,8 @@ loadQuinEvents();loadHiddenLeft();
 	<tr>
 	  <th>Pa&iacute;s</th>
 	  <th>G</th>
-	  <th>E</th>
 	  <th>P</th>
+	  <th>E</th>
 	  <th>GF</th>
 	  <th>GC</th>
 	  <th>Pts</th>

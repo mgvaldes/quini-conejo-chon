@@ -68,11 +68,11 @@ loadQuinEditEvents();loadHiddenLeft();
   <ul class="group-matches">
 	{% for team in group.0 %}
 	<li class="group-match">
-	  <label class="e1" id="{{ team.0|slice:":3" }}-{{ team.3|slice:":3" }}-g1" for="{{ team.0|slice:":3" }}-{{ team.3|slice:":3" }}-g1">{{ team.0 }}</label> 
+	  <label class="e1" id="{{ team.0|slice:":3" }}-{{ team.3|slice:":3" }}-fl1" for="{{ team.0|slice:":3" }}-{{ team.3|slice:":3" }}-g1">{{ team.0 }}</label> 
 	  <input id="{{ team.0|slice:":3" }}-{{ team.3|slice:":3" }}-g1" name="{{ team.0|slice:":3" }}-{{ team.3|slice:":3" }}-g1" class="goals-field" type="text" value="{{ team.1 }}" />
       <p class="quin-sep">-</p>
 	  <input id="{{ team.0|slice:":3" }}-{{ team.3|slice:":3" }}-g2" name="{{ team.0|slice:":3" }}-{{ team.3|slice:":3" }}-g2" class="goals-field" type="text" value="{{ team.2 }}" /> 
-	  <label class="e2" id="{{ team.0|slice:":3" }}-{{ team.3|slice:":3" }}-g2" for="{{ team.0|slice:":3" }}-{{ team.3|slice:":3" }}-g2">{{ team.3 }}</label>
+	  <label class="e2" id="{{ team.0|slice:":3" }}-{{ team.3|slice:":3" }}-fl2" for="{{ team.0|slice:":3" }}-{{ team.3|slice:":3" }}-g2">{{ team.3 }}</label>
 	</li>
 	{% endfor %}
   </ul>
@@ -81,8 +81,8 @@ loadQuinEditEvents();loadHiddenLeft();
 	<tr>
 	  <th>Pa&iacute;s</th>
 	  <th>G</th>
-	  <th>E</th>
 	  <th>P</th>
+	  <th>E</th>
 	  <th>GF</th>
 	  <th>GC</th>
 	  <th>Pts</th>

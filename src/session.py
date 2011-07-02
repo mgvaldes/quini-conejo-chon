@@ -72,7 +72,7 @@ class LoginHandler(webapp.RequestHandler):
 #                        }
                         
 #                        render_template(self, 'create_step1.html', template_values)
-                        self.redirect('/create/step1')
+                        self.redirect('/list/football-pools/view')
                     else:
                         logging.debug('Incorrect password. . Login failed')
                         

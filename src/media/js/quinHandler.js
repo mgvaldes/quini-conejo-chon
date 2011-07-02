@@ -225,7 +225,6 @@ function PrintL() {
 
 
 function fetchAndUpdate(id) {
-
     var split_id = id.split('-');
     // team1 - team2
     var team1 = split_id[0];
@@ -878,7 +877,7 @@ function statListToString(stat_list){
 }
 
 function fetchAllResults(){
-	
+
 $('#Arg-Bol-g1').change(function() {fetchAndUpdate('Arg-Bol-g1');})
 $('#Arg-Bol-g2').change(function() {fetchAndUpdate('Arg-Bol-g2');})
 $('#Arg-Cos-g1').change(function() {fetchAndUpdate('Arg-Cos-g1');})
@@ -1194,7 +1193,7 @@ function getFinalRoundMatches(className){
 	  });
 	return games_id;
 }
-
+/*
 function getRandomInt(min, max)
 {
 return Math.floor(Math.random() * (max - min + 1)) + min;
@@ -1247,6 +1246,6 @@ function assignRandomFinalRound(){
     }
 	loadAsPrevFinalRound();
 }
-
+*/
 
 
