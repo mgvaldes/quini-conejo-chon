@@ -44,7 +44,11 @@ loadQuinEvents();loadHiddenLeft();
 {% block content_submenu %}
 <ul id="center-buttons">
   <li class="not-selected"><a href="/list/football-pools/view"><span>Mis Quinielas</span></a></li>
-  <li class="selected"><a href="#"><span>Crear Quiniela</span></a></li>
+  {% if special_user %}
+  	<li class="selected"><a href="/create/step1"><span>Crear Quiniela</span></a></li>
+  {% else %}
+  	<li class="selected"><a href="#"><span>Crear Quiniela</span></a></li>
+  {% endif %}
   <li class="not-selected"><a href="/list/football-pools/pay"><span>Pagar Quiniela</span></a></li>
 </ul>
 {% endblock %}

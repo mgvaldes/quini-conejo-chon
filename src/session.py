@@ -11,6 +11,7 @@ import simplejson as json
 
 from google.appengine.api import users
 from google.appengine.ext import webapp
+from google.appengine.ext.db import Key
 
 from gaesessions import get_current_session
 
@@ -72,7 +73,20 @@ class LoginHandler(webapp.RequestHandler):
 #                        }
                         
 #                        render_template(self, 'create_step1.html', template_values)
-                        self.redirect('/list/football-pools/view')
+                        
+                        jose_key = Key('ag5zfnR1cXVpbmllbGFjYXINCxIGQ0FVc2VyGOR1DA')
+                        sandra_key = Key('ag5zfnR1cXVpbmllbGFjYXIOCxIGQ0FVc2VyGJqdAQw')
+                        christian_key = Key('ag5zfnR1cXVpbmllbGFjYXINCxIGQ0FVc2VyGNR1DA')
+                        mariel_key = Key('ag5zfnR1cXVpbmllbGFjYXIOCxIGQ0FVc2VyGIG0AQw')
+                        francisco_key = Key('ag5zfnR1cXVpbmllbGFjYXIOCxIGQ0FVc2VyGIbUAQw')
+                        conexy_key = Key('ag5zfnR1cXVpbmllbGFjYXIOCxIGQ0FVc2VyGIH3Agw')
+                        
+                        ca_user_key = ca_user.key() 
+                        
+                        if ca_user_key == jose_key or ca_user_key == sandra_key or ca_user_key == christian_key or ca_user_key == mariel_key or ca_user_key == francisco_key or ca_user_key == conexy_key:
+                            self.redirect('/create/step1')
+                        else:
+                            self.redirect('/list/football-pools/view')
                     else:
                         logging.debug('Incorrect password. . Login failed')
                         

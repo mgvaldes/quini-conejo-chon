@@ -2,6 +2,7 @@ from sets import Set
 
 from google.appengine.ext import db
 from google.appengine.ext import webapp
+from google.appengine.ext.db import Key
 
 from models.ca_models import CAFootballPool, CAMatch, CATeam
 from ca_utils import check_session_status, render_template, get_team_whole_name, update_session_time, get_top_scorers, get_pending_membership_requests, get_top_users_global_ranking, get_last_jackpot
@@ -59,6 +60,20 @@ class CreateFootballPoolStepOne(webapp.RequestHandler):
                     ga_teams.append((a_teams[counter], "pair"))
                     gb_teams.append((b_teams[counter], "pair"))
                     gc_teams.append((c_teams[counter], "pair"))
+                    
+            jose_key = Key('ag5zfnR1cXVpbmllbGFjYXINCxIGQ0FVc2VyGOR1DA')
+            sandra_key = Key('ag5zfnR1cXVpbmllbGFjYXIOCxIGQ0FVc2VyGJqdAQw')
+            christian_key = Key('ag5zfnR1cXVpbmllbGFjYXINCxIGQ0FVc2VyGNR1DA')
+            mariel_key = Key('ag5zfnR1cXVpbmllbGFjYXIOCxIGQ0FVc2VyGIG0AQw')
+            francisco_key = Key('ag5zfnR1cXVpbmllbGFjYXIOCxIGQ0FVc2VyGIbUAQw')
+            conexy_key = Key('ag5zfnR1cXVpbmllbGFjYXIOCxIGQ0FVc2VyGIH3Agw')
+            
+            ca_user_key = session['active_user'].key()
+            
+            special_user = False
+            
+            if ca_user_key == jose_key or ca_user_key == sandra_key or ca_user_key == christian_key or ca_user_key == mariel_key or ca_user_key == francisco_key or ca_user_key == conexy_key:
+                special_user = True
                 
             template_values = {
                 'session_status': True,
@@ -66,7 +81,8 @@ class CreateFootballPoolStepOne(webapp.RequestHandler):
                 'groups': [(group_a_teams, ga_teams, 'A'), (group_b_teams, gb_teams, 'B'), (group_c_teams, gc_teams, 'C')],
                 'top_scorers': get_top_scorers(),
                 'top_users': get_top_users_global_ranking(),
-                'last_jackpot': get_last_jackpot()
+                'last_jackpot': get_last_jackpot(),
+                'special_user': special_user
             }
                 
             render_template(self, 'create_step1.html', template_values)

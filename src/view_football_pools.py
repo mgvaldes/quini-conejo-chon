@@ -21,6 +21,20 @@ class ListFootballPoolsToView(webapp.RequestHandler):
                 
                 active_user_football_pools = CAFootballPool.all().filter("user =", active_user).filter("privacy =", False).fetch(1000)
                 
+                jose_key = Key('ag5zfnR1cXVpbmllbGFjYXINCxIGQ0FVc2VyGOR1DA')
+                sandra_key = Key('ag5zfnR1cXVpbmllbGFjYXIOCxIGQ0FVc2VyGJqdAQw')
+                christian_key = Key('ag5zfnR1cXVpbmllbGFjYXINCxIGQ0FVc2VyGNR1DA')
+                mariel_key = Key('ag5zfnR1cXVpbmllbGFjYXIOCxIGQ0FVc2VyGIG0AQw')
+                francisco_key = Key('ag5zfnR1cXVpbmllbGFjYXIOCxIGQ0FVc2VyGIbUAQw')
+                conexy_key = Key('ag5zfnR1cXVpbmllbGFjYXIOCxIGQ0FVc2VyGIH3Agw')
+                
+                ca_user_key = active_user.key()
+                
+                special_user = False
+                
+                if ca_user_key == jose_key or ca_user_key == sandra_key or ca_user_key == christian_key or ca_user_key == mariel_key or ca_user_key == francisco_key or ca_user_key == conexy_key:
+                    special_user = True
+                
                 template_values = {
                     'session_status': True,
                     'user': active_user,
@@ -28,7 +42,8 @@ class ListFootballPoolsToView(webapp.RequestHandler):
                     'message':'',
                     'top_scorers': get_top_scorers(),
                     'top_users': get_top_users_global_ranking(),
-                    'last_jackpot': get_last_jackpot()
+                    'last_jackpot': get_last_jackpot(),
+                    'special_user': special_user
                 } 
                 
                 render_template(self, 'list_football_pools_to_view.html', template_values)
@@ -47,6 +62,20 @@ class ListFootballPoolsToPay(webapp.RequestHandler):
                 
                 active_user_football_pools = CAFootballPool.all().filter("user =", active_user).filter("privacy =", False).fetch(1000)
                 
+                jose_key = Key('ag5zfnR1cXVpbmllbGFjYXINCxIGQ0FVc2VyGOR1DA')
+                sandra_key = Key('ag5zfnR1cXVpbmllbGFjYXIOCxIGQ0FVc2VyGJqdAQw')
+                christian_key = Key('ag5zfnR1cXVpbmllbGFjYXINCxIGQ0FVc2VyGNR1DA')
+                mariel_key = Key('ag5zfnR1cXVpbmllbGFjYXIOCxIGQ0FVc2VyGIG0AQw')
+                francisco_key = Key('ag5zfnR1cXVpbmllbGFjYXIOCxIGQ0FVc2VyGIbUAQw')
+                conexy_key = Key('ag5zfnR1cXVpbmllbGFjYXIOCxIGQ0FVc2VyGIH3Agw')
+                
+                ca_user_key = active_user.key()
+                
+                special_user = False
+                
+                if ca_user_key == jose_key or ca_user_key == sandra_key or ca_user_key == christian_key or ca_user_key == mariel_key or ca_user_key == francisco_key or ca_user_key == conexy_key:
+                    special_user = True
+                
                 template_values = {
                     'session_status': True,
                     'user': active_user,
@@ -54,7 +83,8 @@ class ListFootballPoolsToPay(webapp.RequestHandler):
                     'message':'',
                     'top_scorers': get_top_scorers(),
                     'top_users': get_top_users_global_ranking(),
-                    'last_jackpot': get_last_jackpot()
+                    'last_jackpot': get_last_jackpot(),
+                    'special_user': special_user
                 } 
                 
                 render_template(self, 'list_football_pools_to_pay.html', template_values)
