@@ -78,6 +78,9 @@ def get_total_points(football_pool):
         elif ((original_match_team1_goals > original_match_team2_goals) and (match_team1_goals > match_team2_goals)) or ((original_match_team1_goals < original_match_team2_goals) and (match_team1_goals < match_team2_goals)):
             points += 3
             
+        if (original_match_team1_goals != -1) and (original_match_team2_goals != -1) and ((original_match_team1_goals == original_match_team2_goals) and (match_team1_goals == match_team2_goals)):
+            points += 3
+            
     original_pool_second_round_matches = original_pool.second_round_matches.fetch(8)
     football_pool_second_round_matches = football_pool.second_round_matches.fetch(8)
     
@@ -205,8 +208,9 @@ def add_points_for_match(original_team1, original_team1_goals, original_team2, o
         
         if (original_match_team2_goals == match_team2_goals):
             points += 5
-        elif ((original_match_team1_goals > original_match_team2_goals) and (match_team1_goals > match_team2_goals)) or ((original_match_team1_goals < original_match_team2_goals) and (match_team1_goals < match_team2_goals)):
+        elif ((original_match_team1_goals > original_match_team2_goals) and (match_team1_goals > match_team2_goals)) or ((original_match_team1_goals < original_match_team2_goals) and (match_team1_goals < match_team2_goals)) or ((original_match_team1_goals == original_match_team2_goals) and (match_team1_goals == match_team2_goals)):
             points += 3
+            
     elif (original_team1 == team2 and original_team2 == team1):
         original_match_team1_goals = original_team1_goals
         original_match_team2_goals = original_team2_goals
@@ -217,6 +221,9 @@ def add_points_for_match(original_team1, original_team1_goals, original_team2, o
         if (original_match_team1_goals == match_team1_goals) and (original_match_team2_goals == match_team2_goals):
             points += 5
         elif ((original_match_team1_goals > original_match_team2_goals) and (match_team1_goals > match_team2_goals)) or ((original_match_team1_goals < original_match_team2_goals) and (match_team1_goals < match_team2_goals)):
+            points += 3
+            
+        if (original_match_team1_goals != -1) and (original_match_team2_goals != -1) and ((original_match_team1_goals == original_match_team2_goals) and (match_team1_goals == match_team2_goals)):
             points += 3
 
     return points
