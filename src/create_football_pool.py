@@ -61,18 +61,16 @@ class CreateFootballPoolStepOne(webapp.RequestHandler):
                     gb_teams.append((b_teams[counter], "pair"))
                     gc_teams.append((c_teams[counter], "pair"))
                     
-            jose_key = Key('ag5zfnR1cXVpbmllbGFjYXINCxIGQ0FVc2VyGOR1DA')
             sandra_key = Key('ag5zfnR1cXVpbmllbGFjYXIOCxIGQ0FVc2VyGJqdAQw')
             christian_key = Key('ag5zfnR1cXVpbmllbGFjYXINCxIGQ0FVc2VyGNR1DA')
             mariel_key = Key('ag5zfnR1cXVpbmllbGFjYXIOCxIGQ0FVc2VyGIG0AQw')
             francisco_key = Key('ag5zfnR1cXVpbmllbGFjYXIOCxIGQ0FVc2VyGIbUAQw')
-            conexy_key = Key('ag5zfnR1cXVpbmllbGFjYXIOCxIGQ0FVc2VyGIH3Agw')
             
             ca_user_key = session['active_user'].key()
             
             special_user = False
             
-            if ca_user_key == jose_key or ca_user_key == sandra_key or ca_user_key == christian_key or ca_user_key == mariel_key or ca_user_key == francisco_key or ca_user_key == conexy_key:
+            if ca_user_key == sandra_key or ca_user_key == christian_key or ca_user_key == mariel_key or ca_user_key == francisco_key:
                 special_user = True
                 
             template_values = {

@@ -109,6 +109,7 @@ class ViewCompetitionGroup(webapp.RequestHandler):
                             name = rank.football_pool.user.native_user.name
                             
                         group_ranking_list.append((name, rank.football_pool.name, get_total_points(rank.football_pool), selected, rank.football_pool.key()))
+                        
                     sorted_group_ranking_list = sorted(group_ranking_list,key=lambda position: position[2], reverse=True)    
                     comments = CAGroupComment.all().filter("group =", competition_group).fetch(10000)
                     comments_info = []
