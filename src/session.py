@@ -86,7 +86,7 @@ class LoginHandler(webapp.RequestHandler):
                         if ca_user_key == jose_key or ca_user_key == sandra_key or ca_user_key == christian_key or ca_user_key == mariel_key or ca_user_key == francisco_key or ca_user_key == conexy_key:
                             self.redirect('/create/step1')
                         else:
-                            self.redirect('/list/football-pools/view')
+                            self.redirect('/list/groups/ranking')
                     else:
                         logging.debug('Incorrect password. . Login failed')
                         
@@ -156,7 +156,7 @@ class GoogleLoginHandler(webapp.RequestHandler):
 #        }
 #                
 #        render_template(self, 'create_step1.html', template_values)
-        self.redirect('/create/step1')
+        self.redirect('/list/groups/ranking')
 
 """
 Handler que se encarga de hacer el login en facebook y redirigir a la
@@ -217,7 +217,7 @@ class FacebookLoginHandler(webapp.RequestHandler):
             
 #            render_template(self, 'create_step1.html', template_values)
 
-            self.redirect('/create/step1')
+            self.redirect('/list/groups/ranking')
         else:
             self.redirect("https://graph.facebook.com/oauth/authorize?" +
                           urllib.urlencode(args))
